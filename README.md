@@ -1,11 +1,12 @@
-# My Personal Project
+# UFC Stats and Bets
 
-## A subtitle
+---
 
-A *bulleted* list:
-- item 1
-- item 2
-- item 3
+## UFC bet and fight generator
 
-An example of text with **bold** and *italic* fonts.  Note that the IntelliJ markdown previewer doesn't seem to render 
-the bold and italic fonts correctly but they will appear correctly on GitHub.
+What can I do with this application?
+- View and add to a fighter's stats
+- Generate an overall ranking in each weight class
+- Generate a next fighter's opponent
+- View all recent matches
+
