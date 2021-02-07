@@ -1,22 +1,46 @@
 package model;
 
 import java.util.HashSet;
+import java.util.List;
 
 
 // Represents a weight class in the UFC
 public class WeightClass {
-    private String weightClass;
+    private int weightClass;
     private HashSet<Fighter> fighters;
+    private List<Fight> matchHistory;
 
     // Effects: creates a weight class with a list of fighters
-    public WeightClass(String weightClass) {
+    public WeightClass(int weightClass) {
         this.weightClass = weightClass;
         fighters = new HashSet<Fighter>();
     }
 
+    // MODIFIES: WeightClass and Fighter given and random Fighter
+    // EFFECTS: generates random opponent for fighter to fight, and then returns the results
+    public String generateNextFight(Fighter fighter) {
+        return null;
+    }
+
+    // MODIFIES: this
+    // REQUIRED: adds a fighter to the list of fighters in the weight class
+    public void addFighter(Fighter fighter) {
+        this.fighters.add(fighter);
+    }
+
+
+
+
+
+
+
     // Getters:
 
-    public String getWeightClass() {
+    public int getSize() {
+        return fighters.size();
+    }
+
+    public int getWeightClass() {
         return this.weightClass;
     }
 
@@ -26,7 +50,7 @@ public class WeightClass {
 
     // Setters:
 
-    public void setWeightClass(String weightClass) {
+    public void setWeightClass(int weightClass) {
         this.weightClass = weightClass;
     }
 
@@ -36,11 +60,7 @@ public class WeightClass {
         fighters.clear();
     }
 
-    // MODIFIES: this
-    // REQUIRED: adds a fighter to the list of fighters in the weight class
-    public void addFighter(Fighter fighter) {
-        this.fighters.add(fighter);
-    }
+
 
     // EFFECTS: prints the list of fighters in the weight class
     public void printFighters() {
@@ -57,29 +77,17 @@ public class WeightClass {
     }
 
     // REQUIRES: at least one other fighter in the weight class
-    // EFFECTS: generates the fighters next opponent
+    // MODIFIES: this
+    // EFFECTS: generates the fighters next opponent chooses winner based on odds, then adds to list of previous fights
     public String getNextFight() {
         return null;
     }
 
 
 
+
+
 }
 
-//TODO: do we need requires/etc for getters/setters. What is considered a getter/setter?
 
-/* weight classes:
-flyweight = 1
-bantamweight = 2
-featherweight = 3
-lightweight = 4
-welterweight = 5
-middleweight = 6
-light heavyweight = 7
-heavyweight = 8
 
-women's strawweight = 10
-women's flyweight = 11
-women's bantamweight = 12
-women's featherweight = 13
- */

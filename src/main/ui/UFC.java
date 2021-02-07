@@ -1,8 +1,8 @@
 package ui;
 
+import model.WeightClass;
+
 public class UFC {
-
-
 
 
     //TODO: can enter a weight class and do the following:
