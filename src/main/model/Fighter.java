@@ -66,9 +66,9 @@ public class Fighter {
     // REQUIRED: a fighter with 0 or greater losses
     // EFFECTS: returns the win percentage of the fighter
     public int getWinPercentage() {
-        if (wins == 0) {
+        if (wins == 0 && losses == 0) {
             return 0;
-        } else if (wins == 0 && losses == 0) {
+        } else if (wins == 0) {
             return 0;
         } else if (losses == 0) {
             return 100;
@@ -90,14 +90,6 @@ public class Fighter {
                 + "\nWin percentage: " + this.getWinPercentage();
 
         return stats;
-    }
-
-    private void addWin() {
-        wins++;
-    }
-
-    private void addLoss() {
-        losses++;
     }
 
     // GETTERS:
@@ -137,6 +129,17 @@ public class Fighter {
         return this.weightClass;
     }
 
+    // MODIFIES: this
+    // EFFECTS: adds a win
+    public void addWin() {
+        wins++;
+    }
+
+    // MODIFIES: this
+    // EFFECTS: adds a loss
+    public void addLoss() {
+        losses++;
+    }
 
     // MODIFIES: this
     // EFFECTS: generates random poor stats for the fighter
@@ -149,7 +152,7 @@ public class Fighter {
         this.height = (int)Math.round(Math.random() * (76 - 60) + 60);
         this.age = (int)Math.round(Math.random() * (45 - 19) + 19);
         this.reach = (int)Math.round(Math.random() * (76 - 60) + 60);
-        this.wins = (int)Math.round(Math.random() * (20) + 0);
+        this.wins = (int)Math.round(Math.random() * (10) + 0);
         this.losses = (int)Math.round(Math.random() * (20 - 10) + 10);
     }
 

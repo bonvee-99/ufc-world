@@ -5,13 +5,12 @@
 ## Overview:
 
 This application is designed for a user to interact with the UFC. The user will be able to create their own fighter
-and generate fights. They will also be able to look at current fighters and their stats. There is no limit to how many 
-fighters you can create. Anyone who is interested in the UFC or likes to look at players' stats wil enjoy this.
+and generate fights between their own fighter or between other ones. They will also be able to look at current fighters 
+and their stats. Anyone who is interested in the UFC or likes to look at players' stats wil enjoy this.
 
 This project is of interest to me because I myself enjoy watching the UFC. I have also played many games where you can
 create your own player. Although this application is not exactly a simulation of the real life UFC, it allows you to 
-play around and interact with other premade fighters or ones that you
-created yourself.
+play around and interact with other premade fighters and the one that you created yourself.
 
 ---
 

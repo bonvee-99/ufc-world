@@ -2,7 +2,6 @@ package model;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import ui.UFC;
 
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -13,9 +12,9 @@ class FighterTest {
     private Fighter fighter2;
     private Fighter fighter3;
     private Fighter fighter4;
-    private Fighter fighter5;
-    private Fighter fighter6;
-    private Fighter fighter7;
+    private Fighter fighterGoodRandomA;
+    private Fighter fighterGoodRandomB;
+    private Fighter fighterBadRandom;
 
     @BeforeEach
     public void runBefore() {
@@ -31,19 +30,9 @@ class FighterTest {
         fighter4 = new Fighter("Small Man Cam",
                 "regular",
                 100, 73, 27, 75);
-        fighter5 = new Fighter("random Man Sam", 160, 1);
-        fighter6 = new Fighter("random Man Bob", 160, 1);
-        fighter7 = new Fighter("random man Dave", 160, 0);
-
-        WeightClass strawWeight = new WeightClass(0);
-        WeightClass flyWeight = new WeightClass(1);
-        WeightClass bantamWeight = new WeightClass(2);
-        WeightClass featherWeight = new WeightClass(3);
-        WeightClass lightWeight = new WeightClass(4);
-        WeightClass welterWeight = new WeightClass(5);
-        WeightClass middleWeight = new WeightClass(6);
-        WeightClass lightHeavyWeight = new WeightClass(7);
-        WeightClass heavyWeight = new WeightClass(8);
+        fighterGoodRandomA = new Fighter("random Man Sam", 160, 1);
+        fighterGoodRandomB = new Fighter("random Man Bob", 160, 1);
+        fighterBadRandom = new Fighter("random Man Dave", 160, 0);
     }
 
     @Test
@@ -60,28 +49,114 @@ class FighterTest {
     }
 
     @Test
-    public void randomConstructorTest() {
-        assertEquals("random man Sam", fighter5.getName());
-        assertEquals(160, fighter5.getWeight());
+    public void randomGoodFighterConstructorTest() {
+        assertEquals("random Man Sam", fighterGoodRandomA.getName());
+        assertEquals(160, fighterGoodRandomA.getWeight());
+        assertEquals(5, fighterGoodRandomA.getWeightClass());
+
         boolean setStanceProperly;
-        if (fighter5.getStance() == "regular" || fighter5.getStance() == "southpaw") {
+        if (fighterGoodRandomA.getStance() == "regular" || fighterGoodRandomA.getStance() == "southpaw") {
             setStanceProperly = true;
         } else {
             setStanceProperly = false;
         }
         boolean setHeightProperly;
-        if (60 < fighter5.getHeight() && fighter5.getHeight() < 76) {
+        if (60 <= fighterGoodRandomA.getHeight() && fighterGoodRandomA.getHeight() <= 76) {
             setHeightProperly = true;
         } else {
             setHeightProperly = false;
         }
 
-        this.age = (int)Math.round(Math.random() * (45 - 19) + 19);
-        this.reach = (int)Math.round(Math.random() * (76 - 60) + 60);
-        this.wins = (int)Math.round(Math.random() * (30 - 15) + 15);
-        this.losses = (int)Math.round(Math.random() * (10 - 0) + 0);
+        boolean setAgeProperly;
+        if (19 <= fighterGoodRandomA.getAge() && fighterGoodRandomA.getAge() <= 45) {
+            setAgeProperly = true;
+        } else {
+            setAgeProperly = false;
+        }
+
+        boolean setReachProperly;
+        if (60 <= fighterGoodRandomA.getReach() && fighterGoodRandomA.getReach() <= 80) {
+            setReachProperly = true;
+        } else {
+            setReachProperly = false;
+        }
+
+        boolean setWinsProperly;
+        if (15 <= fighterGoodRandomA.getWins() && fighterGoodRandomA.getWins() <= 30) {
+            setWinsProperly = true;
+        } else {
+            setWinsProperly = false;
+        }
+
+        boolean setLossesProperly;
+        if (0 <= fighterGoodRandomA.getLosses() && fighterGoodRandomA.getLosses() <= 10) {
+            setLossesProperly = true;
+        } else {
+            setLossesProperly = false;
+        }
+
+        assertTrue(setStanceProperly);
+        assertTrue(setHeightProperly);
+        assertTrue(setAgeProperly);
+        assertTrue(setReachProperly);
+        assertTrue(setWinsProperly);
+        assertTrue(setLossesProperly);
     }
 
+    @Test
+    public void randomBadFighterConstructorTest() {
+        assertEquals("random Man Dave", fighterBadRandom.getName());
+        assertEquals(160, fighterBadRandom.getWeight());
+        assertEquals(5, fighterBadRandom.getWeightClass());
+
+        boolean setStanceProperly;
+        if (fighterBadRandom.getStance() == "regular" || fighterBadRandom.getStance() == "southpaw") {
+            setStanceProperly = true;
+        } else {
+            setStanceProperly = false;
+        }
+        boolean setHeightProperly;
+        if (60 <= fighterBadRandom.getHeight() && fighterBadRandom.getHeight() <= 76) {
+            setHeightProperly = true;
+        } else {
+            setHeightProperly = false;
+        }
+
+        boolean setAgeProperly;
+        if (19 <= fighterBadRandom.getAge() && fighterBadRandom.getAge() <= 45) {
+            setAgeProperly = true;
+        } else {
+            setAgeProperly = false;
+        }
+
+        boolean setReachProperly;
+        if (60 <= fighterBadRandom.getReach() && fighterBadRandom.getReach() <= 76) {
+            setReachProperly = true;
+        } else {
+            setReachProperly = false;
+        }
+
+        boolean setWinsProperly;
+        if (0 <= fighterBadRandom.getWins() && fighterBadRandom.getWins() <= 10) {
+            setWinsProperly = true;
+        } else {
+            setWinsProperly = false;
+        }
+
+        boolean setLossesProperly;
+        if (10 <= fighterBadRandom.getLosses() && fighterBadRandom.getLosses() <= 20) {
+            setLossesProperly = true;
+        } else {
+            setLossesProperly = false;
+        }
+
+        assertTrue(setStanceProperly);
+        assertTrue(setHeightProperly);
+        assertTrue(setAgeProperly);
+        assertTrue(setReachProperly);
+        assertTrue(setWinsProperly);
+        assertTrue(setLossesProperly);
+    }
 
     @Test
     public void assignWeightClassWithinTest() {
@@ -109,13 +184,27 @@ class FighterTest {
 
     @Test
     public void getWinPercentageNoMatchesTest() {
-        assertEquals(0,fighter4.getWinPercentage());
+        assertEquals(0, fighter4.getWinPercentage());
+    }
+
+    @Test
+    public void getWinPercentageOnlyLossesTest() {
+        assertEquals(0, fighter1.getLosses());
+        fighter1.addLoss();
+        assertEquals(0, fighter1.getWinPercentage());
+    }
+
+    @Test
+    public void getWinPercentageOnlyWinsTest() {
+        assertEquals(0, fighter1.getLosses());
+        fighter1.addWin();
+        assertEquals(100, fighter1.getWinPercentage());
     }
 
     @Test
     public void getWinPercentageHasMatches() {
         boolean notZero;
-        if (fighter5.getWinPercentage() == 0) {
+        if (fighterGoodRandomA.getWinPercentage() == 0) {
             notZero = false;
         } else {
             notZero = true;
