@@ -1,6 +1,5 @@
 package ui;
 
-import model.Fighter;
 import model.WeightClass;
 
 import java.util.ArrayList;
@@ -9,9 +8,7 @@ import java.util.Scanner;
 // Console based UI inspired by the tellerApp
 public class UfcApp {
     private Scanner userInput;
-
     private boolean remainRunning;
-
     private int command;
 
     private WeightClass strawWeight;
@@ -23,6 +20,53 @@ public class UfcApp {
     private WeightClass middleWeight;
     private WeightClass lightHeavyWeight;
     private WeightClass heavyWeight;
+
+    private static final String NAME1 = "Tiny Tim";
+    private static final String NAME2 = "Joel Hammond";
+    private static final String NAME3 = "Rick Feder";
+    private static final String NAME4 = "Sam Davids";
+    private static final String NAME5 = "Tony Brooks";
+    private static final String NAME6 = "Connor Marsh";
+    private static final String NAME7 = "Sameer Frey";
+    private static final String NAME8 = "Antoni Cain";
+    private static final String NAME9 = "Kier Huber";
+    private static final String NAME10 = "Connor Marsh";
+    private static final String NAME11 = "Kelsey Zuniga";
+    private static final String NAME12 = "Osama Lindsey";
+    private static final String NAME13 = "Domas Werner";
+    private static final String NAME14 = "Raheel Cortex";
+    private static final String NAME15 = "Kamran Oakley";
+    private static final String NAME16 = "Ronny Russel";
+    private static final String NAME17 = "Tyrese Holcomb";
+    private static final String NAME18 = "Tyson Foley";
+    private static final String NAME19 = "Jasper Workman";
+    private static final String NAME20 = "Joss Daniel";
+    private static final String NAME21 = "Wil Wilkes";
+    private static final String NAME22 = "Yusef Jenkins";
+    private static final String NAME23 = "Caine Webber";
+    private static final String NAME24 = "Dwayne Cornish";
+    private static final String NAME25 = "Carl Rodriquez";
+    private static final String NAME26 = "Denzel Hendricks";
+    private static final String NAME27 = "Patryk Wade";
+    private static final String NAME28 = "Cayden Mcnamara";
+    private static final String NAME29 = "Macaulay Bowes";
+    private static final String NAME30 = "Maverick Bush";
+    private static final String NAME31 = "Kohen Walker";
+    private static final String NAME32 = "Sahil Ortega";
+    private static final String NAME33 = "Dominic Potter";
+    private static final String NAME34 = "Imani Nicholls";
+    private static final String NAME35 = "Ronaldo Gallegos";
+    private static final String NAME36 = "Lawson Russo";
+    private static final String NAME37 = "Gerard Tang";
+    private static final String NAME38 = "Matthias Grant";
+    private static final String NAME39 = "Hunter Mann";
+    private static final String NAME40 = "Charles Petty";
+    private static final String NAME41 = "Lucien Sharp";
+    private static final String NAME42 = "Saad Redmond";
+    private static final String NAME43 = "Kristopher Mcneill";
+    private static final String NAME44 = "Dainton Carson";
+    private static final String NAME45 = "Emmett Esparza";
+
 
     // EFFECTS: runs the UFC application
     public UfcApp() {
@@ -36,6 +80,7 @@ public class UfcApp {
 
         remainRunning = true;
 
+        initializeUFC();
 
         while (remainRunning) {
             displayStartMenu();
@@ -78,6 +123,7 @@ public class UfcApp {
         userInput = new Scanner(System.in);
 
         initializeWeightClasses();
+        initializeAllNames();
         initializeFighters();
     }
 
@@ -94,149 +140,129 @@ public class UfcApp {
         heavyWeight = new WeightClass(8, 205, 265);
     }
 
-    private final String NAME1 = "Tiny Tim";
-    private String name2;
-    private String name3;
-    private String name4;
-    private String name5;
-    private String name6;
+    private ArrayList<String> names1;
+    private ArrayList<String> names2;
+    private ArrayList<String> names3;
+    private ArrayList<String> names4;
+    private ArrayList<String> names5;
+    private ArrayList<String> names6;
+    private ArrayList<String> names7;
+    private ArrayList<String> names8;
+    private ArrayList<String> names9;
 
+    private void initializeAllNames() {
+        initializeNames1();
+        initializeNames2();
+        initializeNames3();
+        initializeNames4();
+        initializeNames5();
+        initializeNames6();
+        initializeNames7();
+        initializeNames8();
+        initializeNames9();
+    }
 
     private void initializeFighters() {
-        ArrayList<String> names1 = new ArrayList<>();
-        names1.add("Tiny Tim");
-        names1.add("Joel Hammond");
-        names1.add("Rick Feder");
-        names1.add("Sam Davids");
-        names1.add("Tony Brooks");
         strawWeight.createFighters(names1);
-
-        ArrayList<String> names2 = new ArrayList<>();
-        names2.add("Connor Marsh");
-        names2.add("Sameer Frey");
-        names3.add("Antoni")
-        ArrayList<String> names3 = new ArrayList<>();
-        ArrayList<String> names4 = new ArrayList<>();
-        ArrayList<String> names5 = new ArrayList<>();
-        ArrayList<String> names6 = new ArrayList<>();
-        ArrayList<String> names7 = new ArrayList<>();
-        ArrayList<String> names8 = new ArrayList<>();
-        ArrayList<String> names9 = new ArrayList<>();
-
-
-    }
-    // EFFECTS: initializes flyweight fighters and adds them to the flyweight division
-    private void initializeFlyWeightFighters() {
-        flyWeightFighter1 = new Fighter("Connor Marsh", 125, 1);
-        flyWeight.addFighter(flyWeightFighter1);
-        flyWeightFighter2 = new Fighter("Sameer Frey", 124, 1);
-        flyWeight.addFighter(flyWeightFighter2);
-        flyWeightFighter3 = new Fighter("Antoni Cain", 120, 1);
-        flyWeight.addFighter(flyWeightFighter3);
-        flyWeightFighter4 = new Fighter("Kier Huber", 116, 0);
-        flyWeight.addFighter(flyWeightFighter4);
-        flyWeightFighter5 = new Fighter("Connor Marsh", 125, 0);
-        flyWeight.addFighter(flyWeightFighter5);
+        flyWeight.createFighters(names2);
+        bantamWeight.createFighters(names3);
+        featherWeight.createFighters(names4);
+        lightWeight.createFighters(names5);
+        welterWeight.createFighters(names6);
+        middleWeight.createFighters(names7);
+        lightHeavyWeight.createFighters(names8);
+        heavyWeight.createFighters(names9);
     }
 
-    // EFFECTS: initializes bantamweight fighters and adds them to the bantamweight division
-    private void initializeBantamWeightFighters() {
-        bantamWeightFighter1 = new Fighter("Kelsey Zuniga", 135, 1);
-        bantamWeight.addFighter(bantamWeightFighter1);
-        bantamWeightFighter2 = new Fighter("Osama Lindsey", 130, 1);
-        bantamWeight.addFighter(bantamWeightFighter2);
-        bantamWeightFighter3 = new Fighter("Domas Werner", 134, 1);
-        bantamWeight.addFighter(bantamWeightFighter3);
-        bantamWeightFighter4 = new Fighter("Raheel Cortez", 133, 0);
-        bantamWeight.addFighter(bantamWeightFighter4);
-        bantamWeightFighter5 = new Fighter("Kamran Oakley", 129, 0);
-        bantamWeight.addFighter(bantamWeightFighter5);
+    // EFFECTS: initializes names
+    private void initializeNames1() {
+        names1 = new ArrayList<>();
+        names1.add(NAME1);
+        names1.add(NAME2);
+        names1.add(NAME3);
+        names1.add(NAME4);
+        names1.add(NAME5);
     }
 
-    // EFFECTS: initializes featherweight fighters and adds them to the featherweight division
-    private void initializeFeatherWeightFighters() {
-        featherWeightFighter1 = new Fighter("Ronny Russel", 145, 1);
-        featherWeight.addFighter(featherWeightFighter1);
-        featherWeightFighter2 = new Fighter("Tyrese Holcomb", 143, 1);
-        featherWeight.addFighter(featherWeightFighter2);
-        featherWeightFighter3 = new Fighter("Tyson Foley", 142, 1);
-        featherWeight.addFighter(featherWeightFighter3);
-        featherWeightFighter4 = new Fighter("Jasper Workman", 145, 0);
-        featherWeight.addFighter(featherWeightFighter4);
-        featherWeightFighter5 = new Fighter("Joss Daniel", 140, 0);
-        featherWeight.addFighter(featherWeightFighter5);
+    // EFFECTS: initializes names
+    private void initializeNames2() {
+        names2 = new ArrayList<>();
+        names2.add(NAME6);
+        names2.add(NAME7);
+        names2.add(NAME8);
+        names2.add(NAME9);
+        names2.add(NAME10);
     }
 
-    // EFFECTS: initializes lightweight fighters and adds them to the lightweight division
-    private void initializeLightWeightFighters() {
-        lightWeightFighter1 = new Fighter("Wil Wilkes", 155, 1);
-        lightWeight.addFighter(lightWeightFighter1);
-        lightWeightFighter2 = new Fighter("Yusef Jenkins", 153, 1);
-        lightWeight.addFighter(lightWeightFighter2);
-        lightWeightFighter3 = new Fighter("Caine Webber", 154, 1);
-        lightWeight.addFighter(lightWeightFighter3);
-        lightWeightFighter4 = new Fighter("Shannon Cornish", 150, 0);
-        lightWeight.addFighter(lightWeightFighter4);
-        lightWeightFighter5 = new Fighter("Carl Rodriquez", 149, 0);
-        lightWeight.addFighter(lightWeightFighter5);
+    // EFFECTS: initializes names
+    private void initializeNames3() {
+        names3 = new ArrayList<>();
+        names3.add(NAME11);
+        names3.add(NAME12);
+        names3.add(NAME13);
+        names3.add(NAME14);
+        names3.add(NAME15);
     }
 
-    // EFFECTS: initializes welterweight fighters and adds them to the welterweight division
-    private void initializeWelterWeightFighters() {
-        welterWeightFighter1 = new Fighter("Denzel Hendricks", 170, 1);
-        welterWeight.addFighter((welterWeightFighter1));
-        welterWeightFighter2 = new Fighter("Patryk Wade", 169, 1);
-        welterWeight.addFighter((welterWeightFighter2));
-        welterWeightFighter3 = new Fighter("Cayden Mcnamara", 170, 1);
-        welterWeight.addFighter((welterWeightFighter3));
-        welterWeightFighter4 = new Fighter("Macaulay Bowes", 162, 0);
-        welterWeight.addFighter((welterWeightFighter4));
-        welterWeightFighter5 = new Fighter("Maverick Bush", 160, 0);
-        welterWeight.addFighter((welterWeightFighter5));
+    // EFFECTS: initializes names
+    private void initializeNames4() {
+        names4 = new ArrayList<>();
+        names4.add(NAME16);
+        names4.add(NAME17);
+        names4.add(NAME18);
+        names4.add(NAME19);
+        names4.add(NAME20);
     }
 
-    // EFFECTS: initializes middleweight fighters and adds them to the middleweight division
-    private void initializeMiddleWeightFighters() {
-        middleWeightFighter1 = new Fighter("Kohen Walker", 185, 1);
-        middleWeight.addFighter(middleWeightFighter1);
-        middleWeightFighter2 = new Fighter("Sahil Ortega", 184, 1);
-        middleWeight.addFighter(middleWeightFighter2);
-        middleWeightFighter3 = new Fighter("Dominic Potter", 185, 1);
-        middleWeight.addFighter(middleWeightFighter3);
-        middleWeightFighter4 = new Fighter("Imani Nicholls", 176, 0);
-        middleWeight.addFighter(middleWeightFighter4);
-        middleWeightFighter5 = new Fighter("Ronaldo Gallegos", 179, 0);
-        middleWeight.addFighter(middleWeightFighter5);
+    // EFFECTS: initializes names
+    private void initializeNames5() {
+        names5 = new ArrayList<>();
+        names5.add(NAME21);
+        names5.add(NAME22);
+        names5.add(NAME23);
+        names5.add(NAME24);
+        names5.add(NAME25);
     }
 
-    // EFFECTS: initializes light heavyweight fighters and adds them to the light heavyweight division
-    private void initializeLightHeavyWeightFighters() {
-        lightHeavyWeightFighter1 = new Fighter("Lawson Russo", 205, 1);
-        lightHeavyWeight.addFighter(lightHeavyWeightFighter1);
-        lightHeavyWeightFighter2 = new Fighter("Gerard Tang", 200, 1);
-        lightHeavyWeight.addFighter(lightHeavyWeightFighter2);
-        lightHeavyWeightFighter3 = new Fighter("Matthias Grant", 204, 1);
-        lightHeavyWeight.addFighter(lightHeavyWeightFighter3);
-        lightHeavyWeightFighter4 = new Fighter("Hunter Mann", 186, 0);
-        lightHeavyWeight.addFighter(lightHeavyWeightFighter4);
-        lightHeavyWeightFighter5 = new Fighter("Charles Petty", 199, 1);
-        lightHeavyWeight.addFighter(lightHeavyWeightFighter5);
+    // EFFECTS: initializes names
+    private void initializeNames6() {
+        names6 = new ArrayList<>();
+        names6.add(NAME26);
+        names6.add(NAME27);
+        names6.add(NAME28);
+        names6.add(NAME29);
+        names6.add(NAME30);
     }
 
-    // EFFECTS: initializes heavyweight fighters and adds them to the heavyweight division
-    private void initializeHeavyWeightFighters() {
-        heavyWeightFighter1 = new Fighter("Lucien Sharp", 265, 1);
-        heavyWeight.addFighter(heavyWeightFighter1);
-        heavyWeightFighter2 = new Fighter("Saad Redmond", 260, 1);
-        heavyWeight.addFighter(heavyWeightFighter2);
-        heavyWeightFighter3 = new Fighter("Kristopher Mcneill", 215, 1);
-        heavyWeight.addFighter(heavyWeightFighter3);
-        heavyWeightFighter4 = new Fighter("Dainton Carson", 210, 0);
-        heavyWeight.addFighter(heavyWeightFighter4);
-        heavyWeightFighter5 = new Fighter("Emmett Esparza", 209, 0);
-        heavyWeight.addFighter(heavyWeightFighter5);
+    // EFFECTS: initializes names
+    private void initializeNames7() {
+        names7 = new ArrayList<>();
+        names7.add(NAME31);
+        names7.add(NAME32);
+        names7.add(NAME33);
+        names7.add(NAME34);
+        names7.add(NAME35);
     }
 
+    // EFFECTS: initializes names
+    private void initializeNames8() {
+        names8 = new ArrayList<>();
+        names8.add(NAME36);
+        names8.add(NAME37);
+        names8.add(NAME38);
+        names8.add(NAME39);
+        names8.add(NAME40);
+    }
+
+    // EFFECTS: initializes names
+    private void initializeNames9() {
+        names9 = new ArrayList<>();
+        names9.add(NAME41);
+        names9.add(NAME42);
+        names9.add(NAME43);
+        names9.add(NAME44);
+        names9.add(NAME45);
+    }
 }
 
 

@@ -153,14 +153,5 @@ public class WeightClassTest {
                 && fighter.getWeight()
                 <= lightWeight.getUpperWeightLimit();
         assertTrue(inRange);
-
-
-
-
-
-//TODO: replace all UfcApp fight creation initiates with this method!!!. make sure you keep copy of old one in case it doesn't work!!!
-
-    //TODO: reference from stackoverflow on the range??!?!?!
-
-
+    }
 }

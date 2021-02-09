@@ -104,6 +104,7 @@ public class WeightClass {
         } else {
             return fighterB;
         }
+
     }
 
     // EFFECTS: chooses random result of a fight
