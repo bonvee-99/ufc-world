@@ -3,6 +3,7 @@ package ui;
 import model.Fighter;
 import model.WeightClass;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 // Console based UI inspired by the tellerApp
@@ -12,7 +13,7 @@ public class UfcApp {
     private boolean remainRunning;
 
     private int command;
-    
+
     private WeightClass strawWeight;
     private WeightClass flyWeight;
     private WeightClass bantamWeight;
@@ -23,62 +24,6 @@ public class UfcApp {
     private WeightClass lightHeavyWeight;
     private WeightClass heavyWeight;
 
-    private Fighter strawWeightFighter1;
-    private Fighter strawWeightFighter2;
-    private Fighter strawWeightFighter3;
-    private Fighter strawWeightFighter4;
-    private Fighter strawWeightFighter5;
-
-    private Fighter flyWeightFighter1;
-    private Fighter flyWeightFighter2;
-    private Fighter flyWeightFighter3;
-    private Fighter flyWeightFighter4;
-    private Fighter flyWeightFighter5;
-
-    private Fighter bantamWeightFighter1;
-    private Fighter bantamWeightFighter2;
-    private Fighter bantamWeightFighter3;
-    private Fighter bantamWeightFighter4;
-    private Fighter bantamWeightFighter5;
-
-    private Fighter featherWeightFighter1;
-    private Fighter featherWeightFighter2;
-    private Fighter featherWeightFighter3;
-    private Fighter featherWeightFighter4;
-    private Fighter featherWeightFighter5;
-
-    private Fighter lightWeightFighter1;
-    private Fighter lightWeightFighter2;
-    private Fighter lightWeightFighter3;
-    private Fighter lightWeightFighter4;
-    private Fighter lightWeightFighter5;
-
-    private Fighter welterWeightFighter1;
-    private Fighter welterWeightFighter2;
-    private Fighter welterWeightFighter3;
-    private Fighter welterWeightFighter4;
-    private Fighter welterWeightFighter5;
-
-    private Fighter middleWeightFighter1;
-    private Fighter middleWeightFighter2;
-    private Fighter middleWeightFighter3;
-    private Fighter middleWeightFighter4;
-    private Fighter middleWeightFighter5;
-
-    private Fighter lightHeavyWeightFighter1;
-    private Fighter lightHeavyWeightFighter2;
-    private Fighter lightHeavyWeightFighter3;
-    private Fighter lightHeavyWeightFighter4;
-    private Fighter lightHeavyWeightFighter5;
-
-    private Fighter heavyWeightFighter1;
-    private Fighter heavyWeightFighter2;
-    private Fighter heavyWeightFighter3;
-    private Fighter heavyWeightFighter4;
-    private Fighter heavyWeightFighter5;
-
-    private Fighter myFighter;
-
     // EFFECTS: runs the UFC application
     public UfcApp() {
         runUFC();
@@ -88,11 +33,10 @@ public class UfcApp {
     // MODIFIES: this
     // EFFECTS: interacts with user input
     private void runUFC() {
-        initializeUFC();
-        
+
         remainRunning = true;
 
-        
+
         while (remainRunning) {
             displayStartMenu();
             command = userInput.nextInt();
@@ -132,47 +76,55 @@ public class UfcApp {
     // EFFECTS: initializes weight classes and fighters. Also adds fighters into their weight classes.
     private void initializeUFC() {
         userInput = new Scanner(System.in);
-                
-        initializeWeightClasses();
 
-        initializeStrawWeightFighters();
-        initializeFlyWeightFighters();
-        initializeBantamWeightFighters();
-        initializeFeatherWeightFighters();
-        initializeLightWeightFighters();
-        initializeWelterWeightFighters();
-        initializeMiddleWeightFighters();
-        initializeLightHeavyWeightFighters();
-        initializeHeavyWeightFighters();
+        initializeWeightClasses();
+        initializeFighters();
     }
 
     // EFFECTS: initializes weight classes
     private void initializeWeightClasses() {
-        strawWeight = new WeightClass(0);
-        flyWeight = new WeightClass(1);
-        bantamWeight = new WeightClass(2);
-        featherWeight = new WeightClass(3);
-        lightWeight = new WeightClass(4);
-        welterWeight = new WeightClass(5);
-        middleWeight = new WeightClass(6);
-        lightHeavyWeight = new WeightClass(7);
-        heavyWeight = new WeightClass(8);
+        strawWeight = new WeightClass(0, 115, 0);
+        flyWeight = new WeightClass(1, 115, 125);
+        bantamWeight = new WeightClass(2, 125, 135);
+        featherWeight = new WeightClass(3, 135, 145);
+        lightWeight = new WeightClass(4, 145, 155);
+        welterWeight = new WeightClass(5, 155, 170);
+        middleWeight = new WeightClass(6, 170, 185);
+        lightHeavyWeight = new WeightClass(7, 185, 205);
+        heavyWeight = new WeightClass(8, 205, 265);
     }
 
-    // EFFECTS: initializes strawweight fighters and adds them to the strawweight division
-    private void initializeStrawWeightFighters() {
-        strawWeightFighter1 = new Fighter("Tiny Tim", 100, 1);
-        strawWeight.addFighter(strawWeightFighter1);
-        strawWeightFighter2 = new Fighter("Joel Hammond", 115, 1);
-        strawWeight.addFighter(strawWeightFighter2);
-        strawWeightFighter3 = new Fighter("Rick Feder", 112, 1);
-        strawWeight.addFighter(strawWeightFighter3);
-        strawWeightFighter4 = new Fighter("Sam Davids", 109, 0);
-        strawWeight.addFighter(strawWeightFighter4);
-        strawWeightFighter5 = new Fighter("Tony Brooks", 114, 0);
-        strawWeight.addFighter(strawWeightFighter5);
-    }
+    private final String NAME1 = "Tiny Tim";
+    private String name2;
+    private String name3;
+    private String name4;
+    private String name5;
+    private String name6;
 
+
+    private void initializeFighters() {
+        ArrayList<String> names1 = new ArrayList<>();
+        names1.add("Tiny Tim");
+        names1.add("Joel Hammond");
+        names1.add("Rick Feder");
+        names1.add("Sam Davids");
+        names1.add("Tony Brooks");
+        strawWeight.createFighters(names1);
+
+        ArrayList<String> names2 = new ArrayList<>();
+        names2.add("Connor Marsh");
+        names2.add("Sameer Frey");
+        names3.add("Antoni")
+        ArrayList<String> names3 = new ArrayList<>();
+        ArrayList<String> names4 = new ArrayList<>();
+        ArrayList<String> names5 = new ArrayList<>();
+        ArrayList<String> names6 = new ArrayList<>();
+        ArrayList<String> names7 = new ArrayList<>();
+        ArrayList<String> names8 = new ArrayList<>();
+        ArrayList<String> names9 = new ArrayList<>();
+
+
+    }
     // EFFECTS: initializes flyweight fighters and adds them to the flyweight division
     private void initializeFlyWeightFighters() {
         flyWeightFighter1 = new Fighter("Connor Marsh", 125, 1);

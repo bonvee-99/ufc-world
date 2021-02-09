@@ -1,5 +1,7 @@
 package model;
 
+
+
 import java.util.ArrayList;
 
 // Represents a weight class in the UFC
@@ -20,12 +22,18 @@ public class WeightClass {
     private ArrayList<Fighter> fighters;
     private ArrayList<String> matchHistory;
 
+    private int upperWeightLimit;
+    private int lowerWeightLimit;
+
     // REQUIRES: that weight class was not already made
     // Effects: creates a weight class with a list of fighters
-    public WeightClass(int weightClass) {
+    public WeightClass(int weightClass, int upperWeightLimit, int lowerWeightLimit) {
         this.weightClass = weightClass;
         fighters = new ArrayList<Fighter>();
         matchHistory = new ArrayList<String>();
+
+        this.upperWeightLimit = upperWeightLimit;
+        this.lowerWeightLimit = lowerWeightLimit;
     }
 
     // REQUIRES: a fighter with the same name is not already in the list, and the fighter fits the weight class
@@ -42,11 +50,6 @@ public class WeightClass {
         matchHistory.add(fight);
     }
 
-    // GETTERS:
-
-    public int getWeightClass() {
-        return this.weightClass;
-    }
 
     // EFFECTS: creates list of fighters from fighter list
     public String listFighters() {
@@ -68,7 +71,7 @@ public class WeightClass {
         winner = chooseWinner(fighter, opponent);
 
         Fighter loser;
-        if (winner.getName() == fighter.getName()) {
+        if (winner.getName().equals(fighter.getName())) {
             loser = opponent;
         } else {
             loser = fighter;
@@ -87,7 +90,7 @@ public class WeightClass {
         int size = getFightersSize() - 1;
         int index = (int)Math.round(Math.random() * size);
         Fighter opponent = getFighterOfIndex(index);
-        if (opponent.getName() == fighter.getName()) {
+        if (opponent.getName().equals(fighter.getName())) {
             return chooseOpponent(opponent);
         } else {
             return opponent;
@@ -96,8 +99,11 @@ public class WeightClass {
 
     // EFFECTS: chooses the winner based off of their win percentage and matches
     public Fighter chooseWinner(Fighter fighterA, Fighter fighterB) {
-        int randomNum = (int)Math.round((Math.random()));
-        return fighterA;
+        if (Math.random() < 0.5) {
+            return fighterA;
+        } else {
+            return fighterB;
+        }
     }
 
     // EFFECTS: chooses random result of a fight
@@ -110,6 +116,43 @@ public class WeightClass {
         } else {
             return " by judges decision!";
         }
+    }
+
+    // EFFECTS: creates x amount of fighters and adds to given weight class
+    public void createFighters(ArrayList<String> names) {
+
+        for (String name: names) {
+            int goodOrBad;
+            if (Math.random() < 0.5) {
+                goodOrBad = 1;
+            } else {
+                goodOrBad = 0;
+            }
+
+            int weight;
+            weight = (int)Math.floor(Math.random() * (this.getUpperWeightLimit() - this.getLowerWeightLimit() + 1)
+                    + this.getLowerWeightLimit());
+
+            Fighter fighter = new Fighter(name, weight, goodOrBad);
+            this.fighters.add(fighter);
+        }
+    }
+
+    // REQUIRES: there is a fighter of the given name
+    // EFFECTS: returns the fighter of the given name
+    public Fighter getFighterByName(String name) {
+        for (Fighter fighter: fighters) {
+            if (fighter.getName().equals(name)) {
+                return fighter;
+            }
+        }
+        return null;
+    }
+
+    // GETTERS:
+
+    public int getWeightClass() {
+        return this.weightClass;
     }
 
     public ArrayList<Fighter> getFighters() {
@@ -136,8 +179,13 @@ public class WeightClass {
         return matchHistory.get(index);
     }
 
+    public int getUpperWeightLimit() {
+        return this.upperWeightLimit;
+    }
 
-
+    public int getLowerWeightLimit() {
+        return this.lowerWeightLimit;
+    }
 }
 
 

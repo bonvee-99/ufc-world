@@ -43,14 +43,12 @@ class FighterTest {
         assertEquals(70, fighter1.getReach());
         assertEquals(0, fighter1.getWins());
         assertEquals(0, fighter1.getLosses());
-        assertEquals(3, fighter1.getWeightClass());
     }
 
     @Test
     public void randomGoodFighterConstructorTest() {
         assertEquals("random Man Sam", fighterGoodRandomA.getName());
         assertEquals(160, fighterGoodRandomA.getWeight());
-        assertEquals(5, fighterGoodRandomA.getWeightClass());
 
         boolean setStanceProperly;
         if (fighterGoodRandomA.getStance().equals("regular") || fighterGoodRandomA.getStance().equals("southpaw")) {
@@ -105,7 +103,6 @@ class FighterTest {
     public void randomBadFighterConstructorTest() {
         assertEquals("random Man Dave", fighterBadRandom.getName());
         assertEquals(160, fighterBadRandom.getWeight());
-        assertEquals(5, fighterBadRandom.getWeightClass());
 
         boolean setStanceProperly;
         if (fighterBadRandom.getStance().equals("regular") || fighterBadRandom.getStance().equals("southpaw")) {
@@ -157,30 +154,6 @@ class FighterTest {
     }
 
     @Test
-    public void assignWeightClassWithinTest() {
-        fighter1.assignWeightClass();
-        assertEquals(3, fighter1.getWeightClass());
-    }
-
-    @Test
-    public void assignWeightClassOnEdgeTest() {
-        fighter2.assignWeightClass();
-        assertEquals(5, fighter2.getWeightClass());
-    }
-
-    @Test
-    public void assignWeightClassSuperTest() {
-        fighter3.assignWeightClass();
-        assertEquals(8, fighter3.getWeightClass());
-    }
-
-    @Test
-    public void assignWeightClassStrawTest() {
-        fighter4.assignWeightClass();
-        assertEquals(0, fighter4.getWeightClass());
-    }
-
-    @Test
     public void getWinPercentageNoMatchesTest() {
         assertEquals(0, fighter4.getWinPercentage());
     }
@@ -223,6 +196,11 @@ class FighterTest {
                         + "\nLosses: " + 0
                         + "\nWin percentage: " + "0";
         assertEquals(stats, fighter1.getStats());
+    }
+
+    @Test
+    public void createFightersTest() {
+
     }
 
 
