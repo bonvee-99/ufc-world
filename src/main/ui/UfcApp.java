@@ -97,11 +97,11 @@ public class UfcApp {
             displayStartMenu();
             command = userInput.nextInt();
 
+
             if (command == 4) {
                 leaveWindow();
             }
         }
-
     }
 
     private void leaveWindow() {
@@ -113,6 +113,7 @@ public class UfcApp {
             remainRunning = false;
         } else if (command == 2) {
             remainRunning = true;
+
         } else {
             System.out.println("Invalid command");
         }
