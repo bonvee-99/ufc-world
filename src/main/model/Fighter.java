@@ -36,6 +36,8 @@ public class Fighter {
         } else {
             generateGoodStats();
         }
+
+
     }
 
     // REQUIRES: weight classes to be created already
@@ -80,7 +82,9 @@ public class Fighter {
 
     // EFFECTS: returns a fighter's weight, height, reach, win/loss ratio, age, stance
     public String getStats() {
-        String stats = "Stance: " + this.stance
+        String stats =
+                "\n" + this.getName() + "'s stats:"
+                + "\nStance: " + this.stance
                 + "\nWeight: " + this.weight
                 + "\nHeight: " + this.height
                 + "\nAge: " + this.age

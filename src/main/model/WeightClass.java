@@ -50,7 +50,7 @@ public class WeightClass {
 
     // EFFECTS: creates list of fighters from fighter list
     public String listFighters() {
-        String fighterList = "";
+        String fighterList = "\nFighters:";
         for (Fighter fighter: fighters) {
             fighterList += "\n" + fighter.getName();
         }

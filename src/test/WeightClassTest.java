@@ -1,5 +1,7 @@
-package model;
 
+
+import model.Fighter;
+import model.WeightClass;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -62,7 +64,7 @@ public class WeightClassTest {
         lightWeight.addFighter(fighter1);
         lightWeight.addFighter(fighter2);
 
-        assertEquals("\nBen Vinnick" + "\nJohn John", lightWeight.listFighters());
+        assertEquals("\nFighters:\nBen Vinnick" + "\nJohn John", lightWeight.listFighters());
     }
 
     @Test
@@ -88,7 +90,6 @@ public class WeightClassTest {
 
     @Test
     public void chooseResultTest() {
-        int randomNum = (int)Math.round(Math.random());
         boolean isValidResult;
         String result = lightWeight.chooseResult();
         if (result.equals(" by knockout!")) {
@@ -116,12 +117,14 @@ public class WeightClassTest {
         if ((result.contains("John John") && result.contains("Ben Vinnick")
                 || result.contains("Sam Ham")) && result.contains("beat") &&
                 (result.contains(" by knockout!") || result.contains(" by technical knockout!")
-                || result.contains(" by judges decision!")))
-                {
+                        || result.contains(" by judges decision!")))
+        {
             validResult = true;
         } else {
             validResult = false;
         }
+
+        assertTrue(validResult);
     }
 
 

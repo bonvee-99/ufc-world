@@ -3,8 +3,16 @@ package ui;
 import model.Fighter;
 import model.WeightClass;
 
+import java.util.Scanner;
+
 // Console based UI inspired by the tellerApp
 public class UfcApp {
+    private Scanner userInput;
+
+    private boolean remainRunning;
+
+    private int command;
+    
     private WeightClass strawWeight;
     private WeightClass flyWeight;
     private WeightClass bantamWeight;
@@ -71,8 +79,61 @@ public class UfcApp {
 
     private Fighter myFighter;
 
+    // EFFECTS: runs the UFC application
     public UfcApp() {
+        runUFC();
+    }
+
+
+    // MODIFIES: this
+    // EFFECTS: interacts with user input
+    private void runUFC() {
+        initializeUFC();
+        
+        remainRunning = true;
+
+        
+        while (remainRunning) {
+            displayStartMenu();
+            command = userInput.nextInt();
+
+            if (command == 4) {
+                leaveWindow();
+            }
+        }
+
+    }
+
+    private void leaveWindow() {
+        System.out.println("\n Are you sure you want to leave?"
+                + "\n all progress will be lost");
+        System.out.println("\n -1- Yes -1-");
+        System.out.println("-2- No -2-");
+        if (command == 1) {
+            remainRunning = false;
+        } else if (command == 2) {
+            remainRunning = true;
+        } else {
+            System.out.println("Invalid command");
+        }
+    }
+
+    private void displayStartMenu() {
+        System.out.println("\nWhat would you like to do?");
+        System.out.println("-1- Create your own player -1-");
+        System.out.println("-2- Look at a weight class -2-");
+        System.out.println("-3-   Look at my fighter   -3-");
+        System.out.println("-4-          Leave         -4-");
+        // IF YOU LEAVE DO A WARNING YOUR DATA WILL BE LOST
+    }
+
+
+    // EFFECTS: initializes weight classes and fighters. Also adds fighters into their weight classes.
+    private void initializeUFC() {
+        userInput = new Scanner(System.in);
+                
         initializeWeightClasses();
+
         initializeStrawWeightFighters();
         initializeFlyWeightFighters();
         initializeBantamWeightFighters();
@@ -84,31 +145,7 @@ public class UfcApp {
         initializeHeavyWeightFighters();
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    // EFFECTS: initializes weight classes
     private void initializeWeightClasses() {
         strawWeight = new WeightClass(0);
         flyWeight = new WeightClass(1);
@@ -121,6 +158,7 @@ public class UfcApp {
         heavyWeight = new WeightClass(8);
     }
 
+    // EFFECTS: initializes strawweight fighters and adds them to the strawweight division
     private void initializeStrawWeightFighters() {
         strawWeightFighter1 = new Fighter("Tiny Tim", 100, 1);
         strawWeight.addFighter(strawWeightFighter1);
@@ -134,6 +172,7 @@ public class UfcApp {
         strawWeight.addFighter(strawWeightFighter5);
     }
 
+    // EFFECTS: initializes flyweight fighters and adds them to the flyweight division
     private void initializeFlyWeightFighters() {
         flyWeightFighter1 = new Fighter("Connor Marsh", 125, 1);
         flyWeight.addFighter(flyWeightFighter1);
@@ -147,6 +186,7 @@ public class UfcApp {
         flyWeight.addFighter(flyWeightFighter5);
     }
 
+    // EFFECTS: initializes bantamweight fighters and adds them to the bantamweight division
     private void initializeBantamWeightFighters() {
         bantamWeightFighter1 = new Fighter("Kelsey Zuniga", 135, 1);
         bantamWeight.addFighter(bantamWeightFighter1);
@@ -160,6 +200,7 @@ public class UfcApp {
         bantamWeight.addFighter(bantamWeightFighter5);
     }
 
+    // EFFECTS: initializes featherweight fighters and adds them to the featherweight division
     private void initializeFeatherWeightFighters() {
         featherWeightFighter1 = new Fighter("Ronny Russel", 145, 1);
         featherWeight.addFighter(featherWeightFighter1);
@@ -173,6 +214,7 @@ public class UfcApp {
         featherWeight.addFighter(featherWeightFighter5);
     }
 
+    // EFFECTS: initializes lightweight fighters and adds them to the lightweight division
     private void initializeLightWeightFighters() {
         lightWeightFighter1 = new Fighter("Wil Wilkes", 155, 1);
         lightWeight.addFighter(lightWeightFighter1);
@@ -186,6 +228,7 @@ public class UfcApp {
         lightWeight.addFighter(lightWeightFighter5);
     }
 
+    // EFFECTS: initializes welterweight fighters and adds them to the welterweight division
     private void initializeWelterWeightFighters() {
         welterWeightFighter1 = new Fighter("Denzel Hendricks", 170, 1);
         welterWeight.addFighter((welterWeightFighter1));
@@ -199,6 +242,7 @@ public class UfcApp {
         welterWeight.addFighter((welterWeightFighter5));
     }
 
+    // EFFECTS: initializes middleweight fighters and adds them to the middleweight division
     private void initializeMiddleWeightFighters() {
         middleWeightFighter1 = new Fighter("Kohen Walker", 185, 1);
         middleWeight.addFighter(middleWeightFighter1);
@@ -212,6 +256,7 @@ public class UfcApp {
         middleWeight.addFighter(middleWeightFighter5);
     }
 
+    // EFFECTS: initializes light heavyweight fighters and adds them to the light heavyweight division
     private void initializeLightHeavyWeightFighters() {
         lightHeavyWeightFighter1 = new Fighter("Lawson Russo", 205, 1);
         lightHeavyWeight.addFighter(lightHeavyWeightFighter1);
@@ -225,6 +270,7 @@ public class UfcApp {
         lightHeavyWeight.addFighter(lightHeavyWeightFighter5);
     }
 
+    // EFFECTS: initializes heavyweight fighters and adds them to the heavyweight division
     private void initializeHeavyWeightFighters() {
         heavyWeightFighter1 = new Fighter("Lucien Sharp", 265, 1);
         heavyWeight.addFighter(heavyWeightFighter1);
@@ -236,11 +282,7 @@ public class UfcApp {
         heavyWeight.addFighter(heavyWeightFighter4);
         heavyWeightFighter5 = new Fighter("Emmett Esparza", 209, 0);
         heavyWeight.addFighter(heavyWeightFighter5);
-
-        System.out.println(heavyWeight.getFighters());
     }
-
-
 
 }
 

@@ -1,5 +1,6 @@
-package model;
 
+
+import model.Fighter;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -13,7 +14,6 @@ class FighterTest {
     private Fighter fighter3;
     private Fighter fighter4;
     private Fighter fighterGoodRandomA;
-    private Fighter fighterGoodRandomB;
     private Fighter fighterBadRandom;
 
     @BeforeEach
@@ -31,7 +31,6 @@ class FighterTest {
                 "regular",
                 100, 73, 27, 75);
         fighterGoodRandomA = new Fighter("random Man Sam", 160, 1);
-        fighterGoodRandomB = new Fighter("random Man Bob", 160, 1);
         fighterBadRandom = new Fighter("random Man Dave", 160, 0);
     }
 
@@ -55,7 +54,7 @@ class FighterTest {
         assertEquals(5, fighterGoodRandomA.getWeightClass());
 
         boolean setStanceProperly;
-        if (fighterGoodRandomA.getStance() == "regular" || fighterGoodRandomA.getStance() == "southpaw") {
+        if (fighterGoodRandomA.getStance().equals("regular") || fighterGoodRandomA.getStance().equals("southpaw")) {
             setStanceProperly = true;
         } else {
             setStanceProperly = false;
@@ -110,7 +109,7 @@ class FighterTest {
         assertEquals(5, fighterBadRandom.getWeightClass());
 
         boolean setStanceProperly;
-        if (fighterBadRandom.getStance() == "regular" || fighterBadRandom.getStance() == "southpaw") {
+        if (fighterBadRandom.getStance().equals("regular") || fighterBadRandom.getStance().equals("southpaw")) {
             setStanceProperly = true;
         } else {
             setStanceProperly = false;
@@ -214,14 +213,16 @@ class FighterTest {
 
     @Test
     public void getStatsTest() {
-        String stats = "Stance: " + "southpaw"
-                + "\nWeight: " + 145
-                + "\nHeight: " + 69
-                + "\nAge: " + 19
-                + "\nReach: " + 70
-                + "\nWins: " + 0
-                + "\nLosses: " + 0
-                + "\nWin percentage: " + "0";
+        String stats =
+                "\n" + fighter1.getName() + "'s stats:"
+                        + "\nStance: " + "southpaw"
+                        + "\nWeight: " + 145
+                        + "\nHeight: " + 69
+                        + "\nAge: " + 19
+                        + "\nReach: " + 70
+                        + "\nWins: " + 0
+                        + "\nLosses: " + 0
+                        + "\nWin percentage: " + "0";
         assertEquals(stats, fighter1.getStats());
     }
 
