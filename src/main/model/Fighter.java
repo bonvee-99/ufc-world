@@ -36,8 +36,6 @@ public class Fighter {
         } else {
             generateGoodStats();
         }
-
-
     }
 
     // REQUIRES: weight classes to be created already
