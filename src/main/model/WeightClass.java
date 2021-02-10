@@ -20,7 +20,7 @@ weight class representations:
 public class WeightClass {
     private int weightClass;
     private ArrayList<Fighter> fighters;
-    private ArrayList<String> matchHistory;
+    private ArrayList<Fight> matchHistory;
 
     private int upperWeightLimit;
     private int lowerWeightLimit;
@@ -30,7 +30,7 @@ public class WeightClass {
     public WeightClass(int weightClass, int upperWeightLimit, int lowerWeightLimit) {
         this.weightClass = weightClass;
         fighters = new ArrayList<Fighter>();
-        matchHistory = new ArrayList<String>();
+        matchHistory = new ArrayList<>();
 
         this.upperWeightLimit = upperWeightLimit;
         this.lowerWeightLimit = lowerWeightLimit;
@@ -46,7 +46,7 @@ public class WeightClass {
     // REQUIRES: a fight with the same name is not already in the list
     // MODIFIES: this
     // EFFECTS: adds a fight to the matchHistory
-    public void addFight(String fight) {
+    public void addFight(Fight fight) {
         matchHistory.add(fight);
     }
 
@@ -60,28 +60,13 @@ public class WeightClass {
         return fighterList;
     }
 
-    // REQUIRES: at least one other fighter in the weight class
+    // REQUIRES: at least one other fighter in the weight class, there is no other fight of the given name
     // MODIFIES: this
     // EFFECTS: generates the fighters next opponent chooses winner based on odds, then adds to list of previous fights
-    public String getNextFight(Fighter fighter) {
-        Fighter opponent;
-        opponent = chooseOpponent(fighter);
-
-        Fighter winner;
-        winner = chooseWinner(fighter, opponent);
-
-        Fighter loser;
-        if (winner.getName().equals(fighter.getName())) {
-            loser = opponent;
-        } else {
-            loser = fighter;
-        }
-
-        String result;
-        result = chooseResult();
-        String fightResult = winner.getName() + " beat " + loser.getName() + result;
-        matchHistory.add(fightResult);
-        return fightResult;
+    public Fight getNextFight(Fighter fighterA, Fighter fighterB, String nameOfFight) {
+        Fight fight = new Fight(fighterA, fighterB, nameOfFight);
+        matchHistory.add(fight);
+        return fight;
     }
 
     // REQUIRES: at least one other fight in the weight class
@@ -97,31 +82,8 @@ public class WeightClass {
         }
     }
 
-    // EFFECTS: chooses the winner based off of their win percentage and matches
-    public Fighter chooseWinner(Fighter fighterA, Fighter fighterB) {
-        if (Math.random() < 0.5) {
-            return fighterA;
-        } else {
-            return fighterB;
-        }
-
-    }
-
-    // EFFECTS: chooses random result of a fight
-    public String chooseResult() {
-        int randomNum = (int)Math.round((Math.random()));
-        if (randomNum < 0.5) {
-            return " by knockout!";
-        } else if (randomNum < 0.8) {
-            return " by technical knockout!";
-        } else {
-            return " by judges decision!";
-        }
-    }
-
     // EFFECTS: creates x amount of fighters and adds to given weight class
     public void createFighters(ArrayList<String> names) {
-
         for (String name: names) {
             int goodOrBad;
             if (Math.random() < 0.5) {
@@ -150,6 +112,17 @@ public class WeightClass {
         return null;
     }
 
+    // REQUIRES: there is a fight of the given name
+    // EFFECTS: returns the fight of the givne name
+    public Fight getFightByName(String name) {
+        for (Fight fight: matchHistory) {
+            if (fight.getFightName().equals(name)) {
+                return fight;
+            }
+        }
+        return null;
+    }
+
     // GETTERS:
 
     public int getWeightClass() {
@@ -168,7 +141,7 @@ public class WeightClass {
         return fighters.get(index);
     }
 
-    public ArrayList<String> getMatchHistory() {
+    public ArrayList<Fight> getMatchHistory() {
         return this.matchHistory;
     }
 
@@ -176,7 +149,7 @@ public class WeightClass {
         return matchHistory.size();
     }
 
-    public String getFightOfIndex(int index) {
+    public Fight getFightOfIndex(int index) {
         return matchHistory.get(index);
     }
 

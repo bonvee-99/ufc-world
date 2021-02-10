@@ -68,40 +68,6 @@ public class Fighter {
         return stats;
     }
 
-    // GETTERS:
-    public String getName() {
-        return this.name;
-    }
-
-    public String getStance() {
-        return this.stance;
-    }
-
-    public int getWeight() {
-        return this.weight;
-    }
-
-    public int getHeight() {
-        return this.height;
-    }
-
-    public int getAge() {
-        return this.age;
-    }
-
-    public int getReach() {
-        return this.reach;
-    }
-
-    public int getWins() {
-        return this.wins;
-    }
-
-    public int getLosses() {
-        return this.losses;
-    }
-
-
     // MODIFIES: this
     // EFFECTS: adds a win
     public void addWin() {
@@ -141,7 +107,40 @@ public class Fighter {
         this.age = (int)Math.floor(Math.random() * (45 - 19 + 1) + 19);
         this.reach = (int)Math.floor(Math.random() * (76 - 60 + 1) + 60);
         this.wins = (int)Math.floor(Math.random() * (30 - 15 + 1) + 15);
-        this.losses = (int)Math.floor(Math.random() * 10 + 0+ 1);
+        this.losses = (int)Math.floor(Math.random() * 10 + 0 + 1);
+    }
+
+    // GETTERS:
+    public String getName() {
+        return this.name;
+    }
+
+    public String getStance() {
+        return this.stance;
+    }
+
+    public int getWeight() {
+        return this.weight;
+    }
+
+    public int getHeight() {
+        return this.height;
+    }
+
+    public int getAge() {
+        return this.age;
+    }
+
+    public int getReach() {
+        return this.reach;
+    }
+
+    public int getWins() {
+        return this.wins;
+    }
+
+    public int getLosses() {
+        return this.losses;
     }
 }
 

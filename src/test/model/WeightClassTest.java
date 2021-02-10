@@ -12,8 +12,8 @@ public class WeightClassTest {
     private Fighter fighter1;
     private Fighter fighter2;
     private Fighter fighter3;
-    private String fight1;
-    private String fight2;
+    private Fight fight1;
+    private Fight fight2;
 
     @BeforeEach
     public void runBefore() {
@@ -27,8 +27,8 @@ public class WeightClassTest {
         fighter3 = new Fighter("Sam Ham",
                 "regular",
                 144, 70, 30, 68);
-        fight1 = "Ben Vinnick VS John John";
-        fight2 = "John John VS Ben Vinnick";
+        fight1 = new Fight(fighter1, fighter2, "first match!");
+        fight2 = new Fight(fighter2, fighter1, "second match!");
     }
 
     @Test
@@ -82,47 +82,14 @@ public class WeightClassTest {
     }
 
     @Test
-    public void chooseWinnerTest() {
-        Fighter winner = lightWeight.chooseWinner(fighter1, fighter2);
-        //
-    }
-
-    @Test
-    public void chooseResultTest() {
-        boolean isValidResult;
-        String result = lightWeight.chooseResult();
-        if (result.equals(" by knockout!")) {
-            isValidResult = true;
-        } else if (result.equals(" by technical knockout!")) {
-            isValidResult = true;
-        } else if (result.equals(" by judges decision!")) {
-            isValidResult = true;
-        } else {
-            isValidResult = false;
-        }
-        assertTrue(isValidResult);
-    }
-
-    @Test
     public void getNextFightTest() {
         lightWeight.addFighter(fighter1);
         lightWeight.addFighter(fighter2);
         lightWeight.addFighter(fighter3);
-        String result = lightWeight.getNextFight(fighter2);
+        Fighter opponent = lightWeight.chooseOpponent(fighter1);
 
-        boolean validResult;
-
-        if ((result.contains("John John") && result.contains("Ben Vinnick")
-                || result.contains("Sam Ham")) && result.contains("beat") &&
-                (result.contains(" by knockout!") || result.contains(" by technical knockout!")
-                        || result.contains(" by judges decision!")))
-        {
-            validResult = true;
-        } else {
-            validResult = false;
-        }
-
-        assertTrue(validResult);
+        Fight fight = lightWeight.getNextFight(fighter1, opponent, "test fight!");
+        assertEquals(fight, lightWeight.getFightByName("test fight!"));
     }
 
     @Test
