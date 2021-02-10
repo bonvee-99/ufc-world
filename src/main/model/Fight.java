@@ -1,9 +1,9 @@
 package model;
 
 public class Fight {
-    private String fightName;
-    private Fighter winner;
-    private Fighter loser;
+    private final String fightName;
+    private final Fighter winner;
+    private final Fighter loser;
     private String result;
 
     public Fight(Fighter fighterA, Fighter fighterB, String fightName) {
@@ -41,8 +41,7 @@ public class Fight {
     public String getSummary() {
         String result;
         result = this.result;
-        String fightResult = winner.getName() + " beat " + loser.getName() + result;
-        return fightResult;
+        return winner.getName() + " beat " + loser.getName() + result;
     }
 
     // GETTERS:

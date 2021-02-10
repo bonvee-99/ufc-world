@@ -1,10 +1,8 @@
 package model;
 
-import java.util.ArrayList;
-
 // Represents a fighter in the UFC... name, weight class, stats, etc.
 public class Fighter {
-    private String name;
+    private final String name;
     private String stance;
     private int weight;
     private int height;
@@ -54,7 +52,7 @@ public class Fighter {
 
     // EFFECTS: returns a fighter's weight, height, reach, win/loss ratio, age, stance
     public String getStats() {
-        String stats =
+        return
                 "\n" + this.getName() + "'s stats:"
                 + "\nStance: " + this.stance
                 + "\nWeight: " + this.weight
@@ -65,7 +63,6 @@ public class Fighter {
                 + "\nLosses: " + this.losses
                 + "\nWin percentage: " + this.getWinPercentage();
 
-        return stats;
     }
 
     // MODIFIES: this
@@ -91,7 +88,7 @@ public class Fighter {
         this.height = (int)Math.floor(Math.random() * (76 - 60 + 1) + 60);
         this.age = (int)Math.floor(Math.random() * (45 - 19 + 1) + 19);
         this.reach = (int)Math.floor(Math.random() * (76 - 60 + 1) + 60);
-        this.wins = (int)Math.floor(Math.random() * (10 - 0 + 1) + 0);
+        this.wins = (int)Math.floor(Math.random() * (10 + 1) + 0);
         this.losses = (int)Math.floor(Math.random() * (20 - 10 + 1) + 10);
     }
 

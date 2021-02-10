@@ -97,7 +97,7 @@ public class WeightClassTest {
         lightWeight.addFight(fight2);
         String fight1Summary = fight1.getSummary();
         String fight2Summary = fight2.getSummary();
-        String summaries = "\nFight Summary:" + "\n" + fight1Summary + "\n" + fight2Summary;
+        String summaries = "\nFight Summaries:" + "\n" + fight1Summary + "\n" + fight2Summary;
         assertEquals(summaries, lightWeight.listFightSummaries());
     }
 

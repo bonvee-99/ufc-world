@@ -18,18 +18,18 @@ weight class representations:
 8 = heavyweight
  */
 public class WeightClass {
-    private int weightClass;
+    private final int weightClass;
     private ArrayList<Fighter> fighters;
     private ArrayList<Fight> matchHistory;
 
-    private int upperWeightLimit;
-    private int lowerWeightLimit;
+    private final int upperWeightLimit;
+    private final int lowerWeightLimit;
 
     // REQUIRES: that weight class was not already made
     // Effects: creates a weight class with a list of fighters
     public WeightClass(int weightClass, int upperWeightLimit, int lowerWeightLimit) {
         this.weightClass = weightClass;
-        fighters = new ArrayList<Fighter>();
+        fighters = new ArrayList<>();
         matchHistory = new ArrayList<>();
 
         this.upperWeightLimit = upperWeightLimit;
@@ -71,7 +71,7 @@ public class WeightClass {
 
     // EFFECTS: lists fight summaries of all recent matches
     public String listFightSummaries() {
-        String summaries = "\nFight Summary:";
+        String summaries = "\nFight Summaries:";
         for (Fight fight : matchHistory) {
             summaries += "\n" + fight.getSummary();
         }
@@ -133,7 +133,7 @@ public class WeightClass {
     }
 
     // REQUIRES: there is a fight of the given name
-    // EFFECTS: returns the fight of the givne name
+    // EFFECTS: returns the fight of the given name
     public Fight getFightByName(String name) {
         for (Fight fight: matchHistory) {
             if (fight.getFightName().equals(name)) {

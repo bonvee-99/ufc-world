@@ -9,8 +9,6 @@ import static org.junit.jupiter.api.Assertions.*;
 // Tests for the Fight class
 class FighterTest {
     private Fighter fighter1;
-    private Fighter fighter2;
-    private Fighter fighter3;
     private Fighter fighter4;
     private Fighter fighterGoodRandomA;
     private Fighter fighterBadRandom;
@@ -20,12 +18,6 @@ class FighterTest {
         fighter1 = new Fighter("Ben Vinnick",
                 "southpaw",
                 145, 69, 19, 70);
-        fighter2 = new Fighter("John John",
-                "regular",
-                156, 72, 25, 72);
-        fighter3 = new Fighter("Big Man Dan",
-                "regular",
-                266, 70, 35, 65);
         fighter4 = new Fighter("Small Man Cam",
                 "regular",
                 100, 73, 27, 75);
