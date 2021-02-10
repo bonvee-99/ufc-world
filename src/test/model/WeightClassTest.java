@@ -60,10 +60,45 @@ public class WeightClassTest {
     }
 
     @Test
+    public void listFightersNoneTest() {
+        assertEquals("\nFighters:", lightWeight.listFighters());
+    }
+
+    @Test
     public void listFightersTest() {
         lightWeight.addFighter(fighter1);
         lightWeight.addFighter(fighter2);
-        assertEquals("\nFighters:\nBen Vinnick" + "\nJohn John", lightWeight.listFighters());
+        assertEquals("\nFighters:" + "\n" + fighter1.getName()
+                + "\n" + fighter2.getName(), lightWeight.listFighters());
+    }
+
+    @Test
+    public void listFightsNoneTest() {
+        assertEquals("\nFights:", lightWeight.listFights());
+    }
+
+    @Test
+    public void listFightsTest() {
+        lightWeight.addFight(fight1);
+        lightWeight.addFight(fight2);
+        assertEquals("\nFights:"
+                + "\n" + fight1.getFightName()
+                + "\n" + fight2.getFightName(), lightWeight.listFights());
+    }
+
+    @Test
+    public void listFightSummariesNoneTest() {
+        assertEquals("\nFight Summaries:", lightWeight.listFightSummaries());
+    }
+
+    @Test
+    public void listFightSummariesTest() {
+        lightWeight.addFight(fight1);
+        lightWeight.addFight(fight2);
+        String fight1Summary = fight1.getSummary();
+        String fight2Summary = fight2.getSummary();
+        String summaries = "\nFight Summary:" + "\n" + fight1Summary + "\n" + fight2Summary;
+        assertEquals(summaries, lightWeight.listFightSummaries());
     }
 
     @Test
@@ -90,6 +125,18 @@ public class WeightClassTest {
 
         Fight fight = lightWeight.getNextFight(fighter1, opponent, "test fight!");
         assertEquals(fight, lightWeight.getFightByName("test fight!"));
+
+        if (fight.getWinner().getName().equals(fighter1.getName())) {
+            assertEquals(1, fighter1.getWins());
+            assertEquals(1, opponent.getLosses());
+            assertEquals(0, fighter1.getLosses());
+            assertEquals(0, opponent.getWins());
+        } else {
+            assertEquals(1, opponent.getWins());
+            assertEquals(1, fighter1.getLosses());
+            assertEquals(0, opponent.getLosses());
+            assertEquals(0, fighter1.getWins());
+        }
     }
 
     @Test

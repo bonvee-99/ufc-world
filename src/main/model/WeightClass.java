@@ -51,7 +51,7 @@ public class WeightClass {
     }
 
 
-    // EFFECTS: creates list of fighters from fighter list
+    // EFFECTS: creates list of fighter names from fighter list
     public String listFighters() {
         String fighterList = "\nFighters:";
         for (Fighter fighter: fighters) {
@@ -60,12 +60,32 @@ public class WeightClass {
         return fighterList;
     }
 
+    // EFFECTS: creates list of fight names from fight list
+    public String listFights() {
+        String fightList = "\nFights:";
+        for (Fight fight: matchHistory) {
+            fightList += "\n" + fight.getFightName();
+        }
+        return fightList;
+    }
+
+    // EFFECTS: lists fight summaries of all recent matches
+    public String listFightSummaries() {
+        String summaries = "\nFight Summary:";
+        for (Fight fight : matchHistory) {
+            summaries += "\n" + fight.getSummary();
+        }
+        return summaries;
+    }
+
     // REQUIRES: at least one other fighter in the weight class, there is no other fight of the given name
     // MODIFIES: this
     // EFFECTS: generates the fighters next opponent chooses winner based on odds, then adds to list of previous fights
     public Fight getNextFight(Fighter fighterA, Fighter fighterB, String nameOfFight) {
         Fight fight = new Fight(fighterA, fighterB, nameOfFight);
         matchHistory.add(fight);
+        fight.getLoser().addLoss();
+        fight.getWinner().addWin();
         return fight;
     }
 

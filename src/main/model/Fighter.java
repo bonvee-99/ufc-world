@@ -110,6 +110,11 @@ public class Fighter {
         this.losses = (int)Math.floor(Math.random() * 10 + 0 + 1);
     }
 
+    // EFFECTS: returns which fighter is better based on win rate
+    public void whichFighterIsBetter(Fighter fighterA, Fighter fighterB) {
+        // TODO: finish this method and add tests (for 3 different cases!!! MAKE SURE U COVER ALL BRANCHES!!!)
+    }
+
     // GETTERS:
     public String getName() {
         return this.name;

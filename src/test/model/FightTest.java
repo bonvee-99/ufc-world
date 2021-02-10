@@ -67,8 +67,7 @@ public class FightTest {
     public void getSummaryTest() {
         String summary = fight1.getSummary();
         boolean validResult;
-        if (((summary.contains("John John") && summary.contains("Ben Vinnick"))
-                || (summary.contains("Sam Ham") && summary.contains("beat"))) &&
+        if ((summary.contains(fighter2.getName()) && summary.contains(fighter1.getName()) && summary.contains("beat")) &&
                 (summary.contains(" by knockout!") || summary.contains(" by technical knockout!")
                         || summary.contains(" by judges decision!"))) {
             validResult = true;
