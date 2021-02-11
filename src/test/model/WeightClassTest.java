@@ -17,16 +17,16 @@ public class WeightClassTest {
 
     @BeforeEach
     public void runBefore() {
-        lightWeight = new WeightClass(4, 145, 135);
+        lightWeight = new WeightClass(4, 135, 145);
         fighter1 = new Fighter("Ben Vinnick",
                 "southpaw",
-                145, 69, 19, 70);
+                145.0, 69, 21, 70);
         fighter2 = new Fighter("John John",
-                "regular",
-                144, 72, 25, 72);
+                "orthodox",
+                144.0, 72, 25, 72);
         fighter3 = new Fighter("Sam Ham",
-                "regular",
-                144, 70, 30, 68);
+                "orthodox",
+                144.0, 70, 30, 68);
         fight1 = new Fight(fighter1, fighter2, "first match!");
         fight2 = new Fight(fighter2, fighter1, "second match!");
     }
@@ -125,18 +125,8 @@ public class WeightClassTest {
 
         Fight fight = lightWeight.getNextFight(fighter1, opponent, "test fight!");
         assertEquals(fight, lightWeight.getFightByName("test fight!"));
-
-        if (fight.getWinner().getName().equals(fighter1.getName())) {
-            assertEquals(1, fighter1.getWins());
-            assertEquals(1, opponent.getLosses());
-            assertEquals(0, fighter1.getLosses());
-            assertEquals(0, opponent.getWins());
-        } else {
-            assertEquals(1, opponent.getWins());
-            assertEquals(1, fighter1.getLosses());
-            assertEquals(0, opponent.getLosses());
-            assertEquals(0, fighter1.getWins());
-        }
+        assertEquals(1, fight.getWinner().getWins());
+        assertEquals(0, fight.getLoser().getWins());
     }
 
     @Test

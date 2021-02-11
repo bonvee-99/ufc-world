@@ -4,16 +4,16 @@ package model;
 public class Fighter {
     private final String name;
     private String stance;
-    private int weight;
+    private Double weight;
     private int height;
-    private int age;
     private int reach;
+    private int age;
     private int wins;
     private int losses;
 
-    // REQUIRES: their weight class to already exist
+    // REQUIRES: 21 <= age <= 34
     // EFFECTS: creates a fighter with a name a stats and assigns them to a weight class
-    public Fighter(String name, String stance, int weight, int height, int age, int reach) {
+    public Fighter(String name, String stance, Double weight, int height, int age, int reach) {
         this.name = name;
         this.stance = stance;
         this.weight = weight;
@@ -25,7 +25,7 @@ public class Fighter {
     }
 
     // EFFECTS: creates a fighter with the given name and randomizes their stats to be either good or bad
-    public Fighter(String name, int weight, int goodOrBad) {
+    public Fighter(String name, Double weight, int goodOrBad) {
         this.name = name;
         this.weight = weight;
         if (goodOrBad == 0) {
@@ -54,13 +54,8 @@ public class Fighter {
     public String getStats() {
         return
                 "\n" + this.getName() + "'s stats:"
-                + "\nStance: " + this.stance
-                + "\nWeight: " + this.weight
-                + "\nHeight: " + this.height
-                + "\nAge: " + this.age
-                + "\nReach: " + this.reach
-                + "\nWins: " + this.wins
-                + "\nLosses: " + this.losses
+                + "\nStance: " + this.stance + "\nWeight: " + this.weight + "lbs" + "\nHeight: " + this.height + "in"
+                + "\nReach: " + this.reach + "\nAge: " + this.age + "\nWins: " + this.wins + "\nLosses: " + this.losses
                 + "\nWin percentage: " + this.getWinPercentage();
     }
 
@@ -80,12 +75,12 @@ public class Fighter {
     // EFFECTS: generates random poor stats for the fighter
     private void generateBadStats() {
         if (Math.random() < 0.8) {
-            this.stance = "regular";
+            this.stance = "orthodox";
         } else {
             this.stance = "southpaw";
         }
         this.height = (int)Math.floor(Math.random() * (76 - 60 + 1) + 60);
-        this.age = (int)Math.floor(Math.random() * (45 - 19 + 1) + 19);
+        this.age = (int)Math.floor(Math.random() * (34 - 21 + 1) + 21);
         this.reach = (int)Math.floor(Math.random() * (76 - 60 + 1) + 60);
         this.wins = (int)Math.floor(Math.random() * (10 + 1) + 0);
         this.losses = (int)Math.floor(Math.random() * (20 - 10 + 1) + 10);
@@ -95,12 +90,12 @@ public class Fighter {
     // EFFECTS: generates random good stats for the fighter
     private void generateGoodStats() {
         if (Math.random() < 0.8) {
-            this.stance = "regular";
+            this.stance = "orthodox";
         } else {
             this.stance = "southpaw";
         }
         this.height = (int)Math.floor(Math.random() * (76 - 60 + 1) + 60);
-        this.age = (int)Math.floor(Math.random() * (45 - 19 + 1) + 19);
+        this.age = (int)Math.floor(Math.random() * (34 - 21 + 1) + 21);
         this.reach = (int)Math.floor(Math.random() * (76 - 60 + 1) + 60);
         this.wins = (int)Math.floor(Math.random() * (30 - 15 + 1) + 15);
         this.losses = (int)Math.floor(Math.random() * 10 + 0 + 1);
@@ -126,7 +121,7 @@ public class Fighter {
         return this.stance;
     }
 
-    public int getWeight() {
+    public double getWeight() {
         return this.weight;
     }
 

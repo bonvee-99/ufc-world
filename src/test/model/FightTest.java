@@ -17,10 +17,10 @@ public class FightTest {
     public void runBefore() {
         fighter1 = new Fighter("Ben Vinnick",
                 "southpaw",
-                145, 69, 19, 70);
+                145.0, 69, 21, 70);
         fighter2 = new Fighter("John John",
-                "regular",
-                144, 72, 25, 72);
+                "orthodox",
+                144.0, 72, 25, 72);
         fight1 = new Fight(fighter1, fighter2, "first fight!");
     }
 

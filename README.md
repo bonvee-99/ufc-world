@@ -15,11 +15,11 @@ play around and interact with other pre-made fighters, and the ones that you cre
 ---
 
 ###User Stories
-- As a user I want to be able to view a fighters stats and compare two fighters' win rates
+- As a user I want to be able to view a fighters stats
 - As a user I want to be able to see all the fighters in a weight class
 - As a user I want to be able to generate a fighter's next opponent and make them fight
-- As a user I want to be able to view all recent matches
-- As a user I want to create my own fighter and make them compete against other fighters
+- As a user I want to be able to view all recent matches in a weight class
+- As a user I want to create my own fighter
 
 
 

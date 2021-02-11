@@ -1,5 +1,6 @@
 package ui;
 
+import model.Fighter;
 import model.WeightClass;
 
 import java.util.ArrayList;
@@ -8,8 +9,6 @@ import java.util.Scanner;
 // Console based UI inspired by the tellerApp
 public class UfcApp {
     private Scanner userInput;
-    private boolean remainRunning;
-    private int command;
 
     private WeightClass strawWeight;
     private WeightClass flyWeight;
@@ -20,6 +19,16 @@ public class UfcApp {
     private WeightClass middleWeight;
     private WeightClass lightHeavyWeight;
     private WeightClass heavyWeight;
+
+    private ArrayList<String> names1;
+    private ArrayList<String> names2;
+    private ArrayList<String> names3;
+    private ArrayList<String> names4;
+    private ArrayList<String> names5;
+    private ArrayList<String> names6;
+    private ArrayList<String> names7;
+    private ArrayList<String> names8;
+    private ArrayList<String> names9;
 
     private static final String NAME1 = "Tiny Tim";
     private static final String NAME2 = "Joel Hammond";
@@ -73,51 +82,238 @@ public class UfcApp {
         runUFC();
     }
 
-
     // MODIFIES: this
     // EFFECTS: interacts with user input
     private void runUFC() {
-
-        remainRunning = true;
+        boolean remainRunning = true;
+        String command;
 
         initializeUFC();
 
         while (remainRunning) {
             displayStartMenu();
-            command = userInput.nextInt();
+            command = userInput.next();
+            command = command.toLowerCase();
 
-
-            if (command == 4) {
-                leaveWindow();
+            if (command.equals("q")) {
+                System.out.println("Goodbye!");
+                remainRunning = false;
+            } else {
+                processCommand(command);
             }
         }
     }
 
-    private void leaveWindow() {
-        System.out.println("\n Are you sure you want to leave?"
-                + "\n all progress will be lost");
-        System.out.println("\n -1- Yes -1-");
-        System.out.println("-2- No -2-");
-        if (command == 1) {
-            remainRunning = false;
-        } else if (command == 2) {
-            remainRunning = true;
-
+    private void processCommand(String command) {
+        if (command.equals("c")) {
+            createFighter();
+        } else if (command.equals("w")) {
+            System.out.println("option 2");
+        } else if (command.equals("m")) {
+            System.out.println("option 3");
         } else {
-            System.out.println("Invalid command");
+            System.out.println("Invalid command!");
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: handles creating a fighter
+    private void createFighter() {
+        String selectedName = selectName();
+        WeightClass selectedWeightClass = selectWeightClass();
+        String selectedStance = selectStance();
+        Double selectedWeight = selectWeight(selectedWeightClass);
+        int selectedHeight = selectHeight();
+        int selectedReach = selectReach();
+        int selectedAge = selectedAge();
+        Fighter fighter = new Fighter(selectedName, selectedStance,
+                selectedWeight, selectedHeight, selectedAge, selectedReach);
+        selectedWeightClass.addFighter(fighter);
+
+        System.out.println("Congrats here is your fighter! You can find them in their weight class!");
+        System.out.println(fighter.getStats());
+    }
+
+    // EFFECTS: gets user to input an age for their fighter
+    private int selectedAge() {
+        int selection = 0;
+        while (!(21 <= selection && selection <= 34)) {
+            if (!(selection == 0)) {
+                System.out.println("Invalid age. UFC fighters need to be at least 21 and at most 34 years old");
+            }
+            System.out.println("\nPlease input an age for your fighter:");
+            System.out.println("Do not input decimal numbers. Valid: 21 Invalid: 25.3");
+
+            selection = userInput.nextInt();
+        }
+
+        return selection;
+    }
+
+    // EFFECTS: gets user to input a reach for their fighter
+    private int selectReach() {
+        double selection = 0.0;
+        while (!(1.0 <= selection && selection <= 107.0)) {
+            if (!(selection == 0.0)) {
+                System.out.println("Invalid option");
+            }
+            System.out.println("\nPlease input a reach in inches for your fighter:");
+            System.out.println("We will round your fighter's reach if you input decimals");
+
+            selection = userInput.nextDouble();
+        }
+
+        return (int)Math.round(selection);
+    }
+
+    // EFFECTS: gets user to input a name for their fighter
+    private String selectName() {
+        String selection = "";
+        while (!(1 <= selection.length())) {
+            if (!(selection == "")) {
+                System.out.println("Invalid option");
+            }
+            System.out.println("\nPlease create a name for your fighter:");
+
+            selection = userInput.next();
+        }
+        return selection;
+    }
+
+    // EFFECTS: gets user to input their fighter's height in inches
+    private int selectHeight() {
+        double selection = 0.0;
+        while (!(1.0 <= selection && selection <= 107.0)) {
+            if (!(selection == 0.0)) {
+                System.out.println("Invalid option");
+            }
+            System.out.println("\nPlease input a height in inches for your fighter:");
+            System.out.println("We will round your fighter's height if you input decimals");
+
+            selection = userInput.nextDouble();
+        }
+
+        return (int)Math.round(selection);
+    }
+
+    // EFFECTS: gets user to input a valid weight
+    private Double selectWeight(WeightClass weightClass) {
+        double weight = 0.0;
+        while (!(weightClass.getLowerWeightLimit() <= weight
+            && weight <= weightClass.getUpperWeightLimit())) {
+            if (!(weight == 0.0)) {
+                System.out.println("Invalid option");
+            }
+            System.out.println("\nPlease input a weight for your fighter between "
+                    + weightClass.getLowerWeightLimit() + "lbs " + "and "
+                    + weightClass.getUpperWeightLimit() + "lbs:");
+
+            weight = userInput.nextDouble();
+        }
+
+        return weight;
+    }
+
+    // EFFECTS: gets user to choose between one of the following two stances
+    private String selectStance() {
+        String selection = "";
+        while (!(selection.equals("x") || selection.equals("s"))) {
+
+            if (!(selection.equals(""))) {
+                System.out.println("Invalid choice");
+            }
+            System.out.println("\nPlease choose your fighter's stance:");
+            System.out.println("-x- orthodox -x-");
+            System.out.println("-s- southpaw -s-");
+
+            selection = userInput.next();
+            selection = selection.toLowerCase();
+        }
+
+        if (selection.equals("x")) {
+            return "Orthodox";
+        } else {
+            return "Southpaw";
+        }
+    }
+
+    // EFFECTS: gets user to choose one of the following given weight classes
+    private WeightClass selectWeightClass() {
+        String selection = "";
+        while (!(selection.equals("s") ||  selection.equals("f") || selection.equals("b")
+                || selection.equals("e") || selection.equals("l") || selection.equals("w")
+                || selection.equals("m") || selection.equals("v") || selection.equals("h"))) {
+
+            if (!(selection.equals(""))) {
+                System.out.println("Invalid choice");
+            }
+            printWeightClassOptions();
+
+            selection = userInput.next();
+            selection = selection.toLowerCase();
+        }
+
+        return getCorrespondingWeightClass(selection);
+    }
+
+    // EFFECTS: gets the corresponding weight class
+    private WeightClass getCorrespondingWeightClass(String choice) {
+        if (choice.equals("s")) {
+            return strawWeight;
+        } else if (choice.equals("f")) {
+            return flyWeight;
+        } else if (choice.equals("b")) {
+            return bantamWeight;
+        } else if (choice.equals("e")) {
+            return featherWeight;
+        } else if (choice.equals("l")) {
+            return lightWeight;
+        } else if (choice.equals("w")) {
+            return welterWeight;
+        } else if (choice.equals("m")) {
+            return middleWeight;
+        } else if (choice.equals("v")) {
+            return lightHeavyWeight;
+        } else {
+            return heavyWeight;
+        }
+    }
+
+    // EFFECTS: prints weight class options to choose from
+    private void printWeightClassOptions() {
+        System.out.println("\nPlease choose your fighter's weight class");
+        System.out.println("-s- Strawweight       -s-");
+        System.out.println("-f- Flyweight         -f-");
+        System.out.println("-b- Bantamweight      -b-");
+        System.out.println("-e- Featherweight     -e-");
+        System.out.println("-l- Lightweight       -l-");
+        System.out.println("-w- Welterweight      -w-");
+        System.out.println("-m- Middleweight      -m-");
+        System.out.println("-v- Light Heavyweight -v-");
+        System.out.println("-h- Heavyweight       -h-");
+    }
+
+    // EFFECTS: displays start menu with given options
     private void displayStartMenu() {
         System.out.println("\nWhat would you like to do?");
-        System.out.println("-1- Create your own player -1-");
-        System.out.println("-2- Look at a weight class -2-");
-        System.out.println("-3-   Look at my fighter   -3-");
-        System.out.println("-4-          Leave         -4-");
+        System.out.println("-c- Create my own fighter                 -c-");
+        System.out.println("-w- Look at a weight class                -w-");
+        System.out.println("-m- Look at my fighter??? Kind of hard    -m-");
+        System.out.println("-q- Leave. Warning progress will be lost! -q-");
         // IF YOU LEAVE DO A WARNING YOUR DATA WILL BE LOST
     }
 
 
+
+
+
+
+
+
+
+
+
+    // MODIFIES: this
     // EFFECTS: initializes weight classes and fighters. Also adds fighters into their weight classes.
     private void initializeUFC() {
         userInput = new Scanner(System.in);
@@ -140,16 +336,7 @@ public class UfcApp {
         heavyWeight = new WeightClass(8, 205, 265);
     }
 
-    private ArrayList<String> names1;
-    private ArrayList<String> names2;
-    private ArrayList<String> names3;
-    private ArrayList<String> names4;
-    private ArrayList<String> names5;
-    private ArrayList<String> names6;
-    private ArrayList<String> names7;
-    private ArrayList<String> names8;
-    private ArrayList<String> names9;
-
+    // EFFECTS: adds a bunch of names into 9 different list of names
     private void initializeAllNames() {
         initializeNames1();
         initializeNames2();
@@ -162,6 +349,7 @@ public class UfcApp {
         initializeNames9();
     }
 
+    // EFFECTS: creates fighters and adds them to the 9 weight classes
     private void initializeFighters() {
         strawWeight.createFighters(names1);
         flyWeight.createFighters(names2);

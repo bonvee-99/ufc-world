@@ -17,21 +17,21 @@ class FighterTest {
     public void runBefore() {
         fighter1 = new Fighter("Ben Vinnick",
                 "southpaw",
-                145, 69, 19, 70);
+                145.0, 69, 21, 70);
         fighter4 = new Fighter("Small Man Cam",
-                "regular",
-                100, 73, 27, 75);
-        fighterGoodRandomA = new Fighter("random Man Sam", 160, 1);
-        fighterBadRandom = new Fighter("random Man Dave", 160, 0);
+                "orthodox",
+                100.0, 73, 27, 75);
+        fighterGoodRandomA = new Fighter("random Man Sam", 160.0, 1);
+        fighterBadRandom = new Fighter("random Man Dave", 160.0, 0);
     }
 
     @Test
     public void mainConstructorTest() {
         assertEquals("Ben Vinnick", fighter1.getName());
         assertEquals("southpaw", fighter1.getStance());
-        assertEquals(145, fighter1.getWeight());
+        assertEquals(145.0, fighter1.getWeight());
         assertEquals(69, fighter1.getHeight());
-        assertEquals(19, fighter1.getAge());
+        assertEquals(21, fighter1.getAge());
         assertEquals(70, fighter1.getReach());
         assertEquals(0, fighter1.getWins());
         assertEquals(0, fighter1.getLosses());
@@ -40,10 +40,10 @@ class FighterTest {
     @Test
     public void randomGoodFighterConstructorTest() {
         assertEquals("random Man Sam", fighterGoodRandomA.getName());
-        assertEquals(160, fighterGoodRandomA.getWeight());
+        assertEquals(160.0, fighterGoodRandomA.getWeight());
 
         boolean setStanceProperly;
-        if (fighterGoodRandomA.getStance().equals("regular") || fighterGoodRandomA.getStance().equals("southpaw")) {
+        if (fighterGoodRandomA.getStance().equals("orthodox") || fighterGoodRandomA.getStance().equals("southpaw")) {
             setStanceProperly = true;
         } else {
             setStanceProperly = false;
@@ -56,7 +56,7 @@ class FighterTest {
         }
 
         boolean setAgeProperly;
-        if (19 <= fighterGoodRandomA.getAge() && fighterGoodRandomA.getAge() <= 45) {
+        if (21 <= fighterGoodRandomA.getAge() && fighterGoodRandomA.getAge() <= 34) {
             setAgeProperly = true;
         } else {
             setAgeProperly = false;
@@ -94,10 +94,10 @@ class FighterTest {
     @Test
     public void randomBadFighterConstructorTest() {
         assertEquals("random Man Dave", fighterBadRandom.getName());
-        assertEquals(160, fighterBadRandom.getWeight());
+        assertEquals(160.0, fighterBadRandom.getWeight());
 
         boolean setStanceProperly;
-        if (fighterBadRandom.getStance().equals("regular") || fighterBadRandom.getStance().equals("southpaw")) {
+        if (fighterBadRandom.getStance().equals("orthodox") || fighterBadRandom.getStance().equals("southpaw")) {
             setStanceProperly = true;
         } else {
             setStanceProperly = false;
@@ -110,7 +110,7 @@ class FighterTest {
         }
 
         boolean setAgeProperly;
-        if (19 <= fighterBadRandom.getAge() && fighterBadRandom.getAge() <= 45) {
+        if (21 <= fighterBadRandom.getAge() && fighterBadRandom.getAge() <= 34) {
             setAgeProperly = true;
         } else {
             setAgeProperly = false;
@@ -180,10 +180,10 @@ class FighterTest {
         String stats =
                 "\n" + fighter1.getName() + "'s stats:"
                         + "\nStance: " + "southpaw"
-                        + "\nWeight: " + 145
-                        + "\nHeight: " + 69
-                        + "\nAge: " + 19
+                        + "\nWeight: " + 145.0 + "lbs"
+                        + "\nHeight: " + 69 + "in"
                         + "\nReach: " + 70
+                        + "\nAge: " + 21
                         + "\nWins: " + 0
                         + "\nLosses: " + 0
                         + "\nWin percentage: " + "0";

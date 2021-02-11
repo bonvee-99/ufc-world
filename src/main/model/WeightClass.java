@@ -27,7 +27,7 @@ public class WeightClass {
 
     // REQUIRES: that weight class was not already made
     // Effects: creates a weight class with a list of fighters
-    public WeightClass(int weightClass, int upperWeightLimit, int lowerWeightLimit) {
+    public WeightClass(int weightClass, int lowerWeightLimit, int upperWeightLimit) {
         this.weightClass = weightClass;
         fighters = new ArrayList<>();
         matchHistory = new ArrayList<>();
@@ -36,7 +36,8 @@ public class WeightClass {
         this.lowerWeightLimit = lowerWeightLimit;
     }
 
-    // REQUIRES: a fighter with the same name is not already in the list, and the fighter fits the weight class
+    // REQUIRES: a fighter with the same name is not already in the list,
+    // and the fighter fits the weight class requirements
     // MODIFIES: this
     // EFFECTS: adds a fighter to the list of fighters in the weight class
     public void addFighter(Fighter fighter) {
@@ -78,9 +79,10 @@ public class WeightClass {
         return summaries;
     }
 
-    // REQUIRES: at least one other fighter in the weight class, there is no other fight of the given name
-    // MODIFIES: this
-    // EFFECTS: generates the fighters next opponent chooses winner based on odds, then adds to list of previous fights
+    // REQUIRES: the two fighters are in the given weight class and they are unique
+    // MODIFIES: this and fighterA and fighterB and Fight
+    // EFFECTS: generates the fighters next opponent chooses winner based on odds, then adds to list of previous fights.
+    // Also creates a fight with a given winner and loser.
     public Fight getNextFight(Fighter fighterA, Fighter fighterB, String nameOfFight) {
         Fight fight = new Fight(fighterA, fighterB, nameOfFight);
         matchHistory.add(fight);
@@ -112,8 +114,8 @@ public class WeightClass {
                 goodOrBad = 0;
             }
 
-            int weight;
-            weight = (int)Math.floor(Math.random() * (this.getUpperWeightLimit() - this.getLowerWeightLimit() + 1)
+            Double weight;
+            weight = Math.floor(Math.random() * (this.getUpperWeightLimit() - this.getLowerWeightLimit() + 1)
                     + this.getLowerWeightLimit());
 
             Fighter fighter = new Fighter(name, weight, goodOrBad);
