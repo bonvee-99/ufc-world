@@ -19,7 +19,7 @@ play around and interact with other pre-made fighters, and the ones that you cre
 - As a user I want to be able to see all the fighters in a weight class
 - As a user I want to be able to generate a fighter's next opponent and make them fight
 - As a user I want to be able to view all recent matches in a weight class
-- As a user I want to create my own fighter
+- As a user I want to create my own fighter(s) and add them to weight classes
 
 
 

@@ -1,10 +1,13 @@
 package ui;
 
+import model.Fight;
 import model.Fighter;
 import model.WeightClass;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import static jdk.internal.dynalink.support.Guards.isNull;
 
 // Console based UI inspired by the tellerApp
 public class UfcApp {
@@ -96,23 +99,111 @@ public class UfcApp {
             command = command.toLowerCase();
 
             if (command.equals("q")) {
-                System.out.println("Goodbye!");
-                remainRunning = false;
+                remainRunning = confirmQuit();
             } else {
                 processCommand(command);
             }
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: Processes user input from menu
     private void processCommand(String command) {
         if (command.equals("c")) {
             createFighter();
         } else if (command.equals("w")) {
-            System.out.println("option 2");
+            lookAtClass();
         } else if (command.equals("m")) {
             System.out.println("option 3");
         } else {
-            System.out.println("Invalid command!");
+            System.out.println("Invalid choice!");
+        }
+    }
+
+    // EFFECTS: displays start menu with given options
+    private void displayStartMenu() {
+        System.out.println("\nWhat would you like to do?");
+        System.out.println("-c-         Create my own fighter         -c-");
+        System.out.println("-w-        Look at a weight class         -w-");
+        System.out.println("-m-            Generate a fight           -m-");
+        System.out.println("-q-                 Leave                 -q-");
+    }
+    // to generate a match get them to choose a weight class and then get them to pick two figher's (or pick one
+    // random opponent
+
+
+    // EFFECTS: handles user input to look at information within a weight class
+    private void lookAtClass() {
+        WeightClass selectedWeightClass = selectWeightClass();
+        String selection = "";
+        while (!(selection.equals("f") || selection.equals("g") || selection.equals("m") || selection.equals("s"))) {
+            if (!(selection.equals(""))) {
+                System.out.println("Invalid choice");
+            }
+            System.out.println("What would you like to do?");
+            System.out.println("-f- List all fighters in this weight division -f-");
+            System.out.println("-g-            Get a fighter's stats          -g-");
+            System.out.println("-m- List all recent matches in this division  -l-");
+            System.out.println("-s-       Get a summary for a given fight     -s-");
+
+            selection = userInput.next();
+            selection = selection.toLowerCase();
+        }
+
+        if (selection.equals("f")) {
+            System.out.println(selectedWeightClass.listFighters());
+        } else if (selection.equals("g")) {
+            // getFighterStats();
+        } else if (selection.equals("m")) {
+            System.out.println(selectedWeightClass.listFights());
+        } else {
+            getSummaryFight(selectedWeightClass);
+        }
+    }
+
+    // EFFECTS: gets user to pick a fight by name and it will return a summary of the fight
+    private void getSummaryFight(WeightClass weightClass) {
+        String selection = "";
+        Fight fight = null;
+        while (fight == null && !(selection.equals("q"))) {
+            System.out.println("\nPlease input the name of the fight "
+                    + "you wish to see a summary of from the following list:");
+            System.out.println("If there are none in the list just press q");
+            System.out.println(weightClass.listFights());
+
+            selection = userInput.next();
+            selection = selection.toLowerCase();
+
+            fight = weightClass.getFightByName(selection);
+        }
+
+        if (selection.equals("q")) {
+            System.out.println("Generate some fights!");
+        } else {
+            System.out.println(weightClass.getFightByName("selection"));
+        }
+    }
+
+    // EFFECTS: gets user to confirm if they want to quit the application
+    private boolean confirmQuit() {
+        String selection = "";
+        while (!(selection.equals("y") || (selection.equals("n")))) {
+            if (!(selection.equals(""))) {
+                System.out.println("Invalid choice");
+            }
+            System.out.println("\nAre you sure you want to quit?");
+            System.out.println("All progress will be lost");
+            System.out.println("-y- Yes -y-");
+            System.out.println("-n- No  -n-");
+
+            selection = userInput.next();
+            selection = selection.toLowerCase();
+        }
+
+        if (selection.equals("n")) {
+            return true;
+        } else {
+            return false;
         }
     }
 
@@ -155,7 +246,7 @@ public class UfcApp {
         double selection = 0.0;
         while (!(1.0 <= selection && selection <= 107.0)) {
             if (!(selection == 0.0)) {
-                System.out.println("Invalid option");
+                System.out.println("Invalid choice");
             }
             System.out.println("\nPlease input a reach in inches for your fighter:");
             System.out.println("We will round your fighter's reach if you input decimals");
@@ -170,12 +261,13 @@ public class UfcApp {
     private String selectName() {
         String selection = "";
         while (!(1 <= selection.length())) {
-            if (!(selection == "")) {
-                System.out.println("Invalid option");
+            if (!(selection.equals(""))) {
+                System.out.println("Invalid choice");
             }
             System.out.println("\nPlease create a name for your fighter:");
 
             selection = userInput.next();
+            selection = selection.toLowerCase();
         }
         return selection;
     }
@@ -185,7 +277,7 @@ public class UfcApp {
         double selection = 0.0;
         while (!(1.0 <= selection && selection <= 107.0)) {
             if (!(selection == 0.0)) {
-                System.out.println("Invalid option");
+                System.out.println("Invalid choice");
             }
             System.out.println("\nPlease input a height in inches for your fighter:");
             System.out.println("We will round your fighter's height if you input decimals");
@@ -202,7 +294,7 @@ public class UfcApp {
         while (!(weightClass.getLowerWeightLimit() <= weight
             && weight <= weightClass.getUpperWeightLimit())) {
             if (!(weight == 0.0)) {
-                System.out.println("Invalid option");
+                System.out.println("Invalid choice");
             }
             System.out.println("\nPlease input a weight for your fighter between "
                     + weightClass.getLowerWeightLimit() + "lbs " + "and "
@@ -293,16 +385,6 @@ public class UfcApp {
         System.out.println("-h- Heavyweight       -h-");
     }
 
-    // EFFECTS: displays start menu with given options
-    private void displayStartMenu() {
-        System.out.println("\nWhat would you like to do?");
-        System.out.println("-c- Create my own fighter                 -c-");
-        System.out.println("-w- Look at a weight class                -w-");
-        System.out.println("-m- Look at my fighter??? Kind of hard    -m-");
-        System.out.println("-q- Leave. Warning progress will be lost! -q-");
-        // IF YOU LEAVE DO A WARNING YOUR DATA WILL BE LOST
-    }
-
 
 
 
@@ -323,6 +405,7 @@ public class UfcApp {
         initializeFighters();
     }
 
+    // MODIFIES: this
     // EFFECTS: initializes weight classes
     private void initializeWeightClasses() {
         strawWeight = new WeightClass(0, 115, 0);
@@ -349,6 +432,7 @@ public class UfcApp {
         initializeNames9();
     }
 
+    // MODIFIES: this
     // EFFECTS: creates fighters and adds them to the 9 weight classes
     private void initializeFighters() {
         strawWeight.createFighters(names1);
@@ -362,6 +446,7 @@ public class UfcApp {
         heavyWeight.createFighters(names9);
     }
 
+    // MODIFIES: this
     // EFFECTS: initializes names
     private void initializeNames1() {
         names1 = new ArrayList<>();
@@ -372,6 +457,7 @@ public class UfcApp {
         names1.add(NAME5);
     }
 
+    // MODIFIES: this
     // EFFECTS: initializes names
     private void initializeNames2() {
         names2 = new ArrayList<>();
@@ -382,6 +468,7 @@ public class UfcApp {
         names2.add(NAME10);
     }
 
+    // MODIFIES: this
     // EFFECTS: initializes names
     private void initializeNames3() {
         names3 = new ArrayList<>();
@@ -392,6 +479,7 @@ public class UfcApp {
         names3.add(NAME15);
     }
 
+    // MODIFIES: this
     // EFFECTS: initializes names
     private void initializeNames4() {
         names4 = new ArrayList<>();
@@ -402,6 +490,7 @@ public class UfcApp {
         names4.add(NAME20);
     }
 
+    // MODIFIES: this
     // EFFECTS: initializes names
     private void initializeNames5() {
         names5 = new ArrayList<>();
@@ -412,6 +501,7 @@ public class UfcApp {
         names5.add(NAME25);
     }
 
+    // MODIFIES: this
     // EFFECTS: initializes names
     private void initializeNames6() {
         names6 = new ArrayList<>();
@@ -422,6 +512,7 @@ public class UfcApp {
         names6.add(NAME30);
     }
 
+    // MODIFIES: this
     // EFFECTS: initializes names
     private void initializeNames7() {
         names7 = new ArrayList<>();
@@ -432,6 +523,7 @@ public class UfcApp {
         names7.add(NAME35);
     }
 
+    // MODIFIES: this
     // EFFECTS: initializes names
     private void initializeNames8() {
         names8 = new ArrayList<>();
@@ -442,6 +534,7 @@ public class UfcApp {
         names8.add(NAME40);
     }
 
+    // MODIFIES: this
     // EFFECTS: initializes names
     private void initializeNames9() {
         names9 = new ArrayList<>();
