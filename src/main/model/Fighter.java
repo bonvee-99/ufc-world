@@ -79,9 +79,9 @@ public class Fighter {
         } else {
             this.stance = "southpaw";
         }
-        this.height = (int)Math.floor(Math.random() * (76 - 60 + 1) + 60);
-        this.age = (int)Math.floor(Math.random() * (34 - 21 + 1) + 21);
-        this.reach = (int)Math.floor(Math.random() * (76 - 60 + 1) + 60);
+        this.height = (int)Math.floor(Math.random() * (76 - 60 + 1) + 60); // Found on stack overflow:
+        this.age = (int)Math.floor(Math.random() * (34 - 21 + 1) + 21);    // all it does is take a number from the
+        this.reach = (int)Math.floor(Math.random() * (76 - 60 + 1) + 60);  // range ex [60 76] including 70 & 76
         this.wins = (int)Math.floor(Math.random() * (10 + 1) + 0);
         this.losses = (int)Math.floor(Math.random() * (20 - 10 + 1) + 10);
     }

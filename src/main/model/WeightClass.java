@@ -95,8 +95,8 @@ public class WeightClass {
     // REQUIRES: at least one other fight in the weight class
     // EFFECTS: generates the given fighters opponent
     public Fighter chooseOpponent(Fighter fighter) {
-        Random random = new Random();
-        int index = random.nextInt(getFightersSize());
+        Random random = new Random();                  // Found on stackoverflow: just returns a random
+        int index = random.nextInt(getFightersSize()); // index based on the size of the list
         Fighter opponent = getFighterOfIndex(index);
         if (opponent.getName().equals(fighter.getName())) {
             return chooseOpponent(opponent);
