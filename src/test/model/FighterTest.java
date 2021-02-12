@@ -42,46 +42,18 @@ class FighterTest {
         assertEquals("random Man Sam", fighterGoodRandomA.getName());
         assertEquals(160.0, fighterGoodRandomA.getWeight());
 
-        boolean setStanceProperly;
-        if (fighterGoodRandomA.getStance().equals("orthodox") || fighterGoodRandomA.getStance().equals("southpaw")) {
-            setStanceProperly = true;
-        } else {
-            setStanceProperly = false;
-        }
-        boolean setHeightProperly;
-        if (60 <= fighterGoodRandomA.getHeight() && fighterGoodRandomA.getHeight() <= 76) {
-            setHeightProperly = true;
-        } else {
-            setHeightProperly = false;
-        }
+        boolean setStanceProperly = (fighterGoodRandomA.getStance().equals("orthodox")
+                || fighterGoodRandomA.getStance().equals("southpaw"));
 
-        boolean setAgeProperly;
-        if (21 <= fighterGoodRandomA.getAge() && fighterGoodRandomA.getAge() <= 34) {
-            setAgeProperly = true;
-        } else {
-            setAgeProperly = false;
-        }
+        boolean setHeightProperly = (60 <= fighterGoodRandomA.getHeight() && fighterGoodRandomA.getHeight() <= 76);
 
-        boolean setReachProperly;
-        if (60 <= fighterGoodRandomA.getReach() && fighterGoodRandomA.getReach() <= 80) {
-            setReachProperly = true;
-        } else {
-            setReachProperly = false;
-        }
+        boolean setAgeProperly = (21 <= fighterGoodRandomA.getAge() && fighterGoodRandomA.getAge() <= 34);
 
-        boolean setWinsProperly;
-        if (15 <= fighterGoodRandomA.getWins() && fighterGoodRandomA.getWins() <= 30) {
-            setWinsProperly = true;
-        } else {
-            setWinsProperly = false;
-        }
+        boolean setReachProperly = (60 <= fighterGoodRandomA.getReach() && fighterGoodRandomA.getReach() <= 80);
 
-        boolean setLossesProperly;
-        if (0 <= fighterGoodRandomA.getLosses() && fighterGoodRandomA.getLosses() <= 10) {
-            setLossesProperly = true;
-        } else {
-            setLossesProperly = false;
-        }
+        boolean setWinsProperly = (15 <= fighterGoodRandomA.getWins() && fighterGoodRandomA.getWins() <= 30);
+
+        boolean setLossesProperly = (0 <= fighterGoodRandomA.getLosses() && fighterGoodRandomA.getLosses() <= 10);
 
         assertTrue(setStanceProperly);
         assertTrue(setHeightProperly);
@@ -96,46 +68,18 @@ class FighterTest {
         assertEquals("random Man Dave", fighterBadRandom.getName());
         assertEquals(160.0, fighterBadRandom.getWeight());
 
-        boolean setStanceProperly;
-        if (fighterBadRandom.getStance().equals("orthodox") || fighterBadRandom.getStance().equals("southpaw")) {
-            setStanceProperly = true;
-        } else {
-            setStanceProperly = false;
-        }
-        boolean setHeightProperly;
-        if (60 <= fighterBadRandom.getHeight() && fighterBadRandom.getHeight() <= 76) {
-            setHeightProperly = true;
-        } else {
-            setHeightProperly = false;
-        }
+        boolean setStanceProperly = (fighterBadRandom.getStance().equals("orthodox")
+                || fighterBadRandom.getStance().equals("southpaw"));
 
-        boolean setAgeProperly;
-        if (21 <= fighterBadRandom.getAge() && fighterBadRandom.getAge() <= 34) {
-            setAgeProperly = true;
-        } else {
-            setAgeProperly = false;
-        }
+        boolean setHeightProperly = (60 <= fighterBadRandom.getHeight() && fighterBadRandom.getHeight() <= 76);
 
-        boolean setReachProperly;
-        if (60 <= fighterBadRandom.getReach() && fighterBadRandom.getReach() <= 76) {
-            setReachProperly = true;
-        } else {
-            setReachProperly = false;
-        }
+        boolean setAgeProperly = (21 <= fighterBadRandom.getAge() && fighterBadRandom.getAge() <= 34);
 
-        boolean setWinsProperly;
-        if (0 <= fighterBadRandom.getWins() && fighterBadRandom.getWins() <= 10) {
-            setWinsProperly = true;
-        } else {
-            setWinsProperly = false;
-        }
+        boolean setReachProperly = (60 <= fighterBadRandom.getReach() && fighterBadRandom.getReach() <= 76);
 
-        boolean setLossesProperly;
-        if (10 <= fighterBadRandom.getLosses() && fighterBadRandom.getLosses() <= 20) {
-            setLossesProperly = true;
-        } else {
-            setLossesProperly = false;
-        }
+        boolean setWinsProperly = (0 <= fighterBadRandom.getWins() && fighterBadRandom.getWins() <= 10);
+
+        boolean setLossesProperly = (10 <= fighterBadRandom.getLosses() && fighterBadRandom.getLosses() <= 20);
 
         assertTrue(setStanceProperly);
         assertTrue(setHeightProperly);
@@ -166,12 +110,7 @@ class FighterTest {
 
     @Test
     public void getWinPercentageHasMatches() {
-        boolean notZero;
-        if (fighterGoodRandomA.getWinPercentage() == 0) {
-            notZero = false;
-        } else {
-            notZero = true;
-        }
+        boolean notZero = !(fighterGoodRandomA.getWinPercentage() == 0);
         assertTrue(notZero);
     }
 
@@ -194,15 +133,4 @@ class FighterTest {
     public void createFightersTest() {
 
     }
-
-
-
-
-
-
-
-
-
-
-
 }

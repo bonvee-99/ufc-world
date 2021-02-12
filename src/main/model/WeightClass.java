@@ -80,7 +80,7 @@ public class WeightClass {
     }
 
     // REQUIRES: the two fighters are in the given weight class and they are unique
-    // MODIFIES: this TODO: and fighterA and fighterB and Fight??? do i need this since they are inside THIS
+    // MODIFIES: this and fighterA and fighterB
     // EFFECTS: generates the fighters next opponent chooses winner based on odds, then adds to list of previous fights.
     // Also creates a fight with a given winner and loser.
     public Fight getNextFight(Fighter fighterA, Fighter fighterB, String nameOfFight) {
@@ -114,7 +114,7 @@ public class WeightClass {
                 goodOrBad = 0;
             }
 
-            Double weight;
+            double weight;
             weight = Math.floor(Math.random() * (this.getUpperWeightLimit() - this.getLowerWeightLimit() + 1)
                     + this.getLowerWeightLimit());
 

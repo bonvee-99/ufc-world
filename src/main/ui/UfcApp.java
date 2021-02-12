@@ -114,7 +114,7 @@ public class UfcApp {
         } else if (command.equals("w")) {
             lookAtClass();
         } else if (command.equals("m")) {
-            System.out.println("option 3");
+            generateFight();
         } else {
             System.out.println("Invalid choice!");
         }
@@ -128,9 +128,11 @@ public class UfcApp {
         System.out.println("-m-            Generate a fight           -m-");
         System.out.println("-q-                 Leave                 -q-");
     }
-    // to generate a match get them to choose a weight class and then get them to pick two figher's (or pick one
-    // random opponent
 
+    // MODIFIES: this
+    // EFFECTS: handles user input to generate a fight between to fighters within the same weight class
+    private void generateFight() {
+    }
 
     // EFFECTS: handles user input to look at information within a weight class
     private void lookAtClass() {
