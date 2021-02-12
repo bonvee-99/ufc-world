@@ -92,7 +92,7 @@ public class WeightClass {
         return fight;
     }
 
-    // REQUIRES: at least one other fight in the weight class
+    // REQUIRES: at least one other fighter in the weight class
     // EFFECTS: generates the given fighters opponent
     public Fighter chooseOpponent(Fighter fighter) {
         Random random = new Random();                  // Found on stackoverflow: just returns a random

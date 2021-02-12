@@ -135,9 +135,7 @@ public class UfcApp {
     private void generateRandomFight() {
         System.out.println("\nPlease choose the weight class of the two fighters:");
         WeightClass selectedWeightClass = selectWeightClass();
-        int size = selectedWeightClass.getFightersSize() - 1;
-        int index = (int)Math.round(Math.random() * size);
-        Fighter fighter = selectedWeightClass.getFighterOfIndex(index);
+        Fighter fighter = selectedWeightClass.getRandomFighter();
 
         Fighter opponent  = selectedWeightClass.chooseOpponent(fighter);
         System.out.println("\nFighter 1: " + fighter.getName());
