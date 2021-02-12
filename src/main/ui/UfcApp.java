@@ -7,8 +7,6 @@ import model.WeightClass;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import static jdk.internal.dynalink.support.Guards.isNull;
-
 // Console based UI inspired by the tellerApp
 public class UfcApp {
     private Scanner userInput;
@@ -113,8 +111,10 @@ public class UfcApp {
             createFighter();
         } else if (command.equals("w")) {
             lookAtClass();
-        } else if (command.equals("m")) {
+        } else if (command.equals("g")) {
             generateFight();
+        } else if (command.equals("r")) {
+            generateRandomFight();
         } else {
             System.out.println("Invalid choice!");
         }
@@ -125,24 +125,82 @@ public class UfcApp {
         System.out.println("\nWhat would you like to do?");
         System.out.println("-c-         Create my own fighter         -c-");
         System.out.println("-w-        Look at a weight class         -w-");
-        System.out.println("-m-            Generate a fight           -m-");
+        System.out.println("-g-            Generate a fight           -g-");
+        System.out.println("-r-        Generate a random fight        -r-");
         System.out.println("-q-                 Leave                 -q-");
+    }
+
+    // MODIFIES: this
+    // EFFECTS: handles user input to generate a random fight between to fighters
+    private void generateRandomFight() {
+        System.out.println("\nPlease choose the weight class of the two fighters:");
+        WeightClass selectedWeightClass = selectWeightClass();
+        int size = selectedWeightClass.getFightersSize() - 1;
+        int index = (int)Math.round(Math.random() * size);
+        Fighter fighter = selectedWeightClass.getFighterOfIndex(index);
+
+        Fighter opponent  = selectedWeightClass.chooseOpponent(fighter);
+        System.out.println("\nFighter 1: " + fighter.getName());
+        System.out.println("Fighter 2: " + opponent.getName());
+
+        userInput.nextLine(); // added in for bug
+        String name = selectFightName(selectedWeightClass);
+
+        System.out.println("\n" +  selectedWeightClass.getNextFight(fighter, opponent, name).getSummary());
     }
 
     // MODIFIES: this
     // EFFECTS: handles user input to generate a fight between to fighters within the same weight class
     private void generateFight() {
+        System.out.println("\nPlease choose the weight class of the two fighters:");
+        WeightClass selectedWeightClass = selectWeightClass();
+
+        System.out.println("\nPlease choose your first fighter");
+        Fighter fighterA = chooseFighter(selectedWeightClass);
+
+        System.out.println("\nPlease choose your second fighter");
+        Fighter fighterB = chooseFighter(selectedWeightClass);
+
+        while (fighterA == fighterB) {
+            System.out.println("\nA person cannot fight themselves!");
+            System.out.println("Please choose a different opponent!");
+            fighterB = chooseFighter(selectedWeightClass);
+        }
+
+        String fightName = selectFightName(selectedWeightClass);
+
+        System.out.println("\n" + selectedWeightClass.getNextFight(fighterA, fighterB,
+                fightName).getSummary());
+    }
+
+    // EFFECTS: gets user to pick a fighter or quit if there are none
+    private Fighter chooseFighter(WeightClass weightClass) {
+        String selection = "";
+        Fighter fighter = null;
+        while (fighter == null) {
+            if (!(selection.equals(""))) {
+                System.out.println("Invalid choice");
+            }
+            System.out.println("Please input the fighter's name");
+            System.out.println("If you wish to quit this window press q");
+            System.out.println(weightClass.listFighters());
+
+            selection = userInput.nextLine();
+            fighter = weightClass.getFighterByName(selection);
+
+        }
+        return fighter;
     }
 
     // EFFECTS: handles user input to look at information within a weight class
     private void lookAtClass() {
+        System.out.println("Please choose which weight division you would like to look at:");
         WeightClass selectedWeightClass = selectWeightClass();
         String selection = "";
         while (!(selection.equals("f") || selection.equals("g") || selection.equals("m") || selection.equals("s"))) {
             if (!(selection.equals(""))) {
                 System.out.println("Invalid choice");
             }
-            System.out.println("What would you like to do?");
             System.out.println("-f- List all fighters in this weight division -f-");
             System.out.println("-g-            Get a fighter's stats          -g-");
             System.out.println("-m- List all recent matches in this division  -m-");
@@ -151,7 +209,6 @@ public class UfcApp {
             selection = userInput.next();
             selection = selection.toLowerCase();
         }
-
         if (selection.equals("f")) {
             System.out.println(selectedWeightClass.listFighters());
         } else if (selection.equals("g")) {
@@ -162,29 +219,11 @@ public class UfcApp {
             getSummaryFight(selectedWeightClass);
         }
     }
-
-    //TODO: finish this method! Also do generate at fight option. Add search for a fighter option?
-    // -asks for their weight class. Read over whole project guide and make sure u have everything/go over
-    // specifications for all methods
     
     // EFFECTS: gets user to to pick a fighter by name and it will return the fighter's stats
     private void getFighterStats(WeightClass weightClass) {
-        String selection = "";
-        Fighter fighter = null;
-        while (fighter == null && !(selection.equals("q"))) {
-            if (!(selection.equals(""))) {
-                System.out.println("Invalid choice");
-            }
-            System.out.println("\nPlease input the name of the fighter you wish to see stats for:");
-            System.out.println("If you wish to quit this window press q");
-            System.out.println(weightClass.listFighters());
-
-            selection = userInput.nextLine();
-
-            if (!selection.equals("q")) {
-                fighter = weightClass.getFighterByName(selection);
-            }
-        }
+        System.out.println("Please choose the fighter you would like to look at");
+        Fighter fighter = chooseFighter(weightClass);
 
         System.out.println(fighter.getStats());
 
@@ -194,23 +233,19 @@ public class UfcApp {
     private void getSummaryFight(WeightClass weightClass) {
         String selection = "";
         Fight fight = null;
-        while (fight == null && !(selection.equals("q"))) {
+        while (fight == null && !selection.equals("q")) {
             if (!(selection.equals(""))) {
                 System.out.println("Invalid choice");
             }
             System.out.println("\nPlease input the name of the fight "
                     + "you wish to see a summary of from the following list:");
-            System.out.println("If you wish to quit this window press q");
+            System.out.println("If you wish to quit this window press q"); // Allows you to exit if there are no fights
             System.out.println(weightClass.listFights());
 
             selection = userInput.nextLine();
-            selection = selection.toLowerCase();
 
-            if (!(selection.equals("q"))) { // This is just so that it doesn't search for a fight name q
-                fight = weightClass.getFightByName(selection);
-            }
+            fight = weightClass.getFightByName(selection);
         }
-
         if (selection.equals("q")) {
             System.out.println("Generate some fights!");
         } else {
@@ -234,18 +269,19 @@ public class UfcApp {
             selection = selection.toLowerCase();
         }
 
-        if (selection.equals("n")) {
-            return true;
-        } else {
-            return false;
-        }
+        return (selection.equals("n"));
     }
 
     // MODIFIES: this
     // EFFECTS: handles creating a fighter
     private void createFighter() {
-        String selectedName = selectName();
+        System.out.println("\nPlease choose your fighter's weight division:");
         WeightClass selectedWeightClass = selectWeightClass();
+
+        userInput.nextLine(); // added in for a bug
+
+        String selectedName = selectFighterName(selectedWeightClass);
+
         String selectedStance = selectStance();
         Double selectedWeight = selectWeight(selectedWeightClass);
         int selectedHeight = selectHeight();
@@ -292,16 +328,37 @@ public class UfcApp {
     }
 
     // EFFECTS: gets user to input a name for their fighter
-    private String selectName() {
+    private String selectFighterName(WeightClass weightClass) {
         String selection = "";
-        while (!(1 <= selection.length())) {
-            if (!(selection.equals(""))) {
-                System.out.println("Invalid choice");
-            }
+        boolean foundValidFighter = false;
+        while (!foundValidFighter) {
             System.out.println("\nPlease create a name for your fighter:");
 
-            selection = userInput.next();
-            selection = selection.toLowerCase();
+            selection = userInput.nextLine();
+
+            if (weightClass.getFighterByName(selection) == null && !selection.equals("")) {
+                foundValidFighter = true;
+            } else {
+                System.out.println("This name is taken or is not greater than one character long");
+            }
+        }
+        return selection;
+    }
+
+    // EFFECTS: gets user to input a name for the fight
+    private String selectFightName(WeightClass weightClass) {
+        String selection = "";
+        boolean foundValidFight = false;
+        while (!foundValidFight) {
+            System.out.println("\nPlease create a name for the fight:");
+
+            selection = userInput.nextLine();
+
+            if (weightClass.getFightByName(selection) == null && !selection.equals("")) {
+                foundValidFight = true;
+            } else {
+                System.out.println("\nThis name is taken or is not greater than one character long");
+            }
         }
         return selection;
     }
@@ -407,7 +464,6 @@ public class UfcApp {
 
     // EFFECTS: prints weight class options to choose from
     private void printWeightClassOptions() {
-        System.out.println("\nPlease choose your fighter's weight class");
         System.out.println("-s- Strawweight       -s-");
         System.out.println("-f- Flyweight         -f-");
         System.out.println("-b- Bantamweight      -b-");

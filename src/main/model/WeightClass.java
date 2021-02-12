@@ -3,6 +3,7 @@ package model;
 
 
 import java.util.ArrayList;
+import java.util.Random;
 
 // Represents a weight class in the UFC
 /* NOTE:
@@ -94,14 +95,23 @@ public class WeightClass {
     // REQUIRES: at least one other fight in the weight class
     // EFFECTS: generates the given fighters opponent
     public Fighter chooseOpponent(Fighter fighter) {
-        int size = getFightersSize() - 1;
-        int index = (int)Math.round(Math.random() * size);
+        Random random = new Random();
+        int index = random.nextInt(getFightersSize());
         Fighter opponent = getFighterOfIndex(index);
         if (opponent.getName().equals(fighter.getName())) {
             return chooseOpponent(opponent);
         } else {
             return opponent;
         }
+    }
+
+    // REQUIRES: there is at least one fighter in the weight class
+    // EFFECTS: returns random fighter in the weight class
+    public Fighter getRandomFighter() {
+        Random random = new Random();
+        int index = random.nextInt(getFightersSize());
+        Fighter fighter = getFighterOfIndex(index);
+        return fighter;
     }
 
     // EFFECTS: creates x amount of fighters and adds to given weight class

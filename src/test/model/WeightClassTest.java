@@ -139,6 +139,22 @@ public class WeightClassTest {
     }
 
     @Test
+    public void getRandomFighterFromOneTest() {
+        lightWeight.addFighter(fighter1);
+        assertEquals(fighter1, lightWeight.getRandomFighter());
+    }
+
+    @Test
+    public void getRandomFighterFromMultipleTest() {
+        lightWeight.addFighter(fighter1);
+        lightWeight.addFighter(fighter2);
+        Fighter fighter = lightWeight.getRandomFighter();
+        boolean isValid = fighter == fighter1
+                || fighter == fighter2;
+        assertTrue(isValid);
+    }
+
+    @Test
     public void getNextFightTest() {
         lightWeight.addFighter(fighter1);
         lightWeight.addFighter(fighter2);

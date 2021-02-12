@@ -11,7 +11,7 @@ public class Fighter {
     private int wins;
     private int losses;
 
-    // REQUIRES: 21 <= age <= 34
+    // REQUIRES: 21 <= age <= 34, name is not taken in their the weight class
     // EFFECTS: creates a fighter with a name a stats and assigns them to a weight class
     public Fighter(String name, String stance, Double weight, int height, int age, int reach) {
         this.name = name;
