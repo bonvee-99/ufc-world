@@ -80,7 +80,7 @@ public class WeightClass {
     }
 
     // REQUIRES: the two fighters are in the given weight class and they are unique
-    // MODIFIES: this and fighterA and fighterB and Fight
+    // MODIFIES: this TODO: and fighterA and fighterB and Fight??? do i need this since they are inside THIS
     // EFFECTS: generates the fighters next opponent chooses winner based on odds, then adds to list of previous fights.
     // Also creates a fight with a given winner and loser.
     public Fight getNextFight(Fighter fighterA, Fighter fighterB, String nameOfFight) {
@@ -123,8 +123,7 @@ public class WeightClass {
         }
     }
 
-    // REQUIRES: there is a fighter of the given name
-    // EFFECTS: returns the fighter of the given name
+    // EFFECTS: returns the fighter of the given name. If not found returns null.
     public Fighter getFighterByName(String name) {
         for (Fighter fighter: fighters) {
             if (fighter.getName().equals(name)) {
@@ -134,8 +133,7 @@ public class WeightClass {
         return null;
     }
 
-    // REQUIRES: there is a fight of the given name
-    // EFFECTS: returns the fight of the given name
+    // EFFECTS: returns the fight of the given name. If not found returns null.
     public Fight getFightByName(String name) {
         for (Fight fight: matchHistory) {
             if (fight.getFightName().equals(name)) {

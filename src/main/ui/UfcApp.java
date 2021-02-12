@@ -143,7 +143,7 @@ public class UfcApp {
             System.out.println("What would you like to do?");
             System.out.println("-f- List all fighters in this weight division -f-");
             System.out.println("-g-            Get a fighter's stats          -g-");
-            System.out.println("-m- List all recent matches in this division  -l-");
+            System.out.println("-m- List all recent matches in this division  -m-");
             System.out.println("-s-       Get a summary for a given fight     -s-");
 
             selection = userInput.next();
@@ -153,7 +153,7 @@ public class UfcApp {
         if (selection.equals("f")) {
             System.out.println(selectedWeightClass.listFighters());
         } else if (selection.equals("g")) {
-            // getFighterStats();
+            getFighterStats(selectedWeightClass);
         } else if (selection.equals("m")) {
             System.out.println(selectedWeightClass.listFights());
         } else {
@@ -161,26 +161,58 @@ public class UfcApp {
         }
     }
 
+    //TODO: finish this method! Also do generate at fight option. Add search for a fighter option?
+    // -asks for their weight class. Read over whole project guide and make sure u have everything/go over
+    // specifications for all methods
+    
+    // EFFECTS: gets user to to pick a fighter by name and it will return the fighter's stats
+    private void getFighterStats(WeightClass weightClass) {
+        String selection = "";
+        Fighter fighter = null;
+        while (fighter == null && !(selection.equals("q"))) {
+            if (!(selection.equals(""))) {
+                System.out.println("Invalid choice");
+            }
+            System.out.println("\nPlease input the name of the fighter you wish to see stats for:");
+            System.out.println("If you wish to quit this window press q");
+            System.out.println(weightClass.listFighters());
+
+            selection = userInput.nextLine();
+
+            if (!selection.equals("q")) {
+                fighter = weightClass.getFighterByName(selection);
+            }
+        }
+
+        System.out.println(fighter.getStats());
+
+    }
+
     // EFFECTS: gets user to pick a fight by name and it will return a summary of the fight
     private void getSummaryFight(WeightClass weightClass) {
         String selection = "";
         Fight fight = null;
         while (fight == null && !(selection.equals("q"))) {
+            if (!(selection.equals(""))) {
+                System.out.println("Invalid choice");
+            }
             System.out.println("\nPlease input the name of the fight "
                     + "you wish to see a summary of from the following list:");
-            System.out.println("If there are none in the list just press q");
+            System.out.println("If you wish to quit this window press q");
             System.out.println(weightClass.listFights());
 
-            selection = userInput.next();
+            selection = userInput.nextLine();
             selection = selection.toLowerCase();
 
-            fight = weightClass.getFightByName(selection);
+            if (!(selection.equals("q"))) { // This is just so that it doesn't search for a fight name q
+                fight = weightClass.getFightByName(selection);
+            }
         }
 
         if (selection.equals("q")) {
             System.out.println("Generate some fights!");
         } else {
-            System.out.println(weightClass.getFightByName("selection"));
+            System.out.println(fight.getSummary());
         }
     }
 

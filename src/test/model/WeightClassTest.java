@@ -60,6 +60,28 @@ public class WeightClassTest {
     }
 
     @Test
+    public void getFighterByNameNotThere() {
+        assertEquals(null, lightWeight.getFighterByName("Bob"));
+    }
+
+    @Test
+    public void getFighterByNameIsThere() {
+        lightWeight.addFighter(fighter1);
+        assertEquals(fighter1, lightWeight.getFighterByName("Ben Vinnick"));
+    }
+
+    @Test
+    public void getFightByNameNotThere() {
+        assertEquals(null, lightWeight.getFightByName("Bob"));
+    }
+
+    @Test
+    public void getFightByNameIsThere() {
+        lightWeight.addFight(fight1);
+        assertEquals(fight1, lightWeight.getFightByName("first match!"));
+    }
+
+    @Test
     public void listFightersNoneTest() {
         assertEquals("\nFighters:", lightWeight.listFighters());
     }

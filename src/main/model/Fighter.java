@@ -101,17 +101,6 @@ public class Fighter {
         this.losses = (int)Math.floor(Math.random() * 10 + 0 + 1);
     }
 
-    // EFFECTS: returns which fighter is better based on win rate
-    public void whichFighterIsBetter(Fighter fighterA, Fighter fighterB) {
-        // TODO: already have a method with multiple branches (win percentage)... do i need to make add wins private???
-        // TODO: if yes how can I test get win percentage without using random shit???
-        // TODO: if it is an issue then just get rid of the win percentage method and implement this one/test?!
-
-        // TODO: main shit:
-        // plan your UI. Go through methods and solidify your user stories. Make sure to use all your methods!!!
-        // MAKE A MAP!
-    }
-
     // GETTERS:
     public String getName() {
         return this.name;
