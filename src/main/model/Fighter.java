@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Random;
+
 // Represents a fighter in the UFC... name, weight class, stats, etc.
 public class Fighter {
     private final String name;
@@ -79,11 +81,12 @@ public class Fighter {
         } else {
             this.stance = "southpaw";
         }
-        this.height = (int)Math.floor(Math.random() * (76 - 60 + 1) + 60); // Found on stack overflow:
-        this.age = (int)Math.floor(Math.random() * (34 - 21 + 1) + 21);    // all it does is take a number from the
-        this.reach = (int)Math.floor(Math.random() * (76 - 60 + 1) + 60);  // range ex [60 76] including 70 & 76
-        this.wins = (int)Math.floor(Math.random() * (10 + 1) + 0);
-        this.losses = (int)Math.floor(Math.random() * (20 - 10 + 1) + 10);
+        Random random = new Random();
+        this.height = random.nextInt(76 + 1 - 60) + 60; // youtube video:
+        this.age = random.nextInt(34 + 1 - 21) + 21;    // https://www.youtube.com/watch?v=dlA67TRejww
+        this.reach = random.nextInt(76 + 1 - 60) + 60;
+        this.wins = random.nextInt(10 + 1);
+        this.losses = random.nextInt(20 + 1 - 10) + 10;
     }
 
     // MODIFIES: this
@@ -94,11 +97,12 @@ public class Fighter {
         } else {
             this.stance = "southpaw";
         }
-        this.height = (int)Math.floor(Math.random() * (76 - 60 + 1) + 60);
-        this.age = (int)Math.floor(Math.random() * (34 - 21 + 1) + 21);
-        this.reach = (int)Math.floor(Math.random() * (76 - 60 + 1) + 60);
-        this.wins = (int)Math.floor(Math.random() * (30 - 15 + 1) + 15);
-        this.losses = (int)Math.floor(Math.random() * 10 + 0 + 1);
+        Random random = new Random();
+        this.height = random.nextInt(76 + 1 - 60) + 60; // youtube video:
+        this.age = random.nextInt(34 + 1 - 21) + 21;    // https://www.youtube.com/watch?v=dlA67TRejww
+        this.reach = random.nextInt(76 + 1 - 60) + 60;
+        this.wins = random.nextInt(30 + 1 - 15) + 15;
+        this.losses = random.nextInt(10 + 1);
     }
 
     // GETTERS:
