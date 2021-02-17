@@ -1,5 +1,6 @@
 package model;
 
+// Represents a fight between two fighters
 public class Fight {
     private final String fightName;
     private final Fighter winner;

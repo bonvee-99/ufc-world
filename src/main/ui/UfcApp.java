@@ -160,6 +160,7 @@ public class UfcApp {
         Fighter fighterB = chooseFighter(selectedWeightClass);
 
         while (fighterA == fighterB) {
+            System.out.println("!!! !!! !!!");
             System.out.println("\nA person cannot fight themselves!");
             System.out.println("Please choose a different opponent!");
             fighterB = chooseFighter(selectedWeightClass);
@@ -349,6 +350,9 @@ public class UfcApp {
         boolean foundValidFight = false;
         while (!foundValidFight) {
             System.out.println("\nPlease create a name for the fight:");
+            System.out.println("Remember to make each fight unique");
+            System.out.println("Example: Ben VS James 01");
+
 
             selection = userInput.nextLine();
 

@@ -26,6 +26,7 @@ public class Fighter {
         this.losses = 0;
     }
 
+    // REQUIRES: a fighter with a height in the min max range.
     // EFFECTS: creates a fighter with the given name and randomizes their stats to be either good or bad
     public Fighter(String name, Double weight, int goodOrBad) {
         this.name = name;
