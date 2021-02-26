@@ -383,10 +383,10 @@ public class UfcApp {
 
     // EFFECTS: gets user to input a valid weight
     private Double selectWeight(WeightClass weightClass) {
-        double weight = 0.0;
+        double weight = -1.0;
         while (!(weightClass.getLowerWeightLimit() <= weight
             && weight <= weightClass.getUpperWeightLimit())) {
-            if (!(weight == 0.0)) {
+            if (!(weight == -1.0)) {
                 System.out.println("Invalid choice");
             }
             System.out.println("\nPlease input a weight for your fighter between "
@@ -500,7 +500,7 @@ public class UfcApp {
     // MODIFIES: this
     // EFFECTS: initializes weight classes
     private void initializeWeightClasses() {
-        strawWeight = new WeightClass(0, 115, 0);
+        strawWeight = new WeightClass(0, 0, 115);
         flyWeight = new WeightClass(1, 115, 125);
         bantamWeight = new WeightClass(2, 125, 135);
         featherWeight = new WeightClass(3, 135, 145);
