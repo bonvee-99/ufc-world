@@ -2,9 +2,9 @@ package ui;
 
 import model.Fight;
 import model.Fighter;
+import model.Names;
 import model.WeightClass;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 // Console based UI inspired by the tellerApp
@@ -21,62 +21,7 @@ public class UfcApp {
     private WeightClass lightHeavyWeight;
     private WeightClass heavyWeight;
 
-    private ArrayList<String> names1;
-    private ArrayList<String> names2;
-    private ArrayList<String> names3;
-    private ArrayList<String> names4;
-    private ArrayList<String> names5;
-    private ArrayList<String> names6;
-    private ArrayList<String> names7;
-    private ArrayList<String> names8;
-    private ArrayList<String> names9;
-
-    private static final String NAME1 = "Tiny Tim";
-    private static final String NAME2 = "Joel Hammond";
-    private static final String NAME3 = "Rick Feder";
-    private static final String NAME4 = "Sam Davids";
-    private static final String NAME5 = "Tony Brooks";
-    private static final String NAME6 = "Connor Marsh";
-    private static final String NAME7 = "Sameer Frey";
-    private static final String NAME8 = "Antoni Cain";
-    private static final String NAME9 = "Kier Huber";
-    private static final String NAME10 = "Connor Marsh";
-    private static final String NAME11 = "Kelsey Zuniga";
-    private static final String NAME12 = "Osama Lindsey";
-    private static final String NAME13 = "Domas Werner";
-    private static final String NAME14 = "Raheel Cortex";
-    private static final String NAME15 = "Kamran Oakley";
-    private static final String NAME16 = "Ronny Russel";
-    private static final String NAME17 = "Tyrese Holcomb";
-    private static final String NAME18 = "Tyson Foley";
-    private static final String NAME19 = "Jasper Workman";
-    private static final String NAME20 = "Joss Daniel";
-    private static final String NAME21 = "Wil Wilkes";
-    private static final String NAME22 = "Yusef Jenkins";
-    private static final String NAME23 = "Caine Webber";
-    private static final String NAME24 = "Dwayne Cornish";
-    private static final String NAME25 = "Carl Rodriquez";
-    private static final String NAME26 = "Denzel Hendricks";
-    private static final String NAME27 = "Patryk Wade";
-    private static final String NAME28 = "Cayden Mcnamara";
-    private static final String NAME29 = "Macaulay Bowes";
-    private static final String NAME30 = "Maverick Bush";
-    private static final String NAME31 = "Kohen Walker";
-    private static final String NAME32 = "Sahil Ortega";
-    private static final String NAME33 = "Dominic Potter";
-    private static final String NAME34 = "Imani Nicholls";
-    private static final String NAME35 = "Ronaldo Gallegos";
-    private static final String NAME36 = "Lawson Russo";
-    private static final String NAME37 = "Gerard Tang";
-    private static final String NAME38 = "Matthias Grant";
-    private static final String NAME39 = "Hunter Mann";
-    private static final String NAME40 = "Charles Petty";
-    private static final String NAME41 = "Lucien Sharp";
-    private static final String NAME42 = "Saad Redmond";
-    private static final String NAME43 = "Kristopher Mcneill";
-    private static final String NAME44 = "Dainton Carson";
-    private static final String NAME45 = "Emmett Esparza";
-
+    int numberOfNames = 5;
 
     // EFFECTS: runs the UFC application
     public UfcApp() {
@@ -180,7 +125,7 @@ public class UfcApp {
             if (!(selection.equals(""))) {
                 System.out.println("Invalid choice");
             }
-            System.out.println("Please input the fighter's name");
+            System.out.println("\nPlease input the fighter's name");
             System.out.println("If you wish to quit this window press q");
             System.out.println(weightClass.listFighters());
 
@@ -218,14 +163,13 @@ public class UfcApp {
             getSummaryFight(selectedWeightClass);
         }
     }
-    
+
     // EFFECTS: gets user to to pick a fighter by name and it will return the fighter's stats
     private void getFighterStats(WeightClass weightClass) {
         System.out.println("Please choose the fighter you would like to look at");
         Fighter fighter = chooseFighter(weightClass);
 
         System.out.println(fighter.getStats());
-
     }
 
     // EFFECTS: gets user to pick a fight by name and it will return a summary of the fight
@@ -477,15 +421,7 @@ public class UfcApp {
         System.out.println("-h- Heavyweight       -h-");
     }
 
-
-
-
-
-
-
-
-
-
+    // INITIALIZATION:
 
     // MODIFIES: this
     // EFFECTS: initializes weight classes and fighters. Also adds fighters into their weight classes.
@@ -493,7 +429,6 @@ public class UfcApp {
         userInput = new Scanner(System.in);
 
         initializeWeightClasses();
-        initializeAllNames();
         initializeFighters();
     }
 
@@ -511,129 +446,18 @@ public class UfcApp {
         heavyWeight = new WeightClass(8, 205, 265);
     }
 
-    // EFFECTS: adds a bunch of names into 9 different list of names
-    private void initializeAllNames() {
-        initializeNames1();
-        initializeNames2();
-        initializeNames3();
-        initializeNames4();
-        initializeNames5();
-        initializeNames6();
-        initializeNames7();
-        initializeNames8();
-        initializeNames9();
-    }
-
     // MODIFIES: this
     // EFFECTS: creates fighters and adds them to the 9 weight classes
     private void initializeFighters() {
-        strawWeight.createFighters(names1);
-        flyWeight.createFighters(names2);
-        bantamWeight.createFighters(names3);
-        featherWeight.createFighters(names4);
-        lightWeight.createFighters(names5);
-        welterWeight.createFighters(names6);
-        middleWeight.createFighters(names7);
-        lightHeavyWeight.createFighters(names8);
-        heavyWeight.createFighters(names9);
-    }
-
-    // MODIFIES: this
-    // EFFECTS: initializes names
-    private void initializeNames1() {
-        names1 = new ArrayList<>();
-        names1.add(NAME1);
-        names1.add(NAME2);
-        names1.add(NAME3);
-        names1.add(NAME4);
-        names1.add(NAME5);
-    }
-
-    // MODIFIES: this
-    // EFFECTS: initializes names
-    private void initializeNames2() {
-        names2 = new ArrayList<>();
-        names2.add(NAME6);
-        names2.add(NAME7);
-        names2.add(NAME8);
-        names2.add(NAME9);
-        names2.add(NAME10);
-    }
-
-    // MODIFIES: this
-    // EFFECTS: initializes names
-    private void initializeNames3() {
-        names3 = new ArrayList<>();
-        names3.add(NAME11);
-        names3.add(NAME12);
-        names3.add(NAME13);
-        names3.add(NAME14);
-        names3.add(NAME15);
-    }
-
-    // MODIFIES: this
-    // EFFECTS: initializes names
-    private void initializeNames4() {
-        names4 = new ArrayList<>();
-        names4.add(NAME16);
-        names4.add(NAME17);
-        names4.add(NAME18);
-        names4.add(NAME19);
-        names4.add(NAME20);
-    }
-
-    // MODIFIES: this
-    // EFFECTS: initializes names
-    private void initializeNames5() {
-        names5 = new ArrayList<>();
-        names5.add(NAME21);
-        names5.add(NAME22);
-        names5.add(NAME23);
-        names5.add(NAME24);
-        names5.add(NAME25);
-    }
-
-    // MODIFIES: this
-    // EFFECTS: initializes names
-    private void initializeNames6() {
-        names6 = new ArrayList<>();
-        names6.add(NAME26);
-        names6.add(NAME27);
-        names6.add(NAME28);
-        names6.add(NAME29);
-        names6.add(NAME30);
-    }
-
-    // MODIFIES: this
-    // EFFECTS: initializes names
-    private void initializeNames7() {
-        names7 = new ArrayList<>();
-        names7.add(NAME31);
-        names7.add(NAME32);
-        names7.add(NAME33);
-        names7.add(NAME34);
-        names7.add(NAME35);
-    }
-
-    // MODIFIES: this
-    // EFFECTS: initializes names
-    private void initializeNames8() {
-        names8 = new ArrayList<>();
-        names8.add(NAME36);
-        names8.add(NAME37);
-        names8.add(NAME38);
-        names8.add(NAME39);
-        names8.add(NAME40);
-    }
-
-    // MODIFIES: this
-    // EFFECTS: initializes names
-    private void initializeNames9() {
-        names9 = new ArrayList<>();
-        names9.add(NAME41);
-        names9.add(NAME42);
-        names9.add(NAME43);
-        names9.add(NAME44);
-        names9.add(NAME45);
+        Names names = new Names();
+        strawWeight.createFighters(names.createNames(numberOfNames));
+        flyWeight.createFighters(names.createNames(numberOfNames));
+        bantamWeight.createFighters(names.createNames(numberOfNames));
+        featherWeight.createFighters(names.createNames(numberOfNames));
+        lightWeight.createFighters(names.createNames(numberOfNames));
+        welterWeight.createFighters(names.createNames(numberOfNames));
+        middleWeight.createFighters(names.createNames(numberOfNames));
+        lightHeavyWeight.createFighters(names.createNames(numberOfNames));
+        heavyWeight.createFighters(names.createNames(numberOfNames));
     }
 }

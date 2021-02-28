@@ -4,6 +4,7 @@ package model;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 // Represents a weight class in the UFC
@@ -116,7 +117,7 @@ public class WeightClass {
     }
 
     // EFFECTS: creates x amount of fighters and adds to given weight class
-    public void createFighters(ArrayList<String> names) {
+    public void createFighters(List<String> names) {
         for (String name: names) {
             int goodOrBad;
             if (Math.random() < 0.5) {
