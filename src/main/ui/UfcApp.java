@@ -1,9 +1,6 @@
 package ui;
 
-import model.Fight;
-import model.Fighter;
-import model.Names;
-import model.WeightClass;
+import model.*;
 
 import java.util.Scanner;
 
@@ -11,17 +8,7 @@ import java.util.Scanner;
 public class UfcApp {
     private Scanner userInput;
 
-    private WeightClass strawWeight;
-    private WeightClass flyWeight;
-    private WeightClass bantamWeight;
-    private WeightClass featherWeight;
-    private WeightClass lightWeight;
-    private WeightClass welterWeight;
-    private WeightClass middleWeight;
-    private WeightClass lightHeavyWeight;
-    private WeightClass heavyWeight;
-
-    int numberOfNames = 5;
+    UfcWorld myWorld;
 
     // EFFECTS: runs the UFC application
     public UfcApp() {
@@ -99,6 +86,7 @@ public class UfcApp {
         WeightClass selectedWeightClass = selectWeightClass();
 
         System.out.println("\nPlease choose your first fighter");
+        userInput.nextLine();
         Fighter fighterA = chooseFighter(selectedWeightClass);
 
         System.out.println("\nPlease choose your second fighter");
@@ -126,7 +114,6 @@ public class UfcApp {
                 System.out.println("Invalid choice");
             }
             System.out.println("\nPlease input the fighter's name");
-            System.out.println("If you wish to quit this window press q");
             System.out.println(weightClass.listFighters());
 
             selection = userInput.nextLine();
@@ -167,6 +154,7 @@ public class UfcApp {
     // EFFECTS: gets user to to pick a fighter by name and it will return the fighter's stats
     private void getFighterStats(WeightClass weightClass) {
         System.out.println("Please choose the fighter you would like to look at");
+        userInput.nextLine();
         Fighter fighter = chooseFighter(weightClass);
 
         System.out.println(fighter.getStats());
@@ -174,6 +162,7 @@ public class UfcApp {
 
     // EFFECTS: gets user to pick a fight by name and it will return a summary of the fight
     private void getSummaryFight(WeightClass weightClass) {
+        userInput.nextLine();
         String selection = "";
         Fight fight = null;
         while (fight == null && !selection.equals("q")) {
@@ -367,7 +356,7 @@ public class UfcApp {
     }
 
     // EFFECTS: gets user to choose one of the following given weight classes
-    private WeightClass selectWeightClass() {
+    private WeightClass  selectWeightClass() {
         String selection = "";
         while (!(selection.equals("s") ||  selection.equals("f") || selection.equals("b")
                 || selection.equals("e") || selection.equals("l") || selection.equals("w")
@@ -385,26 +374,27 @@ public class UfcApp {
         return getCorrespondingWeightClass(selection);
     }
 
+    // REQUIRES: choice must be either s f b e l w m or v
     // EFFECTS: gets the corresponding weight class
     private WeightClass getCorrespondingWeightClass(String choice) {
         if (choice.equals("s")) {
-            return strawWeight;
+            return myWorld.getWeightClassByCode(0);
         } else if (choice.equals("f")) {
-            return flyWeight;
+            return myWorld.getWeightClassByCode(1);
         } else if (choice.equals("b")) {
-            return bantamWeight;
+            return myWorld.getWeightClassByCode(2);
         } else if (choice.equals("e")) {
-            return featherWeight;
+            return myWorld.getWeightClassByCode(3);
         } else if (choice.equals("l")) {
-            return lightWeight;
+            return myWorld.getWeightClassByCode(4);
         } else if (choice.equals("w")) {
-            return welterWeight;
+            return myWorld.getWeightClassByCode(5);
         } else if (choice.equals("m")) {
-            return middleWeight;
+            return myWorld.getWeightClassByCode(6);
         } else if (choice.equals("v")) {
-            return lightHeavyWeight;
+            return myWorld.getWeightClassByCode(7);
         } else {
-            return heavyWeight;
+            return myWorld.getWeightClassByCode(8);
         }
     }
 
@@ -427,37 +417,6 @@ public class UfcApp {
     // EFFECTS: initializes weight classes and fighters. Also adds fighters into their weight classes.
     private void initializeUFC() {
         userInput = new Scanner(System.in);
-
-        initializeWeightClasses();
-        initializeFighters();
-    }
-
-    // MODIFIES: this
-    // EFFECTS: initializes weight classes
-    private void initializeWeightClasses() {
-        strawWeight = new WeightClass(0, 0, 115);
-        flyWeight = new WeightClass(1, 115, 125);
-        bantamWeight = new WeightClass(2, 125, 135);
-        featherWeight = new WeightClass(3, 135, 145);
-        lightWeight = new WeightClass(4, 145, 155);
-        welterWeight = new WeightClass(5, 155, 170);
-        middleWeight = new WeightClass(6, 170, 185);
-        lightHeavyWeight = new WeightClass(7, 185, 205);
-        heavyWeight = new WeightClass(8, 205, 265);
-    }
-
-    // MODIFIES: this
-    // EFFECTS: creates fighters and adds them to the 9 weight classes
-    private void initializeFighters() {
-        Names names = new Names();
-        strawWeight.createFighters(names.createNames(numberOfNames));
-        flyWeight.createFighters(names.createNames(numberOfNames));
-        bantamWeight.createFighters(names.createNames(numberOfNames));
-        featherWeight.createFighters(names.createNames(numberOfNames));
-        lightWeight.createFighters(names.createNames(numberOfNames));
-        welterWeight.createFighters(names.createNames(numberOfNames));
-        middleWeight.createFighters(names.createNames(numberOfNames));
-        lightHeavyWeight.createFighters(names.createNames(numberOfNames));
-        heavyWeight.createFighters(names.createNames(numberOfNames));
+        myWorld = new UfcWorld();
     }
 }

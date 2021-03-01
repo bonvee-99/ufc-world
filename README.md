@@ -20,6 +20,10 @@ play around and interact with other pre-made fighters, and the ones that you cre
 - As a user I want to be able to see all the fighters and recent matches in a weight class
 - As a user I want to be able to make two fighters of my own choosing (or two random ones) fight
 
+- As a user I want to be able to save the state of the UFC world. This will save the randomly 
+generated fighters created when you start a new world, any fighters you create, any 
+fights you add, and the corresponding stats the fights change.
+- As a user I want to be able to load a previously saved file and continue from there.
 
 
 

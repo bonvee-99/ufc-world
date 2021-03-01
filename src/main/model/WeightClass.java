@@ -2,7 +2,6 @@ package model;
 
 
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -19,9 +18,10 @@ weight class representations:
 6 = middleweight
 7 = light heavyweight
 8 = heavyweight
+any other number = any other weight class
  */
 public class WeightClass {
-    private final int weightClass;
+    private final int weightClassCode;
     private ArrayList<Fighter> fighters;
     private ArrayList<Fight> matchHistory;
 
@@ -31,7 +31,7 @@ public class WeightClass {
     // REQUIRES: that weight class was not already made
     // Effects: creates a weight class with a list of fighters
     public WeightClass(int weightClass, int lowerWeightLimit, int upperWeightLimit) {
-        this.weightClass = weightClass;
+        this.weightClassCode = weightClass;
         fighters = new ArrayList<>();
         matchHistory = new ArrayList<>();
 
@@ -157,8 +157,8 @@ public class WeightClass {
 
     // GETTERS:
 
-    public int getWeightClass() {
-        return this.weightClass;
+    public int getWeightClassCode() {
+        return this.weightClassCode;
     }
 
     public ArrayList<Fighter> getFighters() {

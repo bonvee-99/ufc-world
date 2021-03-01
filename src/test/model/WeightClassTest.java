@@ -33,7 +33,7 @@ public class WeightClassTest {
 
     @Test
     public void constructorTest() {
-        assertEquals(4, lightWeight.getWeightClass());
+        assertEquals(4, lightWeight.getWeightClassCode());
         assertEquals(new ArrayList<Fighter>(), lightWeight.getFighters());
         assertEquals(new ArrayList<Fight>(), lightWeight.getMatchHistory());
         assertEquals(145, lightWeight.getUpperWeightLimit());
