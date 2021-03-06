@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UfcWorld implements Writable {
-    private String name;
+    private final String name;
 
     private static final int numberOfNames = 5;
 
@@ -96,7 +96,6 @@ public class UfcWorld implements Writable {
     public void addWeightClass(WeightClass weightClass) {
         weightClassList.add(weightClass);
     }
-
 
     // GETTERS:
     public String getName() {

@@ -10,8 +10,9 @@ public class Fight implements Writable {
     private final Fighter winner;
     private final Fighter loser;
 
+    // REQUIRES: fighters are in the same weight division
     // EFFECTS: creates a fight between two chosen fighters and names the fight fightName,
-    // generates a random winner, loser, and result summary
+    // generates a random winner, loser, and how the fight ended (result)
     public Fight(Fighter fighterA, Fighter fighterB, String fightName) {
         winner = chooseWinner(fighterA, fighterB);
         if (winner.getName().equals(fighterA.getName())) {
@@ -23,6 +24,7 @@ public class Fight implements Writable {
         chooseResult();
     }
 
+    // REQUIRES: fighters are in the same weight division, fight result is one of 3 valid results
     // EFFECTS: creates fight (for documentation) with the given winner, loser, name, and result summary
     public Fight(Fighter winner, Fighter loser, String fightName, String result) {
         this.winner = winner;

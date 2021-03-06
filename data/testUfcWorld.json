@@ -3,7 +3,30 @@
     "WeightClassList": [
         {
             "weightClassCode": 0,
-            "matchHistory": [],
+            "matchHistory": [{
+                "result": " by knockout!",
+                "winner": {
+                    "wins": 5,
+                    "reach": 64,
+                    "name": "Joss Haggerty",
+                    "weight": 47,
+                    "losses": 10,
+                    "stance": "orthodox",
+                    "age": 33,
+                    "height": 68
+                },
+                "fightName": "Josh vs Joss",
+                "loser": {
+                    "wins": 25,
+                    "reach": 63,
+                    "name": "Josh Holcomb",
+                    "weight": 61,
+                    "losses": 9,
+                    "stance": "southpaw",
+                    "age": 30,
+                    "height": 70
+                }
+            }],
             "upperWeightLimit": 115,
             "lowerWeightLimit": 0,
             "fighters": [
@@ -42,13 +65,13 @@
                     "reach": 63,
                     "name": "Josh Holcomb",
                     "weight": 61,
-                    "losses": 8,
+                    "losses": 9,
                     "stance": "southpaw",
                     "age": 30,
                     "height": 70
                 },
                 {
-                    "wins": 4,
+                    "wins": 5,
                     "reach": 64,
                     "name": "Joss Haggerty",
                     "weight": 47,

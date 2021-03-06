@@ -1,0 +1,54 @@
+{
+    "name": "partial ufc world",
+    "WeightClassList": [{
+        "weightClassCode": 20,
+        "matchHistory": [{
+            "result": " By knockout!",
+            "winner": {
+                "wins": 0,
+                "reach": 70,
+                "name": "Ben Vinnick",
+                "weight": 145,
+                "losses": 0,
+                "stance": "southpaw",
+                "age": 21,
+                "height": 69
+            },
+            "fightName": "Ben vs Cam",
+            "loser": {
+                "wins": 0,
+                "reach": 75,
+                "name": "Small Man Cam",
+                "weight": 150,
+                "losses": 0,
+                "stance": "orthodox",
+                "age": 27,
+                "height": 73
+            }
+        }],
+        "upperWeightLimit": 200,
+        "lowerWeightLimit": 100,
+        "fighters": [
+            {
+                "wins": 0,
+                "reach": 70,
+                "name": "Ben Vinnick",
+                "weight": 145,
+                "losses": 0,
+                "stance": "southpaw",
+                "age": 21,
+                "height": 69
+            },
+            {
+                "wins": 0,
+                "reach": 75,
+                "name": "Small Man Cam",
+                "weight": 150,
+                "losses": 0,
+                "stance": "orthodox",
+                "age": 27,
+                "height": 73
+            }
+        ]
+    }]
+}

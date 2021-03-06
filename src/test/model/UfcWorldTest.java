@@ -27,7 +27,7 @@ public class UfcWorldTest {
     }
 
     @Test
-    public void constructionDontFillUpTest() {
+    public void constructionDoNotFillUpTest() {
         assertEquals("empty world", emptyWorld.getName());
         assertEquals(0, emptyWorld.getWeightClassListSize());
     }
@@ -46,6 +46,6 @@ public class UfcWorldTest {
     public void addWeightClassTest() {
         WeightClass weightClass = new WeightClass(15, 0, 1000);
         emptyWorld.addWeightClass(weightClass);
-        assertNotNull(myWorld.getWeightClassByCode(15));
+        assertEquals(weightClass, emptyWorld.getWeightClassByCode(15));
     }
 }

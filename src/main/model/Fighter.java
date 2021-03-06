@@ -16,7 +16,7 @@ public class Fighter implements Writable {
     private int wins;
     private int losses;
 
-    // REQUIRES: 21 <= age <= 34
+    // REQUIRES: 21 <= age <= 34, a stance of either southpaw or orthodox
     // EFFECTS: creates a fighter with a name a stats and assigns them to a weight class
     public Fighter(String name, String stance, Double weight, int height, int age, int reach) {
         this.name = name;

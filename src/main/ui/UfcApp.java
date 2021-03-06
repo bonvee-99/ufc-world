@@ -469,5 +469,20 @@ public class UfcApp {
             loadWorld();
         }
     }
-    // TODO:
+    // TODO: understand the throw in main
+    // TODO: create tests
+    /* TODO: save multiple??? max 5?
+    will something like this:
+    create new UFC world? -a- -> just loads a new world (asks what do you want to name this?)
+    either do multiple Json files with one Ufc world in each ******
+    - each Ufc world is attached to directory
+    - load (___ UfcWorld) asks for name and then checks if
+    there is a name corresponding to one of the five json directory
+    ???? think about it first... you don't need to add this
+    OR
+    do one Json files with multiple worlds in each (this could be bad because it has to StringBuild
+    all the worlds which could take a long time in theory!
+
+     */
+
 }
