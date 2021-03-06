@@ -123,6 +123,7 @@ public class JsonReader {
         Fighter loser = getFighterObject(nextFightObject.getJSONObject("loser"));
 
         Fight fight = new Fight(winner, loser, fightName, result);
+        weightClass.addFight(fight);
     }
 
     // REQUIRES: fighter has all fields and they are valid. name, stance, weight, height, reach, age, wins, losses

@@ -4,25 +4,25 @@
         {
             "weightClassCode": 0,
             "matchHistory": [{
-                "result": " by knockout!",
+                "result": " by judges decision!",
                 "winner": {
-                    "wins": 5,
-                    "reach": 64,
-                    "name": "Joss Haggerty",
-                    "weight": 47,
-                    "losses": 10,
-                    "stance": "orthodox",
-                    "age": 33,
-                    "height": 68
-                },
-                "fightName": "Josh vs Joss",
-                "loser": {
-                    "wins": 25,
+                    "wins": 26,
                     "reach": 63,
                     "name": "Josh Holcomb",
                     "weight": 61,
                     "losses": 9,
                     "stance": "southpaw",
+                    "age": 30,
+                    "height": 70
+                },
+                "fightName": "kier vs josh",
+                "loser": {
+                    "wins": 28,
+                    "reach": 62,
+                    "name": "Kier Davids",
+                    "weight": 2,
+                    "losses": 6,
+                    "stance": "orthodox",
                     "age": 30,
                     "height": 70
                 }
@@ -45,7 +45,7 @@
                     "reach": 62,
                     "name": "Kier Davids",
                     "weight": 2,
-                    "losses": 5,
+                    "losses": 6,
                     "stance": "orthodox",
                     "age": 30,
                     "height": 70
@@ -61,7 +61,7 @@
                     "height": 64
                 },
                 {
-                    "wins": 25,
+                    "wins": 26,
                     "reach": 63,
                     "name": "Josh Holcomb",
                     "weight": 61,
@@ -451,7 +451,7 @@
                     "reach": 65,
                     "name": "Tyson Mann",
                     "weight": 191,
-                    "losses": 19,
+                    "losses": 20,
                     "stance": "orthodox",
                     "age": 24,
                     "height": 64
@@ -477,7 +477,7 @@
                     "height": 76
                 },
                 {
-                    "wins": 2,
+                    "wins": 3,
                     "reach": 66,
                     "name": "Casper Jenkins",
                     "weight": 188,

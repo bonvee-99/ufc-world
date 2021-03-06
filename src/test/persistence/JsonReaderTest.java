@@ -76,7 +76,7 @@ public class JsonReaderTest {
     private void testReadValidFight(Fight fight) {
         testReadValidFighter(fight.getWinner());
         testReadValidFighter(fight.getLoser());
-        assertEquals("", fight.getSummary());
+        assertEquals("Joss Haggerty beat Josh Holcomb by knockout!", fight.getSummary());
         assertEquals("Josh vs Joss", fight.getFightName());
     }
 
