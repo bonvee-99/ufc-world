@@ -12,6 +12,7 @@ public class FightTest {
     private Fighter fighter1;
     private Fighter fighter2;
     private Fight fight1;
+    private Fight oldFight;
 
     @BeforeEach
     public void runBefore() {
@@ -22,14 +23,25 @@ public class FightTest {
                 "orthodox",
                 144.0, 72, 25, 72);
         fight1 = new Fight(fighter1, fighter2, "first fight!");
+        oldFight = new Fight(fighter1, fighter2, "old fight!",
+                "Ben Vinnick beat John John by knockout!");
     }
 
     @Test
-    public void constructorTest() {
+    public void constructorRandomResultTest() {
         chooseWinnerTest();
         chooseResultTest();
         assertEquals("first fight!", fight1.getFightName());
     }
+
+    @Test
+    public void constructorOldFightTest() {
+        assertEquals("Ben Vinnick", oldFight.getWinner().getName());
+        assertEquals("John John", oldFight.getLoser().getName());
+        assertEquals("old fight!", oldFight.getFightName());
+        assertEquals("Ben Vinnick beat John John by knockout!", oldFight.getResult());
+    }
+
 
     @Test
     public void chooseWinnerTest() {
@@ -67,13 +79,9 @@ public class FightTest {
     public void getSummaryTest() {
         String summary = fight1.getSummary();
         boolean validResult;
-        if ((summary.contains(fighter2.getName()) && summary.contains(fighter1.getName()) && summary.contains("beat")) &&
+        validResult = ((summary.contains(fighter2.getName()) && summary.contains(fighter1.getName()) && summary.contains("beat")) &&
                 (summary.contains(" by knockout!") || summary.contains(" by technical knockout!")
-                        || summary.contains(" by judges decision!"))) {
-            validResult = true;
-        } else {
-            validResult = false;
-        }
+                        || summary.contains(" by judges decision!")));
         assertTrue(validResult);
     }
 }

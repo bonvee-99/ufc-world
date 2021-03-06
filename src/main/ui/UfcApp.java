@@ -1,17 +1,28 @@
 package ui;
 
 import model.*;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
 
 // Console based UI inspired by the tellerApp
 public class UfcApp {
-    private Scanner userInput;
-
+    private final Scanner userInput;
     UfcWorld myWorld;
+    JsonReader jsonReader;
+    JsonWriter jsonWriter;
+
+    private static final String JSON_STORE = "./data/testUfcWorld.json";
 
     // EFFECTS: runs the UFC application
-    public UfcApp() {
+    public UfcApp() throws FileNotFoundException {
+        userInput = new Scanner(System.in);
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
+        initializeUFC(); // either creates or loads in new world
         runUFC();
     }
 
@@ -20,8 +31,6 @@ public class UfcApp {
     private void runUFC() {
         boolean remainRunning = true;
         String command;
-
-        initializeUFC();
 
         while (remainRunning) {
             displayStartMenu();
@@ -47,8 +56,35 @@ public class UfcApp {
             generateFight();
         } else if (command.equals("r")) {
             generateRandomFight();
+        } else if (command.equals("s")) {
+            saveWorld();
+        } else if (command.equals("l")) {
+            loadWorld();
         } else {
             System.out.println("Invalid choice!");
+        }
+    }
+
+    // EFFECTS: save the UfcWorld to file
+    public void saveWorld() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(myWorld);
+            jsonWriter.close();
+            System.out.println("Saved " + myWorld.getName() + " to " + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to save to file: " + JSON_STORE);
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: loads UfcWorld from file
+    public void loadWorld() {
+        try {
+            myWorld = jsonReader.read();
+            System.out.println("Loaded " + myWorld.getName() + " to " + JSON_STORE);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE);
         }
     }
 
@@ -59,6 +95,8 @@ public class UfcApp {
         System.out.println("-w-        Look at a weight class         -w-");
         System.out.println("-g-            Generate a fight           -g-");
         System.out.println("-r-        Generate a random fight        -r-");
+        System.out.println("-s-              Save World               -s-");
+        System.out.println("-l-            Load in New World          -l-");
         System.out.println("-q-                 Leave                 -q-");
     }
 
@@ -193,7 +231,7 @@ public class UfcApp {
                 System.out.println("Invalid choice");
             }
             System.out.println("\nAre you sure you want to quit?");
-            System.out.println("All progress will be lost");
+            System.out.println("All progress will be lost unless you saved!");
             System.out.println("-y- Yes -y-");
             System.out.println("-n- No  -n-");
 
@@ -416,7 +454,20 @@ public class UfcApp {
     // MODIFIES: this
     // EFFECTS: initializes weight classes and fighters. Also adds fighters into their weight classes.
     private void initializeUFC() {
-        userInput = new Scanner(System.in);
-        myWorld = new UfcWorld();
+        String selection = "";
+        while (!(selection.equals("a") || selection.equals("b"))) {
+            System.out.println("Would you like to either: ");
+            System.out.println("-a- Create a new UFC world  -a-");
+            System.out.println("-b- Load in a previous world -b-");
+
+            selection = userInput.next();
+            selection = selection.toLowerCase();
+        }
+        if (selection.equals("a")) {
+            myWorld = new UfcWorld("my world", true);
+        } else {
+            loadWorld();
+        }
     }
+    // TODO:
 }

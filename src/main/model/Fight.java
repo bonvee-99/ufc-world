@@ -1,12 +1,17 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 // Represents a fight between two fighters
-public class Fight {
+public class Fight implements Writable {
     private final String fightName;
+    private String result;
     private final Fighter winner;
     private final Fighter loser;
-    private String result;
 
+    // EFFECTS: creates a fight between two chosen fighters and names the fight fightName,
+    // generates a random winner, loser, and result summary
     public Fight(Fighter fighterA, Fighter fighterB, String fightName) {
         winner = chooseWinner(fighterA, fighterB);
         if (winner.getName().equals(fighterA.getName())) {
@@ -16,6 +21,14 @@ public class Fight {
         }
         this.fightName = fightName;
         chooseResult();
+    }
+
+    // EFFECTS: creates fight (for documentation) with the given winner, loser, name, and result summary
+    public Fight(Fighter winner, Fighter loser, String fightName, String result) {
+        this.winner = winner;
+        this.loser = loser;
+        this.fightName = fightName;
+        this.result = result;
     }
 
     // EFFECTS: chooses random result of a fight
@@ -45,6 +58,16 @@ public class Fight {
         return winner.getName() + " beat " + loser.getName() + result;
     }
 
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("fightName", fightName);
+        json.put("result", result);
+        json.put("winner", winner.toJson());
+        json.put("loser", loser.toJson());
+        return json;
+    }
+
     // GETTERS:
     public String getFightName() {
         return this.fightName;
@@ -61,4 +84,6 @@ public class Fight {
     public String getResult() {
         return this.result;
     }
+
+
 }

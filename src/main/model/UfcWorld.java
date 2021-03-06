@@ -1,22 +1,34 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class UfcWorld {
-    private final List<WeightClass> weightClassList;
+public class UfcWorld implements Writable {
+    private String name;
 
     private static final int numberOfNames = 5;
 
-    // EFFECTS: initializes 9 weight classes and creates fighters and adds them to the 9 weight classes
-    public UfcWorld() {
+    private final List<WeightClass> weightClassList;
+
+
+    // EFFECTS: initializes empty UfcWorld with given name if fillUp is false,
+    // if fillUp is true then initializes 9 weight classes and creates fighters and adds them to the 9 weight classes,
+    // assigns given name
+    public UfcWorld(String name, Boolean fillUp) {
+        this.name = name;
         weightClassList = new ArrayList<>();
-        initializeWeightClasses();
-        initializeFighters();
+        if (fillUp) {
+            initializeWeightClasses();
+            initializeFighters();
+        }
     }
 
     // MODIFIES: this
-    // EFFECTS: initializes weight classes
+    // EFFECTS: initializes weight classes and adds them to weightClassList
     private void initializeWeightClasses() {
         WeightClass strawWeight = new WeightClass(0, 0, 115);
         weightClassList.add(strawWeight);
@@ -61,5 +73,45 @@ public class UfcWorld {
             }
         }
         return null;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", name);
+        json.put("WeightClassList", weightClassListToJson());
+        return json;
+    }
+
+    // EFFECTS: returns weightClassList as a JSONArray
+    public JSONArray weightClassListToJson() {
+        JSONArray jsonWeightClassList = new JSONArray();
+        for (WeightClass weightClass : weightClassList) {
+            jsonWeightClassList.put(weightClass.toJson());
+        }
+        return jsonWeightClassList;
+    }
+
+    // EFFECTS: adds a weight class to weightClassList
+    public void addWeightClass(WeightClass weightClass) {
+        weightClassList.add(weightClass);
+    }
+
+
+    // GETTERS:
+    public String getName() {
+        return this.name;
+    }
+
+    public int getNumberOfNames() {
+        return numberOfNames;
+    }
+
+    public List<WeightClass> getWeightClassList() {
+        return this.weightClassList;
+    }
+
+    public int getWeightClassListSize() {
+        return this.weightClassList.size();
     }
 }

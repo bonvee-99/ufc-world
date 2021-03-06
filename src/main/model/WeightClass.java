@@ -2,6 +2,10 @@ package model;
 
 
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -20,18 +24,17 @@ weight class representations:
 8 = heavyweight
 any other number = any other weight class
  */
-public class WeightClass {
+public class WeightClass implements Writable {
     private final int weightClassCode;
-    private ArrayList<Fighter> fighters;
-    private ArrayList<Fight> matchHistory;
-
     private final int upperWeightLimit;
     private final int lowerWeightLimit;
+    private List<Fighter> fighters;
+    private List<Fight> matchHistory;
 
     // REQUIRES: that weight class was not already made
     // Effects: creates a weight class with a list of fighters
-    public WeightClass(int weightClass, int lowerWeightLimit, int upperWeightLimit) {
-        this.weightClassCode = weightClass;
+    public WeightClass(int weightClassCode, int lowerWeightLimit, int upperWeightLimit) {
+        this.weightClassCode = weightClassCode;
         fighters = new ArrayList<>();
         matchHistory = new ArrayList<>();
 
@@ -112,8 +115,7 @@ public class WeightClass {
     public Fighter getRandomFighter() {
         Random random = new Random();
         int index = random.nextInt(getFightersSize());
-        Fighter fighter = getFighterOfIndex(index);
-        return fighter;
+        return getFighterOfIndex(index);
     }
 
     // EFFECTS: creates x amount of fighters and adds to given weight class
@@ -155,13 +157,42 @@ public class WeightClass {
         return null;
     }
 
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("weightClassCode", weightClassCode);
+        json.put("upperWeightLimit", upperWeightLimit);
+        json.put("lowerWeightLimit", lowerWeightLimit);
+        json.put("fighters", fightersToJson());
+        json.put("matchHistory", fightsToJson());
+        return json;
+    }
+
+    // EFFECTS: returns fighters as a JSONArray
+    public JSONArray fightersToJson() {
+        JSONArray jsonArrayOfFighters = new JSONArray();
+        for (Fighter fighter : fighters) {
+            jsonArrayOfFighters.put(fighter.toJson());
+        }
+        return jsonArrayOfFighters;
+    }
+
+    // EFFECTS: returns fights as a JSONArray
+    public JSONArray fightsToJson() {
+        JSONArray jsonArrayOfFights = new JSONArray();
+        for (Fight fight : matchHistory) {
+            jsonArrayOfFights.put(fight.toJson());
+        }
+        return jsonArrayOfFights;
+    }
+
     // GETTERS:
 
     public int getWeightClassCode() {
         return this.weightClassCode;
     }
 
-    public ArrayList<Fighter> getFighters() {
+    public List<Fighter> getFighters() {
         return this.fighters;
     }
 
@@ -173,7 +204,7 @@ public class WeightClass {
         return fighters.get(index);
     }
 
-    public ArrayList<Fight> getMatchHistory() {
+    public List<Fight> getMatchHistory() {
         return this.matchHistory;
     }
 

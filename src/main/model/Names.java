@@ -24,8 +24,8 @@ public class Names {
     private List<String> lastNamesList;
 
     public Names() {
-        firstNamesList = Arrays.asList(firstNames);
-        lastNamesList = Arrays.asList(lastNames);
+        firstNamesList = new ArrayList<>(Arrays.asList(firstNames));
+        lastNamesList = new ArrayList<>(Arrays.asList(lastNames));
     }
 
     // GETTERS:
@@ -37,7 +37,8 @@ public class Names {
         return this.lastNamesList;
     }
 
-    // REQUIRES: there are greater or more elements in lastNamesList than numOfNames
+    // REQUIRES: there are greater or more elements in lastNamesList than numOfNames,
+    // there are at least or more last names than numOfNames
     // MODIFIES: this
     // EFFECTS: creates a list of random names
     public List<String> createNames(int numOfNames) {

@@ -1,9 +1,12 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.Random;
 
 // Represents a fighter in the UFC... name, weight class, stats, etc.
-public class Fighter {
+public class Fighter implements Writable {
     private final String name;
     private String stance;
     private Double weight;
@@ -137,6 +140,20 @@ public class Fighter {
 
     public int getLosses() {
         return this.losses;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", name);
+        json.put("stance", stance);
+        json.put("weight", weight);
+        json.put("height", height);
+        json.put("reach", reach);
+        json.put("age", age);
+        json.put("wins", wins);
+        json.put("losses", losses);
+        return json;
     }
 }
 
