@@ -15,13 +15,17 @@ public class UfcApp {
     JsonReader jsonReader;
     JsonWriter jsonWriter;
 
-    private static final String JSON_STORE = "./data/testUfcWorld.json";
+    private String activeWorldDir;
+
+    private static final String JSON_STORE1 = "./data/world1.json";
+    private static final String JSON_STORE2 = "./data/world2.json";
+    private static final String JSON_STORE3 = "./data/world3.json";
+    private static final String JSON_STORE4 = "./data/world4.json";
+    private static final String JSON_STORE5 = "./data/world5.json";
 
     // EFFECTS: runs the UFC application
     public UfcApp() throws FileNotFoundException {
         userInput = new Scanner(System.in);
-        jsonWriter = new JsonWriter(JSON_STORE);
-        jsonReader = new JsonReader(JSON_STORE);
         initializeUFC(); // either creates or loads in new world
         runUFC();
     }
@@ -59,6 +63,9 @@ public class UfcApp {
         } else if (command.equals("s")) {
             saveWorld();
         } else if (command.equals("l")) {
+            System.out.println("Please choose which which world you would like to load");
+            pickWorld();
+            jsonReader = new JsonReader(activeWorldDir);
             loadWorld();
         } else {
             System.out.println("Invalid choice!");
@@ -67,13 +74,17 @@ public class UfcApp {
 
     // EFFECTS: save the UfcWorld to file
     public void saveWorld() {
+        System.out.println("Please choose which file you would like to save the world to");
+        System.out.println("Warning: saving will override previously saved world in file");
+        pickWorld();
+        jsonWriter = new JsonWriter(activeWorldDir);
         try {
             jsonWriter.open();
             jsonWriter.write(myWorld);
             jsonWriter.close();
-            System.out.println("Saved " + myWorld.getName() + " to " + JSON_STORE);
+            System.out.println("Saved " + myWorld.getName() + " to " + activeWorldDir);
         } catch (FileNotFoundException e) {
-            System.out.println("Unable to save to file: " + JSON_STORE);
+            System.out.println("Unable to save to file: " + activeWorldDir);
         }
     }
 
@@ -82,9 +93,9 @@ public class UfcApp {
     public void loadWorld() {
         try {
             myWorld = jsonReader.read();
-            System.out.println("Loaded " + myWorld.getName() + " to " + JSON_STORE);
+            System.out.println("Loaded " + myWorld.getName() + " to " + activeWorldDir);
         } catch (IOException e) {
-            System.out.println("Unable to read from file: " + JSON_STORE);
+            System.out.println("Unable to read from file: " + activeWorldDir);
         }
     }
 
@@ -96,7 +107,7 @@ public class UfcApp {
         System.out.println("-g-            Generate a fight           -g-");
         System.out.println("-r-        Generate a random fight        -r-");
         System.out.println("-s-              Save World               -s-");
-        System.out.println("-l-            Load in New World          -l-");
+        System.out.println("-l-          Load in a New World          -l-");
         System.out.println("-q-                 Leave                 -q-");
     }
 
@@ -457,32 +468,48 @@ public class UfcApp {
         String selection = "";
         while (!(selection.equals("a") || selection.equals("b"))) {
             System.out.println("Would you like to either: ");
-            System.out.println("-a- Create a new UFC world  -a-");
-            System.out.println("-b- Load in a previous world -b-");
+            System.out.println("-a- Create a new randomly generate UFC world  -a-");
+            System.out.println("-b-         Load in a previous world          -b-");
 
             selection = userInput.next();
             selection = selection.toLowerCase();
         }
         if (selection.equals("a")) {
-            myWorld = new UfcWorld("my world", true);
+            myWorld = new UfcWorld("world", true);
         } else {
+            System.out.println("Please choose which world you would like to open");
+            pickWorld();
+            jsonReader = new JsonReader(activeWorldDir);
             loadWorld();
         }
     }
-    // TODO: understand the throw in main
-    // TODO: create tests
-    /* TODO: save multiple??? max 5?
-    will something like this:
-    create new UFC world? -a- -> just loads a new world (asks what do you want to name this?)
-    either do multiple Json files with one Ufc world in each ******
-    - each Ufc world is attached to directory
-    - load (___ UfcWorld) asks for name and then checks if
-    there is a name corresponding to one of the five json directory
-    ???? think about it first... you don't need to add this
-    OR
-    do one Json files with multiple worlds in each (this could be bad because it has to StringBuild
-    all the worlds which could take a long time in theory!
 
-     */
+    // REQUIRES: each world is already saved and is stored properly
+    // EFFECTS: gets user to pick active world
+    public void pickWorld() {
+        String selection = "";
+        while (!(selection.equals("a") || selection.equals("s") || selection.equals("d")
+                || selection.equals("f") || selection.equals("g"))) {
+            System.out.println("-a- World1 -a-");
+            System.out.println("-s- World2 -s-");
+            System.out.println("-d- World3 -d-");
+            System.out.println("-f- World4 -f-");
+            System.out.println("-g- World5 -g-");
 
+            selection = userInput.next();
+            selection = selection.toLowerCase();
+        }
+
+        if (selection.equals("a")) {
+            activeWorldDir = JSON_STORE1;
+        } else if (selection.equals("s")) {
+            activeWorldDir = JSON_STORE2;
+        } else if (selection.equals("d")) {
+            activeWorldDir = JSON_STORE3;
+        } else if (selection.equals("f")) {
+            activeWorldDir = JSON_STORE4;
+        } else {
+            activeWorldDir = JSON_STORE5;
+        }
+    }
 }

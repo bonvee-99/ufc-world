@@ -1,0 +1,527 @@
+{
+    "name": "world",
+    "WeightClassList": [
+        {
+            "weightClassCode": 0,
+            "matchHistory": [],
+            "upperWeightLimit": 115,
+            "lowerWeightLimit": 0,
+            "fighters": [
+                {
+                    "wins": 25,
+                    "reach": 60,
+                    "name": "Caine Workman",
+                    "weight": 13,
+                    "losses": 0,
+                    "stance": "southpaw",
+                    "age": 30,
+                    "height": 69
+                },
+                {
+                    "wins": 26,
+                    "reach": 60,
+                    "name": "Jonathan Hendricks",
+                    "weight": 43,
+                    "losses": 10,
+                    "stance": "orthodox",
+                    "age": 27,
+                    "height": 67
+                },
+                {
+                    "wins": 10,
+                    "reach": 67,
+                    "name": "Tyson Haggerty",
+                    "weight": 57,
+                    "losses": 15,
+                    "stance": "orthodox",
+                    "age": 34,
+                    "height": 71
+                },
+                {
+                    "wins": 2,
+                    "reach": 66,
+                    "name": "David Esparza",
+                    "weight": 74,
+                    "losses": 18,
+                    "stance": "southpaw",
+                    "age": 31,
+                    "height": 73
+                },
+                {
+                    "wins": 30,
+                    "reach": 70,
+                    "name": "Tony Cain",
+                    "weight": 48,
+                    "losses": 1,
+                    "stance": "orthodox",
+                    "age": 34,
+                    "height": 68
+                }
+            ]
+        },
+        {
+            "weightClassCode": 1,
+            "matchHistory": [],
+            "upperWeightLimit": 125,
+            "lowerWeightLimit": 115,
+            "fighters": [
+                {
+                    "wins": 30,
+                    "reach": 71,
+                    "name": "Connor Esparza",
+                    "weight": 115,
+                    "losses": 7,
+                    "stance": "orthodox",
+                    "age": 23,
+                    "height": 61
+                },
+                {
+                    "wins": 18,
+                    "reach": 72,
+                    "name": "Cayden Ortega",
+                    "weight": 122,
+                    "losses": 7,
+                    "stance": "orthodox",
+                    "age": 30,
+                    "height": 75
+                },
+                {
+                    "wins": 1,
+                    "reach": 76,
+                    "name": "Sameer Carson",
+                    "weight": 125,
+                    "losses": 10,
+                    "stance": "orthodox",
+                    "age": 26,
+                    "height": 67
+                },
+                {
+                    "wins": 18,
+                    "reach": 61,
+                    "name": "Connor Oakley",
+                    "weight": 122,
+                    "losses": 8,
+                    "stance": "orthodox",
+                    "age": 31,
+                    "height": 67
+                },
+                {
+                    "wins": 7,
+                    "reach": 75,
+                    "name": "Tyrese Werner",
+                    "weight": 120,
+                    "losses": 17,
+                    "stance": "southpaw",
+                    "age": 28,
+                    "height": 61
+                }
+            ]
+        },
+        {
+            "weightClassCode": 2,
+            "matchHistory": [],
+            "upperWeightLimit": 135,
+            "lowerWeightLimit": 125,
+            "fighters": [
+                {
+                    "wins": 26,
+                    "reach": 65,
+                    "name": "Jason Holcomb",
+                    "weight": 129,
+                    "losses": 8,
+                    "stance": "orthodox",
+                    "age": 28,
+                    "height": 71
+                },
+                {
+                    "wins": 20,
+                    "reach": 63,
+                    "name": "Dwayne Tang",
+                    "weight": 126,
+                    "losses": 2,
+                    "stance": "orthodox",
+                    "age": 28,
+                    "height": 64
+                },
+                {
+                    "wins": 21,
+                    "reach": 72,
+                    "name": "Kelsey Frey",
+                    "weight": 130,
+                    "losses": 3,
+                    "stance": "orthodox",
+                    "age": 33,
+                    "height": 69
+                },
+                {
+                    "wins": 3,
+                    "reach": 71,
+                    "name": "Kristopher Webber",
+                    "weight": 129,
+                    "losses": 20,
+                    "stance": "orthodox",
+                    "age": 25,
+                    "height": 66
+                },
+                {
+                    "wins": 1,
+                    "reach": 76,
+                    "name": "Dominic Vinnick",
+                    "weight": 133,
+                    "losses": 10,
+                    "stance": "orthodox",
+                    "age": 21,
+                    "height": 65
+                }
+            ]
+        },
+        {
+            "weightClassCode": 3,
+            "matchHistory": [],
+            "upperWeightLimit": 145,
+            "lowerWeightLimit": 135,
+            "fighters": [
+                {
+                    "wins": 27,
+                    "reach": 75,
+                    "name": "Caine Mann",
+                    "weight": 145,
+                    "losses": 5,
+                    "stance": "orthodox",
+                    "age": 26,
+                    "height": 64
+                },
+                {
+                    "wins": 20,
+                    "reach": 76,
+                    "name": "Joel Redmond",
+                    "weight": 136,
+                    "losses": 10,
+                    "stance": "orthodox",
+                    "age": 29,
+                    "height": 76
+                },
+                {
+                    "wins": 21,
+                    "reach": 71,
+                    "name": "Jason Vinnick",
+                    "weight": 139,
+                    "losses": 6,
+                    "stance": "orthodox",
+                    "age": 33,
+                    "height": 64
+                },
+                {
+                    "wins": 27,
+                    "reach": 73,
+                    "name": "Dwayne Sharp",
+                    "weight": 141,
+                    "losses": 6,
+                    "stance": "orthodox",
+                    "age": 21,
+                    "height": 65
+                },
+                {
+                    "wins": 29,
+                    "reach": 76,
+                    "name": "Caine Bush",
+                    "weight": 139,
+                    "losses": 9,
+                    "stance": "orthodox",
+                    "age": 27,
+                    "height": 61
+                }
+            ]
+        },
+        {
+            "weightClassCode": 4,
+            "matchHistory": [],
+            "upperWeightLimit": 155,
+            "lowerWeightLimit": 145,
+            "fighters": [
+                {
+                    "wins": 6,
+                    "reach": 72,
+                    "name": "Ronaldo Mcnamara",
+                    "weight": 149,
+                    "losses": 13,
+                    "stance": "orthodox",
+                    "age": 21,
+                    "height": 71
+                },
+                {
+                    "wins": 8,
+                    "reach": 76,
+                    "name": "Tyrese Mann",
+                    "weight": 155,
+                    "losses": 16,
+                    "stance": "orthodox",
+                    "age": 29,
+                    "height": 73
+                },
+                {
+                    "wins": 30,
+                    "reach": 66,
+                    "name": "Josh Hammond",
+                    "weight": 153,
+                    "losses": 1,
+                    "stance": "orthodox",
+                    "age": 34,
+                    "height": 73
+                },
+                {
+                    "wins": 29,
+                    "reach": 65,
+                    "name": "Yusef Wilkes",
+                    "weight": 153,
+                    "losses": 10,
+                    "stance": "orthodox",
+                    "age": 22,
+                    "height": 63
+                },
+                {
+                    "wins": 7,
+                    "reach": 69,
+                    "name": "Jason Frey",
+                    "weight": 147,
+                    "losses": 14,
+                    "stance": "orthodox",
+                    "age": 26,
+                    "height": 74
+                }
+            ]
+        },
+        {
+            "weightClassCode": 5,
+            "matchHistory": [],
+            "upperWeightLimit": 170,
+            "lowerWeightLimit": 155,
+            "fighters": [
+                {
+                    "wins": 2,
+                    "reach": 71,
+                    "name": "Jonathan Mcneil",
+                    "weight": 159,
+                    "losses": 12,
+                    "stance": "southpaw",
+                    "age": 27,
+                    "height": 75
+                },
+                {
+                    "wins": 1,
+                    "reach": 63,
+                    "name": "Lawson Russo",
+                    "weight": 167,
+                    "losses": 12,
+                    "stance": "southpaw",
+                    "age": 26,
+                    "height": 67
+                },
+                {
+                    "wins": 30,
+                    "reach": 65,
+                    "name": "Patryk Bowes",
+                    "weight": 166,
+                    "losses": 2,
+                    "stance": "orthodox",
+                    "age": 22,
+                    "height": 65
+                },
+                {
+                    "wins": 17,
+                    "reach": 76,
+                    "name": "James Gallegos",
+                    "weight": 157,
+                    "losses": 3,
+                    "stance": "orthodox",
+                    "age": 28,
+                    "height": 68
+                },
+                {
+                    "wins": 24,
+                    "reach": 66,
+                    "name": "Hunter Oakley",
+                    "weight": 169,
+                    "losses": 8,
+                    "stance": "orthodox",
+                    "age": 29,
+                    "height": 73
+                }
+            ]
+        },
+        {
+            "weightClassCode": 6,
+            "matchHistory": [],
+            "upperWeightLimit": 185,
+            "lowerWeightLimit": 170,
+            "fighters": [
+                {
+                    "wins": 22,
+                    "reach": 63,
+                    "name": "Dwayne Sharp",
+                    "weight": 177,
+                    "losses": 4,
+                    "stance": "orthodox",
+                    "age": 21,
+                    "height": 71
+                },
+                {
+                    "wins": 18,
+                    "reach": 75,
+                    "name": "Justin Oakley",
+                    "weight": 182,
+                    "losses": 10,
+                    "stance": "orthodox",
+                    "age": 30,
+                    "height": 74
+                },
+                {
+                    "wins": 2,
+                    "reach": 67,
+                    "name": "Lucien Holcomb",
+                    "weight": 177,
+                    "losses": 17,
+                    "stance": "southpaw",
+                    "age": 21,
+                    "height": 60
+                },
+                {
+                    "wins": 24,
+                    "reach": 66,
+                    "name": "Trevor Feder",
+                    "weight": 184,
+                    "losses": 10,
+                    "stance": "orthodox",
+                    "age": 22,
+                    "height": 70
+                },
+                {
+                    "wins": 1,
+                    "reach": 63,
+                    "name": "Macaulay Hendricks",
+                    "weight": 178,
+                    "losses": 12,
+                    "stance": "orthodox",
+                    "age": 23,
+                    "height": 73
+                }
+            ]
+        },
+        {
+            "weightClassCode": 7,
+            "matchHistory": [],
+            "upperWeightLimit": 205,
+            "lowerWeightLimit": 185,
+            "fighters": [
+                {
+                    "wins": 9,
+                    "reach": 74,
+                    "name": "Hunter Davids",
+                    "weight": 205,
+                    "losses": 16,
+                    "stance": "orthodox",
+                    "age": 27,
+                    "height": 67
+                },
+                {
+                    "wins": 8,
+                    "reach": 68,
+                    "name": "Sahil Sharp",
+                    "weight": 189,
+                    "losses": 14,
+                    "stance": "orthodox",
+                    "age": 32,
+                    "height": 68
+                },
+                {
+                    "wins": 7,
+                    "reach": 70,
+                    "name": "Jasper Mcneil",
+                    "weight": 186,
+                    "losses": 12,
+                    "stance": "southpaw",
+                    "age": 29,
+                    "height": 65
+                },
+                {
+                    "wins": 2,
+                    "reach": 64,
+                    "name": "Rick Potter",
+                    "weight": 199,
+                    "losses": 13,
+                    "stance": "orthodox",
+                    "age": 29,
+                    "height": 73
+                },
+                {
+                    "wins": 2,
+                    "reach": 68,
+                    "name": "Jonathan Bowes",
+                    "weight": 195,
+                    "losses": 17,
+                    "stance": "orthodox",
+                    "age": 29,
+                    "height": 60
+                }
+            ]
+        },
+        {
+            "weightClassCode": 8,
+            "matchHistory": [],
+            "upperWeightLimit": 265,
+            "lowerWeightLimit": 205,
+            "fighters": [
+                {
+                    "wins": 15,
+                    "reach": 72,
+                    "name": "Dominic Davids",
+                    "weight": 239,
+                    "losses": 0,
+                    "stance": "southpaw",
+                    "age": 25,
+                    "height": 65
+                },
+                {
+                    "wins": 17,
+                    "reach": 62,
+                    "name": "Matthias Macdonald",
+                    "weight": 241,
+                    "losses": 0,
+                    "stance": "orthodox",
+                    "age": 24,
+                    "height": 70
+                },
+                {
+                    "wins": 6,
+                    "reach": 60,
+                    "name": "Kier Werner",
+                    "weight": 264,
+                    "losses": 12,
+                    "stance": "southpaw",
+                    "age": 23,
+                    "height": 72
+                },
+                {
+                    "wins": 1,
+                    "reach": 72,
+                    "name": "Saad Workman",
+                    "weight": 265,
+                    "losses": 12,
+                    "stance": "orthodox",
+                    "age": 23,
+                    "height": 61
+                },
+                {
+                    "wins": 15,
+                    "reach": 65,
+                    "name": "Sameer Nicholls",
+                    "weight": 262,
+                    "losses": 7,
+                    "stance": "orthodox",
+                    "age": 30,
+                    "height": 69
+                }
+            ]
+        }
+    ]
+}
