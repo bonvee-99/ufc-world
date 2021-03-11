@@ -93,7 +93,7 @@ public class UfcApp {
     public void loadWorld() {
         try {
             myWorld = jsonReader.read();
-            System.out.println("Loaded " + myWorld.getName() + " to " + activeWorldDir);
+            System.out.println("Loaded " + myWorld.getName() + " from " + activeWorldDir);
         } catch (IOException e) {
             System.out.println("Unable to read from file: " + activeWorldDir);
         }
