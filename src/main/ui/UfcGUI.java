@@ -1,25 +1,19 @@
 package ui;
 
 import model.UfcWorld;
+import model.WeightClass;
 import persistence.JsonReader;
 import persistence.JsonWriter;
-import ui.components.Logo;
-import ui.components.MenuLog;
-import ui.components.MainMenu;
-import ui.components.UfcButton;
+import ui.components.*;
 
 import javax.swing.*;
 import javax.swing.border.Border;
-import javax.swing.text.DefaultCaret;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.AdjustmentEvent;
-import java.awt.event.AdjustmentListener;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.HashSet;
-import java.util.Scanner;
 import java.util.Set;
 
 // interactive GUI Ufc World
@@ -27,6 +21,7 @@ public class UfcGUI extends JFrame implements ActionListener {
     MainMenu menu;
     MenuLog menuLog; // shows activity/prints stuff
     Logo logo;
+    WeightClassPanel weightClassPanel;
     Set<JButton> buttons;
 
     JTextArea printLog;
@@ -55,6 +50,18 @@ public class UfcGUI extends JFrame implements ActionListener {
     JButton saveWorldButton;
     JButton leaveButton;
 
+    JButton strawW;
+    JButton flyW;
+    JButton bantamW;
+    JButton featherW;
+    JButton lightW;
+    JButton welterW;
+    JButton middleW;
+    JButton lightHeavyW;
+    JButton heavyW;
+
+    WeightClass activeWeightClass;
+
     UfcWorld myWorld;
     JsonReader jsonReader;
     JsonWriter jsonWriter;
@@ -73,6 +80,7 @@ public class UfcGUI extends JFrame implements ActionListener {
     public UfcGUI() {
         initializeButtons();
         initializeStartingMenu();
+        initializeWeightClassOptions();
         initializeMenuLog();
         logo = new Logo();
 
@@ -82,6 +90,12 @@ public class UfcGUI extends JFrame implements ActionListener {
         logo.add(lightDarkButton);
 
         initializeMainMenuJFrame();
+    }
+
+    // MODIFIES: this
+    // EFFECTS: creates button options for selected weight class
+    private void initializeWeightClassOptions() {
+        weightClassPanel = new WeightClassPanel();
     }
 
     // MODIFIES: this
@@ -97,13 +111,38 @@ public class UfcGUI extends JFrame implements ActionListener {
         addWorldButtons();
 
         addMainMenuButtons();
+
+        addWeightOptionButtons();
     }
 
     // MODIFIES: this
-    // EFFECTS: adds start menu buttons
+    // EFFECTS: adds weight option buttons
+    private void addWeightOptionButtons() {
+        strawW = new UfcButton("strawweight", this);
+        buttons.add(strawW);
+        flyW = new UfcButton("flyweight", this);
+        buttons.add(flyW);
+        bantamW = new UfcButton("bantamweight", this);
+        buttons.add(bantamW);
+        featherW = new UfcButton("featherweight", this);
+        buttons.add(featherW);
+        lightW = new UfcButton("lightweight", this);
+        buttons.add(lightW);
+        welterW = new UfcButton("welterweight", this);
+        buttons.add(welterW);
+        middleW = new UfcButton("middleweight", this);
+        buttons.add(middleW);
+        lightHeavyW = new UfcButton("light heavyweight", this);
+        buttons.add(lightHeavyW);
+        heavyW = new UfcButton("heavyweight", this);
+        buttons.add(heavyW);
+    }
+
+    // MODIFIES: this
+    // EFFECTS: adds start menu buttons and sets save to false
     private void addStartMenuButtons() {
         save = false;
-        newWorldButton = new UfcButton("Create a new randomly generated UFC world", this);
+        newWorldButton = new UfcButton("Create a a new random UFC world", this);
         buttons.add(newWorldButton);
         loadWorldButton = new UfcButton("Load in a previous UFC world", this);
         buttons.add(loadWorldButton);
@@ -145,24 +184,94 @@ public class UfcGUI extends JFrame implements ActionListener {
     // source: stackoverflow
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == newWorldButton) {
+        Object cb = e.getSource();
+        if (cb == newWorldButton) {
             myWorld = new UfcWorld("world", true);
+            activeWeightClass = myWorld.getWeightClassByCode(4);
+            updateText("\n!Active weight class: lightweight!");
+            addWeightOptionsToPanel();
             loadMainMenu();
-        } else if (e.getSource() == loadWorldButton) {
+        } else if (cb == loadWorldButton) {
             chooseWorld();
-        } else if (e.getSource() == world1 || e.getSource() == world2 || e.getSource() == world3
-                || e.getSource() == world4 || e.getSource() == world5) {
+        } else if (cb == world1 || cb == world2 || cb == world3
+                || cb == world4 || cb == world5) {
             if (save) {
-                handleSaveButton(e.getSource());
+                handleSaveButton(cb);
                 save = false;
             } else {
-                handleLoadButton(e.getSource());
+                handleLoadButton(cb);
             }
-        } else if (e.getSource() == lightDarkButton) {
+        } else if (cb == lightDarkButton) {
             setTheme();
-        } else if (e.getSource() == saveWorldButton) {
+        } else if (cb == saveWorldButton) {
             save = true;
             chooseWorld();
+        } else if (cb == strawW || cb == flyW || cb == bantamW || cb == featherW || cb == lightW || cb == welterW
+                || cb == middleW || cb == lightHeavyW || cb == heavyW) {
+            handleWeightClassChoice(cb);
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: adds weight class option buttons
+    private void addWeightOptionsToPanel() {
+        weightClassPanel.add(strawW);
+        weightClassPanel.add(flyW);
+        weightClassPanel.add(bantamW);
+        weightClassPanel.add(featherW);
+        weightClassPanel.add(lightW);
+        weightClassPanel.add(welterW);
+        weightClassPanel.add(middleW);
+        weightClassPanel.add(lightHeavyW);
+        weightClassPanel.add(heavyW);
+    }
+
+    // MODIFIES: this
+    // EFFECTS: changes active weight class to selected weight class
+    private void handleWeightClassChoice(Object cb) {
+        if (cb == strawW) {
+            activeWeightClass = myWorld.getWeightClassByCode(0);
+        } else if (cb == flyW) {
+            activeWeightClass = myWorld.getWeightClassByCode(1);
+        } else if (cb == bantamW) {
+            activeWeightClass = myWorld.getWeightClassByCode(2);
+        } else if (cb == featherW) {
+            activeWeightClass = myWorld.getWeightClassByCode(3);
+        } else if (cb == lightW) {
+            activeWeightClass = myWorld.getWeightClassByCode(4);
+        } else if (cb == welterW) {
+            activeWeightClass = myWorld.getWeightClassByCode(5);
+        } else if (cb == middleW) {
+            activeWeightClass = myWorld.getWeightClassByCode(6);
+        } else if (cb == lightHeavyW) {
+            activeWeightClass = myWorld.getWeightClassByCode(7);
+        } else if (cb == heavyW) {
+            activeWeightClass = myWorld.getWeightClassByCode(8);
+        }
+        shoutActiveClass(cb);
+    }
+
+    // MODIFIES: this
+    // EFFECTS: prints what the active weight class is now
+    private void shoutActiveClass(Object cb) {
+        if (cb == strawW) {
+            updateText("\n!Active weight class: strawweight!");
+        } else if (cb == flyW) {
+            updateText("\n!Active weight class: flyweight!");
+        } else if (cb == bantamW) {
+            updateText("\n!Active weight class: bantamweight!");
+        } else if (cb == featherW) {
+            updateText("\n!Active weight class: featherweight!");
+        } else if (cb == lightW) {
+            updateText("\n!Active weight class: lightweight!");
+        } else if (cb == welterW) {
+            updateText("\n!Active weight class: welterweight!");
+        } else if (cb == middleW) {
+            updateText("\n!Active weight class: middleweight!");
+        } else if (cb == lightHeavyW) {
+            updateText("\n!Active weight class: light heavyweight!");
+        } else if (cb == heavyW) {
+            updateText("\n!Active weight class: heavy weight!");
         }
     }
 
@@ -191,9 +300,9 @@ public class UfcGUI extends JFrame implements ActionListener {
             jsonWriter.open();
             jsonWriter.write(myWorld);
             jsonWriter.close();
-            System.out.println("Saved " + myWorld.getName() + " to " + activeWorldDir);
+            updateText("\nSaved " + myWorld.getName() + " to " + activeWorldDir);
         } catch (FileNotFoundException e) {
-            System.out.println("Unable to save to file: " + activeWorldDir);
+            updateText("\nUnable to save to file: " + activeWorldDir);
         }
     }
 
@@ -255,6 +364,9 @@ public class UfcGUI extends JFrame implements ActionListener {
             activeWorldDir = JSON_STORE5;
         }
         loadWorld();
+        activeWeightClass = myWorld.getWeightClassByCode(4);
+        updateText("\n!Active weight class: lightweight!");
+        addWeightOptionsToPanel();
         loadMainMenu();
     }
 
@@ -277,9 +389,9 @@ public class UfcGUI extends JFrame implements ActionListener {
         jsonReader = new JsonReader(activeWorldDir);
         try {
             myWorld = jsonReader.read();
-            System.out.println("Loaded " + myWorld.getName() + " from " + activeWorldDir);
+            updateText("\nLoaded " + myWorld.getName() + " from " + activeWorldDir);
         } catch (IOException e) {
-            System.out.println("Unable to read from file: " + activeWorldDir);
+            updateText("\nUnable to read from file: " + activeWorldDir);
         }
     }
 
@@ -321,9 +433,7 @@ public class UfcGUI extends JFrame implements ActionListener {
         menuLog = new MenuLog();
         menuLog.setLayout(new BorderLayout());
         printLog = new JTextArea();
-        currentText = "\n hi\n hi\n hi\n hi\n hi\n hi\n hi\n hi\n hi\n hi\n hi\n hi\n hi\n hi\n hi\n hi\n "
-                + "hi\n hi\n hi\n hi\n hi"
-                + "\n hi\n hi\n hi\n hi\n hi\n hi\n hi\n hi\n hi\n hi\n hi\n hi\n hi\n hi\n hi";
+        currentText = " ";
         printLog.setText(currentText);
         printLog.setEditable(false);
         printLog.setLineWrap(true);
@@ -350,6 +460,7 @@ public class UfcGUI extends JFrame implements ActionListener {
         this.add(logo);
         this.add(menu);
         this.add(menuLog);
+        this.add(weightClassPanel);
 
         // JFrame settings:
         this.setTitle("Ufc World");
