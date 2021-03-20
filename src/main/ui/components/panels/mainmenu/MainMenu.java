@@ -18,13 +18,16 @@ public abstract class MainMenu extends JPanel implements ActionListener {
     public MainMenu() {
         this.setBounds(0, 117, 300, 555);
         this.setBorder(redBorder);
-        this.setLayout(new GridLayout(9, 1, 0, 5));
+        this.setLayout(new GridLayout(9, 1, 0, 0));
         buttons = new ArrayList<>();
     }
 
     // MODIFIES: this
-    // EFFECTS: changes theme
-    public void changeTheme() {
-
+    // EFFECTS: changes button background and text to given colours
+    public void changeTheme(Color backColor, Color textColor) {
+        for (UfcButton button : buttons) {
+            button.setBackground(backColor);
+            button.setForeground(textColor);
+        }
     }
 }

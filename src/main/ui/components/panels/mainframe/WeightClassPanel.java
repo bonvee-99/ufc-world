@@ -32,7 +32,7 @@ public class WeightClassPanel extends JPanel implements ActionListener {
     public WeightClassPanel(UfcGUI gui) {
         this.setBounds(297, 117, 170, 555);
         this.setBorder(redBorder);
-        this.setLayout(new GridLayout(9, 1, 0, 5));
+        this.setLayout(new GridLayout(9, 1, 0, 0));
         this.gui = gui;
         buttons = new ArrayList<>();
         initializeWeightOptions();
@@ -196,4 +196,13 @@ public class WeightClassPanel extends JPanel implements ActionListener {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: changes button background and text to given colours
+    public void changeTheme(Color backColor, Color textColor) {
+        for (UfcButton button : buttons) {
+            button.setBackground(backColor);
+            button.setForeground(textColor);
+        }
+        this.setBackground(backColor);
+    }
 }

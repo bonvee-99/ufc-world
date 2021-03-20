@@ -10,8 +10,6 @@ public class UfcButton extends JButton {
     public UfcButton(String text) {
         this.setText(text);
         this.setFont(new Font("Comic Sans",Font.BOLD,15));
-        this.setForeground(Color.black);
-        this.setBackground(Color.white);
         this.setOpaque(true);
         this.setBorder(BorderFactory.createMatteBorder(1, 0, 1, 0, Color.decode("#d44446")));
     }
