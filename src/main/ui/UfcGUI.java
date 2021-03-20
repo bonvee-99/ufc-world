@@ -124,7 +124,7 @@ public class UfcGUI extends JFrame {
         this.setTitle("Ufc World");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // lets you exit out of application on close
         this.setResizable(false);
-        this.setSize(800, 700);
+        this.setSize(1000, 700);
         this.setLayout(null);
         this.getContentPane().setBackground(Color.white); // doesn't matter but hurt eyes while creating it
         this.setVisible(true);
@@ -133,7 +133,7 @@ public class UfcGUI extends JFrame {
     // MODIFIES: this
     // EFFECTS: updates current text in print pane
     public void updateText(String text) {
-        currentText += "\n" + text;
+        currentText += "\n" + "-->" + text;
         printLog.setText(currentText);
         printLog.setCaretPosition(printLog.getDocument().getLength()); // scrolls down to most recent text
         // source:
@@ -278,6 +278,10 @@ public class UfcGUI extends JFrame {
 
     public UfcWorld getMyWorld() {
         return this.myWorld;
+    }
+
+    public WeightClass getActiveWeightClass() {
+        return this.activeWeightClass;
     }
 
     // SETTERS:

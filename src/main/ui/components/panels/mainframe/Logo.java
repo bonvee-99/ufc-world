@@ -26,7 +26,7 @@ public class Logo extends JPanel implements ActionListener {
     // EFFECTS: creates ufc logo with theme button changer and creator name
     private void initializeUfcLogo(JLabel ufcIcon, JLabel creditName) {
         this.setLayout(null);
-        this.setBounds(0, 0, 800, 120);
+        this.setBounds(0, 0, 1000, 120);
         this.setBorder(redBorder);
         this.add(ufcIcon);
         this.add(creditName);
@@ -38,7 +38,7 @@ public class Logo extends JPanel implements ActionListener {
     private void createThemeButton() {
         themeButton = new JButton("Change Theme");
         themeButton.addActionListener(this);
-        themeButton.setBounds(640, 60, 150, 50);
+        themeButton.setBounds(840, 60, 150, 50);
         this.add(themeButton);
     }
 
@@ -47,7 +47,7 @@ public class Logo extends JPanel implements ActionListener {
     private JLabel createUfcCreditName() {
         JLabel nameLabel = new JLabel();
         nameLabel.setText("By Ben Vinnick");
-        nameLabel.setBounds(670, 0, 150, 50);
+        nameLabel.setBounds(870, 0, 130, 50);
         nameLabel.setFont(new Font("Comic Sans",Font.BOLD,15));
         nameLabel.setForeground(Color.red);
         return nameLabel;
@@ -59,7 +59,7 @@ public class Logo extends JPanel implements ActionListener {
         ImageIcon ufcTitle = createImageIcon("../../images/ufc-logo-small-2.png", "Ufc logo");
         JLabel menuLabel = new JLabel();
         menuLabel.setIcon(ufcTitle);
-        menuLabel.setBounds(255, 10, 289, 100);
+        menuLabel.setBounds(356, 10, 289, 100);
         return menuLabel;
     }
 

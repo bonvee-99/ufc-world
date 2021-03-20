@@ -3,30 +3,80 @@
     "WeightClassList": [
         {
             "weightClassCode": 0,
-            "matchHistory": [{
-                "result": " by knockout!",
-                "winner": {
-                    "wins": 11,
-                    "reach": 76,
-                    "name": "Denzel Haggerty",
-                    "weight": 58,
-                    "losses": 19,
-                    "stance": "orthodox",
-                    "age": 28,
-                    "height": 62
+            "matchHistory": [
+                {
+                    "result": " by knockout!",
+                    "winner": {
+                        "wins": 11,
+                        "reach": 76,
+                        "name": "Denzel Haggerty",
+                        "weight": 58,
+                        "losses": 19,
+                        "stance": "orthodox",
+                        "age": 28,
+                        "height": 62
+                    },
+                    "fightName": "Ben VS JAMES 01",
+                    "loser": {
+                        "wins": 24,
+                        "reach": 67,
+                        "name": "Tyrese Werner",
+                        "weight": 33,
+                        "losses": 1,
+                        "stance": "southpaw",
+                        "age": 29,
+                        "height": 67
+                    }
                 },
-                "fightName": "Ben VS JAMES 01",
-                "loser": {
-                    "wins": 24,
-                    "reach": 67,
-                    "name": "Tyrese Werner",
-                    "weight": 33,
-                    "losses": 1,
-                    "stance": "southpaw",
-                    "age": 29,
-                    "height": 67
+                {
+                    "result": " by knockout!",
+                    "winner": {
+                        "wins": 7,
+                        "reach": 62,
+                        "name": "Gerard Wilkes",
+                        "weight": 17,
+                        "losses": 15,
+                        "stance": "orthodox",
+                        "age": 28,
+                        "height": 69
+                    },
+                    "fightName": "fight new",
+                    "loser": {
+                        "wins": 24,
+                        "reach": 67,
+                        "name": "Tyrese Werner",
+                        "weight": 33,
+                        "losses": 2,
+                        "stance": "southpaw",
+                        "age": 29,
+                        "height": 67
+                    }
+                },
+                {
+                    "result": " by judges decision!",
+                    "winner": {
+                        "wins": 25,
+                        "reach": 67,
+                        "name": "Tyrese Werner",
+                        "weight": 33,
+                        "losses": 2,
+                        "stance": "southpaw",
+                        "age": 29,
+                        "height": 67
+                    },
+                    "fightName": "new fight",
+                    "loser": {
+                        "wins": 7,
+                        "reach": 62,
+                        "name": "Gerard Wilkes",
+                        "weight": 17,
+                        "losses": 16,
+                        "stance": "orthodox",
+                        "age": 28,
+                        "height": 69
+                    }
                 }
-            }],
+            ],
             "upperWeightLimit": 115,
             "lowerWeightLimit": 0,
             "fighters": [
@@ -41,11 +91,11 @@
                     "height": 70
                 },
                 {
-                    "wins": 24,
+                    "wins": 25,
                     "reach": 67,
                     "name": "Tyrese Werner",
                     "weight": 33,
-                    "losses": 1,
+                    "losses": 2,
                     "stance": "southpaw",
                     "age": 29,
                     "height": 67
@@ -71,11 +121,11 @@
                     "height": 62
                 },
                 {
-                    "wins": 6,
+                    "wins": 7,
                     "reach": 62,
                     "name": "Gerard Wilkes",
                     "weight": 17,
-                    "losses": 15,
+                    "losses": 16,
                     "stance": "orthodox",
                     "age": 28,
                     "height": 69
@@ -258,22 +308,143 @@
         },
         {
             "weightClassCode": 4,
-            "matchHistory": [],
+            "matchHistory": [
+                {
+                    "result": " by judges decision!",
+                    "winner": {
+                        "wins": 23,
+                        "reach": 76,
+                        "name": "Maverick Cain",
+                        "weight": 150,
+                        "losses": 4,
+                        "stance": "southpaw",
+                        "age": 22,
+                        "height": 69
+                    },
+                    "fightName": "Kelsey vs Maverick",
+                    "loser": {
+                        "wins": 30,
+                        "reach": 64,
+                        "name": "Kelsey Redmond",
+                        "weight": 147,
+                        "losses": 4,
+                        "stance": "orthodox",
+                        "age": 23,
+                        "height": 71
+                    }
+                },
+                {
+                    "result": " by knockout!",
+                    "winner": {
+                        "wins": 30,
+                        "reach": 64,
+                        "name": "Kelsey Redmond",
+                        "weight": 147,
+                        "losses": 4,
+                        "stance": "orthodox",
+                        "age": 23,
+                        "height": 71
+                    },
+                    "fightName": "Kels vs mav",
+                    "loser": {
+                        "wins": 23,
+                        "reach": 76,
+                        "name": "Maverick Cain",
+                        "weight": 150,
+                        "losses": 4,
+                        "stance": "southpaw",
+                        "age": 22,
+                        "height": 69
+                    }
+                },
+                {
+                    "result": " by knockout!",
+                    "winner": {
+                        "wins": 30,
+                        "reach": 73,
+                        "name": "Alex Cornish",
+                        "weight": 145,
+                        "losses": 7,
+                        "stance": "orthodox",
+                        "age": 28,
+                        "height": 68
+                    },
+                    "fightName": "fight",
+                    "loser": {
+                        "wins": 30,
+                        "reach": 64,
+                        "name": "Kelsey Redmond",
+                        "weight": 147,
+                        "losses": 4,
+                        "stance": "orthodox",
+                        "age": 23,
+                        "height": 71
+                    }
+                },
+                {
+                    "result": " by judges decision!",
+                    "winner": {
+                        "wins": 23,
+                        "reach": 76,
+                        "name": "Maverick Cain",
+                        "weight": 150,
+                        "losses": 4,
+                        "stance": "southpaw",
+                        "age": 22,
+                        "height": 69
+                    },
+                    "fightName": "asdfasdf",
+                    "loser": {
+                        "wins": 16,
+                        "reach": 69,
+                        "name": "Tony Carson",
+                        "weight": 153,
+                        "losses": 8,
+                        "stance": "orthodox",
+                        "age": 25,
+                        "height": 65
+                    }
+                },
+                {
+                    "result": " by technical knockout!",
+                    "winner": {
+                        "wins": 17,
+                        "reach": 69,
+                        "name": "Tony Carson",
+                        "weight": 153,
+                        "losses": 8,
+                        "stance": "orthodox",
+                        "age": 25,
+                        "height": 65
+                    },
+                    "fightName": "new fight",
+                    "loser": {
+                        "wins": 30,
+                        "reach": 64,
+                        "name": "Kelsey Redmond",
+                        "weight": 147,
+                        "losses": 5,
+                        "stance": "orthodox",
+                        "age": 23,
+                        "height": 71
+                    }
+                }
+            ],
             "upperWeightLimit": 155,
             "lowerWeightLimit": 145,
             "fighters": [
                 {
-                    "wins": 21,
+                    "wins": 23,
                     "reach": 76,
                     "name": "Maverick Cain",
                     "weight": 150,
-                    "losses": 3,
+                    "losses": 4,
                     "stance": "southpaw",
                     "age": 22,
                     "height": 69
                 },
                 {
-                    "wins": 29,
+                    "wins": 30,
                     "reach": 73,
                     "name": "Alex Cornish",
                     "weight": 145,
@@ -293,21 +464,21 @@
                     "height": 62
                 },
                 {
-                    "wins": 29,
+                    "wins": 30,
                     "reach": 64,
                     "name": "Kelsey Redmond",
                     "weight": 147,
-                    "losses": 2,
+                    "losses": 5,
                     "stance": "orthodox",
                     "age": 23,
                     "height": 71
                 },
                 {
-                    "wins": 16,
+                    "wins": 17,
                     "reach": 69,
                     "name": "Tony Carson",
                     "weight": 153,
-                    "losses": 7,
+                    "losses": 8,
                     "stance": "orthodox",
                     "age": 25,
                     "height": 65
