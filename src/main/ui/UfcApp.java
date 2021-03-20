@@ -405,7 +405,7 @@ public class UfcApp {
     }
 
     // EFFECTS: gets user to choose one of the following given weight classes
-    private WeightClass  selectWeightClass() {
+    private WeightClass selectWeightClass() {
         String selection = "";
         while (!(selection.equals("s") ||  selection.equals("f") || selection.equals("b")
                 || selection.equals("e") || selection.equals("l") || selection.equals("w")

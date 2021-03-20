@@ -1,4 +1,4 @@
-package ui.components;
+package ui.components.panels.mainframe;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -31,7 +31,7 @@ public class Logo extends JPanel {
     }
 
     private JLabel createUfcTitleIcon() {
-        ImageIcon ufcTitle = createImageIcon("images/ufc-logo-small-2.png", "Ufc logo");
+        ImageIcon ufcTitle = createImageIcon("../../images/ufc-logo-small-2.png", "Ufc logo");
         JLabel menuLabel = new JLabel();
         menuLabel.setIcon(ufcTitle);
         menuLabel.setBounds(255, 10, 289, 100);
