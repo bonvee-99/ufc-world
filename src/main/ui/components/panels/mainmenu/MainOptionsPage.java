@@ -6,6 +6,7 @@ import ui.components.input.UfcButton;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
+// main options panel
 public class MainOptionsPage extends MainMenu {
 
     UfcButton createFightButton;

@@ -4,6 +4,7 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
 
+// menu log panel
 public class MenuLog extends JPanel {
     private static final Border redBorder = BorderFactory.createLineBorder(Color.decode("#d44446"), 3);
 

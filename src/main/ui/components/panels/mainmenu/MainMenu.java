@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
+// abstract menu panel class
 public abstract class MainMenu extends JPanel implements ActionListener {
 
     private static final Border redBorder = BorderFactory.createLineBorder(Color.decode("#d44446"), 3);

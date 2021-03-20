@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
+// weight class button panel
 public class WeightClassPanel extends JPanel implements ActionListener {
 
     UfcButton strawW;

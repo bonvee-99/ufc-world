@@ -6,6 +6,7 @@ import ui.components.input.UfcButton;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
+// load from options panel
 public class LoadFromOptionsPage extends MainMenu {
 
     UfcButton world1;

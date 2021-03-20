@@ -8,6 +8,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+// logo panel
 public class Logo extends JPanel implements ActionListener {
 
     private static final Border redBorder = BorderFactory.createLineBorder(Color.decode("#d44446"), 3);
@@ -21,6 +22,8 @@ public class Logo extends JPanel implements ActionListener {
         initializeUfcLogo(createUfcTitleIcon(), createUfcCreditName());
     }
 
+    // MODIFIES: this
+    // EFFECTS: creates ufc logo with theme button changer and creator name
     private void initializeUfcLogo(JLabel ufcIcon, JLabel creditName) {
         this.setLayout(null);
         this.setBounds(0, 0, 800, 120);
@@ -39,6 +42,8 @@ public class Logo extends JPanel implements ActionListener {
         this.add(themeButton);
     }
 
+    // MODIFIES: this
+    // EFFECTS: creates creator name label
     private JLabel createUfcCreditName() {
         JLabel nameLabel = new JLabel();
         nameLabel.setText("By Ben Vinnick");
@@ -48,6 +53,8 @@ public class Logo extends JPanel implements ActionListener {
         return nameLabel;
     }
 
+    // MODIFIES: this
+    // EFFECTS: creates Ufc image logo
     private JLabel createUfcTitleIcon() {
         ImageIcon ufcTitle = createImageIcon("../../images/ufc-logo-small-2.png", "Ufc logo");
         JLabel menuLabel = new JLabel();
@@ -67,8 +74,6 @@ public class Logo extends JPanel implements ActionListener {
             return null;
         }
     }
-
-    // EFFECTS:
 
     @Override
     public void actionPerformed(ActionEvent e) {

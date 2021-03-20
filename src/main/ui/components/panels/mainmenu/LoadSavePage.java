@@ -7,6 +7,7 @@ import ui.components.input.UfcButton;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
+// load or save panel
 public class LoadSavePage extends MainMenu {
 
     private UfcGUI gui;
