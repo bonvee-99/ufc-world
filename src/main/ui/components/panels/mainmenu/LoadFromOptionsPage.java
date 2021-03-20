@@ -3,6 +3,7 @@ package ui.components.panels.mainmenu;
 import ui.UfcGUI;
 import ui.components.input.UfcButton;
 
+import java.awt.*;
 import java.awt.event.ActionEvent;
 
 public class LoadFromOptionsPage extends MainMenu {
@@ -19,6 +20,7 @@ public class LoadFromOptionsPage extends MainMenu {
         super();
         this.gui = gui;
         initializeButtons();
+        this.setLayout(new GridLayout(5, 1, 0, 0));
     }
 
     // MODIFIES: this, gui

@@ -225,6 +225,14 @@ public class UfcGUI extends JFrame {
     }
 
     // MODIFIES: this
+    // EFFECTS: prints list of fights in current active weight class
+    public void printFights() {
+        String fightList = activeWeightClass.listFightSummaries();
+        updateText(fightList);
+    }
+
+
+    // MODIFIES: this
     // EFFECTS: changes theme
     public void changeTheme() {
         if (theme == 0) {

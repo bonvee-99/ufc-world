@@ -18,7 +18,6 @@ public abstract class MainMenu extends JPanel implements ActionListener {
     public MainMenu() {
         this.setBounds(0, 117, 300, 555);
         this.setBorder(redBorder);
-        this.setLayout(new GridLayout(9, 1, 0, 0));
         buttons = new ArrayList<>();
     }
 

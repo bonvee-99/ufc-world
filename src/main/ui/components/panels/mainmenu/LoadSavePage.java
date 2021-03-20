@@ -4,6 +4,7 @@ import model.UfcWorld;
 import ui.UfcGUI;
 import ui.components.input.UfcButton;
 
+import java.awt.*;
 import java.awt.event.ActionEvent;
 
 public class LoadSavePage extends MainMenu {
@@ -16,6 +17,7 @@ public class LoadSavePage extends MainMenu {
         super();
         this.gui = gui;
         initializeButtons();
+        this.setLayout(new GridLayout(2, 1, 0, 0));
     }
 
     // MODIFIES: this, gui

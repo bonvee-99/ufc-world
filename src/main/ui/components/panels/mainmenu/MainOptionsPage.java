@@ -3,6 +3,7 @@ package ui.components.panels.mainmenu;
 import ui.UfcGUI;
 import ui.components.input.UfcButton;
 
+import java.awt.*;
 import java.awt.event.ActionEvent;
 
 public class MainOptionsPage extends MainMenu {
@@ -24,6 +25,7 @@ public class MainOptionsPage extends MainMenu {
         super();
         initializeButtons();
         this.gui = gui;
+        this.setLayout(new GridLayout(9, 1, 0, 0));
     }
 
     // MODIFIES: this
@@ -32,7 +34,7 @@ public class MainOptionsPage extends MainMenu {
         createFightButton = new UfcButton("Create my own fighter");
         listFightersButton = new UfcButton("List Fighters");
         getFightersStatsButton = new UfcButton("Get a Fighter's Stats");
-        listFightsButton = new UfcButton("List Fights");
+        listFightsButton = new UfcButton("List Fight Summaries");
         genFight = new UfcButton("Generate a fight");
         genRandomFight = new UfcButton("Generate a a random fight");
         saveWorldButton = new UfcButton("Save World");
@@ -70,6 +72,8 @@ public class MainOptionsPage extends MainMenu {
         Object button = e.getSource();
         if (button == listFightersButton) {
             gui.printFighters();
+        } else if (button == listFightsButton) {
+            gui.printFights();
         } else if (button == loadWorldButton) {
             gui.setMenuAsLoadFromOptionsPage();
         } else if (button == saveWorldButton) {
