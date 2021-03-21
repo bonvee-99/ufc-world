@@ -5,9 +5,14 @@ import model.WeightClass;
 import ui.UfcGUI;
 import ui.components.input.UfcButton;
 
+import javax.sound.sampled.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.io.File;
+import java.io.IOException;
+
+import static com.sun.tools.internal.ws.wsdl.parser.Util.fail;
 
 // main options panel
 public class MainOptionsPage extends MainMenu {
@@ -335,10 +340,28 @@ public class MainOptionsPage extends MainMenu {
                 gui.updateText("\n" + wc.getNextFight(fighterA, fighterB, name).getSummary());
                 // adds fight to history and displays result
                 gui.updateText("\n added: \"" + name + "\" to match history");
+                playSound();
             } else {
                 JOptionPane.showMessageDialog(gui, "Fight name is taken!");
                 name = "";
             }
+        }
+    }
+
+    // EFFECTS: plays bell sound when fight occurs
+    // SOURCE: https://stackoverflow.com/questions/953598/audio-volume-control-increase-or-decrease-in-java
+    private void playSound() {
+        File file = new File("./data/boxing-bell-2.wav");
+        try {
+            AudioInputStream audioStream = AudioSystem.getAudioInputStream(file);
+            Clip clip = AudioSystem.getClip();
+            clip.open(audioStream);
+            FloatControl gainControl =
+                    (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+            gainControl.setValue(-5.0f);
+            clip.start();
+        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
+            fail("Unexpected exception");
         }
     }
 

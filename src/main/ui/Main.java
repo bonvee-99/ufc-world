@@ -1,11 +1,10 @@
 package ui;
 
-import model.Names;
-import model.UfcWorld;
-import persistence.JsonWriter;
-
 import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Scanner;
+
+import javax.sound.sampled.*;
 
 // Main that initiates console based UI
 public class Main {
