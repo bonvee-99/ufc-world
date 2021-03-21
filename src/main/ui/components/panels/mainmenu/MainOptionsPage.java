@@ -12,8 +12,6 @@ import java.awt.event.ActionEvent;
 import java.io.File;
 import java.io.IOException;
 
-import static com.sun.tools.internal.ws.wsdl.parser.Util.fail;
-
 // main options panel
 public class MainOptionsPage extends MainMenu {
 
@@ -358,12 +356,10 @@ public class MainOptionsPage extends MainMenu {
             clip.open(audioStream);
             FloatControl gainControl =
                     (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-            gainControl.setValue(-5.0f);
+            gainControl.setValue(-8.0f);
             clip.start();
         } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
-            fail("Unexpected exception");
+            JOptionPane.showMessageDialog(gui, "ding ding ding");
         }
     }
-
-
 }
