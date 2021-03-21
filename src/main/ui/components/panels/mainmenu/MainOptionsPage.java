@@ -100,16 +100,44 @@ public class MainOptionsPage extends MainMenu {
     // EFFECTS: handles user input for creating a fighter
     private void handleCreateFighterButton() {
         String name = chooseFighterName();
+        String stance;
+        double weight;
         if (!(name == null)) {
-            String stance = selectStance();
+            stance = selectStance();
             if (!(stance.equals(""))) {
-                //
+                weight = selectWeight();
+                if (!(weight == -1)) {
+                    //
+                }
             }
         }
-        // weight
         // height
         // reach
         // age
+    }
+
+    // EFFECTS: handles user input for choosing a fighter's weight
+    private double selectWeight() {
+        WeightClass wc = gui.getActiveWeightClass();
+        double weight = -1;
+
+        while (!(wc.getLowerWeightLimit() <= weight && weight <= wc.getUpperWeightLimit())) {
+            try {
+                if (!(weight == - 1)) {
+                    JOptionPane.showMessageDialog(gui,"Please choose a weight in the given range");
+                }
+                String weightString = JOptionPane.showInputDialog("Please choose your fighter's weight"
+                        + "\n" + wc.getLowerWeightLimit() + "-" + wc.getUpperWeightLimit());
+                if (weightString == null) {
+                    return -1;
+                } else {
+                    weight = Double.parseDouble(weightString);
+                }
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(gui,"Invalid input");
+            }
+        }
+        return weight;
     }
 
     // EFFECTS: handles user input for choosing a fighter's stance
