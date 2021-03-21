@@ -1,6 +1,5 @@
 package ui.components.panels.mainmenu;
 
-import com.sun.codemodel.internal.JOp;
 import model.Fighter;
 import model.WeightClass;
 import ui.UfcGUI;
@@ -23,8 +22,14 @@ public class MainOptionsPage extends MainMenu {
     UfcButton loadWorldButton;
     UfcButton quitButton;
 
-
     UfcGUI gui;
+
+    String name;
+    String stance;
+    double weight;
+    int height;
+    int age;
+    int reach;
 
     public MainOptionsPage(UfcGUI gui) {
         super();
@@ -99,21 +104,100 @@ public class MainOptionsPage extends MainMenu {
     // MODIFIES: this
     // EFFECTS: handles user input for creating a fighter
     private void handleCreateFighterButton() {
-        String name = chooseFighterName();
-        String stance;
-        double weight;
+        name = chooseFighterName();
         if (!(name == null)) {
             stance = selectStance();
             if (!(stance.equals(""))) {
                 weight = selectWeight();
                 if (!(weight == -1)) {
-                    //
+                    height = selectHeight();
+                    if (!(height == -1)) {
+                        reach = selectReach();
+                        if (!(reach == -1)) {
+                            age = selectAge();
+                            if (!(age == -1)) {
+                                Fighter fighter = new Fighter(name, stance,
+                                        weight, height, age, reach);
+                                gui.getActiveWeightClass().addFighter(fighter);
+                                gui.updateText("\n" + fighter.getName() + " was added to the current weight class"
+                                        + fighter.getStats());
+                            }
+                        }
+                    }
                 }
             }
         }
-        // height
-        // reach
-        // age
+    }
+
+
+
+    // EFFECTS: handles user input for choosing a fighter's age
+    private int selectAge() {
+        int age = -1;
+        while (!(21 <= age)) {
+            try {
+                if (!(age == -1)) {
+                    JOptionPane.showMessageDialog(gui, "A fighter needs to be at least 21 years old");
+                }
+                String ageString = JOptionPane.showInputDialog("Please choose your fighter's age");
+                if (ageString == null) {
+                    return -1;
+                } else {
+                    age = Integer.parseInt(ageString);
+                }
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(gui,"Invalid input type");
+                age = -1;
+            }
+        }
+        return age;
+    }
+
+    // EFFECTS: handles user input for choosing a fighter's reach
+    private int selectReach() {
+        double reach = -1;
+        while (!(1.0 <= reach && reach <= 107.0)) {
+            try {
+                if (!(reach == -1)) {
+                    JOptionPane.showMessageDialog(gui, "Please choose a valid height");
+                }
+                String heightString = JOptionPane.showInputDialog("Please choose your fighter's reach (inches)"
+                        + "\nWe will round it to the nearest inch");
+                if (heightString == null) {
+                    return -1;
+                } else {
+                    reach = Double.parseDouble(heightString);
+                }
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(gui,"Invalid input type");
+                reach = -1;
+            }
+        }
+        return (int)Math.round(reach);
+    }
+
+
+    // EFFECTS: handles user input for choosing a fighter's height
+    private int selectHeight() {
+        double height = -1;
+        while (!(1.0 <= height && height <= 107.0)) {
+            try {
+                if (!(height == -1)) {
+                    JOptionPane.showMessageDialog(gui, "Please choose a valid height");
+                }
+                String heightString = JOptionPane.showInputDialog("Please choose your fighter's height (inches)"
+                        + "\nWe will round it to the nearest inch");
+                if (heightString == null) {
+                    return -1;
+                } else {
+                    height = Double.parseDouble(heightString);
+                }
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(gui,"Invalid input type");
+                height = -1;
+            }
+        }
+        return (int)Math.round(height);
     }
 
     // EFFECTS: handles user input for choosing a fighter's weight
@@ -124,7 +208,7 @@ public class MainOptionsPage extends MainMenu {
         while (!(wc.getLowerWeightLimit() <= weight && weight <= wc.getUpperWeightLimit())) {
             try {
                 if (!(weight == - 1)) {
-                    JOptionPane.showMessageDialog(gui,"Please choose a weight in the given range");
+                    JOptionPane.showMessageDialog(gui,"Please choose a weight in the given range (lbs)");
                 }
                 String weightString = JOptionPane.showInputDialog("Please choose your fighter's weight"
                         + "\n" + wc.getLowerWeightLimit() + "-" + wc.getUpperWeightLimit());
@@ -134,7 +218,8 @@ public class MainOptionsPage extends MainMenu {
                     weight = Double.parseDouble(weightString);
                 }
             } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(gui,"Invalid input");
+                JOptionPane.showMessageDialog(gui,"Invalid input type");
+                weight = -1;
             }
         }
         return weight;
@@ -210,7 +295,6 @@ public class MainOptionsPage extends MainMenu {
     // EFFECTS: gets user to choose a fighter from active weight class
     private Fighter chooseFighter() {
         WeightClass wc = gui.getActiveWeightClass();
-        String name = "";
         Fighter fighter = null;
         while (fighter == null) {
             name = JOptionPane.showInputDialog("Please choose a fighter from the given options"

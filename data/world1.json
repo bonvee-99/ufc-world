@@ -428,6 +428,30 @@
                         "age": 23,
                         "height": 71
                     }
+                },
+                {
+                    "result": " by knockout!",
+                    "winner": {
+                        "wins": 1,
+                        "reach": 100,
+                        "name": "Ben",
+                        "weight": 150,
+                        "losses": 0,
+                        "stance": "Southpaw",
+                        "age": 21,
+                        "height": 100
+                    },
+                    "fightName": "Ben vs Wil",
+                    "loser": {
+                        "wins": 8,
+                        "reach": 63,
+                        "name": "Wil Rodriquez",
+                        "weight": 154,
+                        "losses": 21,
+                        "stance": "orthodox",
+                        "age": 26,
+                        "height": 62
+                    }
                 }
             ],
             "upperWeightLimit": 155,
@@ -458,7 +482,7 @@
                     "reach": 63,
                     "name": "Wil Rodriquez",
                     "weight": 154,
-                    "losses": 20,
+                    "losses": 21,
                     "stance": "orthodox",
                     "age": 26,
                     "height": 62
@@ -482,6 +506,16 @@
                     "stance": "orthodox",
                     "age": 25,
                     "height": 65
+                },
+                {
+                    "wins": 1,
+                    "reach": 100,
+                    "name": "Ben",
+                    "weight": 150,
+                    "losses": 0,
+                    "stance": "Southpaw",
+                    "age": 21,
+                    "height": 100
                 }
             ]
         },
