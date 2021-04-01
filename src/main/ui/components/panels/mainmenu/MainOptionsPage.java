@@ -25,8 +25,6 @@ public class MainOptionsPage extends MainMenu {
     UfcButton loadWorldButton;
     UfcButton quitButton;
 
-    UfcGUI gui;
-
     String name;
     String stance;
     double weight;
@@ -35,7 +33,7 @@ public class MainOptionsPage extends MainMenu {
     int reach;
 
     public MainOptionsPage(UfcGUI gui) {
-        super();
+        super(gui);
         initializeButtons();
         this.gui = gui;
         this.setLayout(new GridLayout(9, 1, 0, 0));

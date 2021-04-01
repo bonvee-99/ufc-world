@@ -25,6 +25,11 @@ generated fighters created when you start a new world, any fighters you create, 
 fights you add, and the corresponding stats the fights change.
 - As a user I want to be able to load a previously saved file and continue from there.
 
+###Phase 4: Task 2
+I chose to include a hierarchy. The following classes are LoadFromOptionsPage, LoadSavePage, MainOptionsPage,
+SaveToOptionsPage, and the abstract class MainMenu which implements the ActionListener interface. Each subclass of
+MainMenu then overrides the actionPerformed method stub from ActionListener.
+
 
 
 

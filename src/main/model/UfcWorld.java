@@ -14,6 +14,8 @@ public class UfcWorld implements Writable {
 
     private final List<WeightClass> weightClassList;
 
+    Names names;
+
 
     // EFFECTS: initializes empty UfcWorld with given name if fillUp is false,
     // if fillUp is true then initializes 9 weight classes and creates fighters and adds them to the 9 weight classes,
@@ -53,7 +55,7 @@ public class UfcWorld implements Writable {
     // MODIFIES: this
     // EFFECTS: creates fighters and adds them to the 9 weight classes
     private void initializeFighters() {
-        Names names = new Names();
+        names = new Names();
         getWeightClassByCode(0).createFighters(names.createNames(numberOfNames));
         getWeightClassByCode(1).createFighters(names.createNames(numberOfNames));
         getWeightClassByCode(2).createFighters(names.createNames(numberOfNames));

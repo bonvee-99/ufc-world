@@ -10,13 +10,11 @@ import java.awt.event.ActionEvent;
 // load or save panel
 public class LoadSavePage extends MainMenu {
 
-    private UfcGUI gui;
     private UfcButton newWorldButton;
     private UfcButton loadWorldButton;
 
     public LoadSavePage(UfcGUI gui) {
-        super();
-        this.gui = gui;
+        super(gui);
         initializeButtons();
         this.setLayout(new GridLayout(2, 1, 0, 0));
     }

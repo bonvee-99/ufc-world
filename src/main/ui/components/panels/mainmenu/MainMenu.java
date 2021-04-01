@@ -1,5 +1,6 @@
 package ui.components.panels.mainmenu;
 
+import ui.UfcGUI;
 import ui.components.input.UfcButton;
 
 import javax.swing.*;
@@ -16,10 +17,13 @@ public abstract class MainMenu extends JPanel implements ActionListener {
 
     protected List<UfcButton> buttons;
 
-    public MainMenu() {
+    protected UfcGUI gui;
+
+    public MainMenu(UfcGUI gui) {
         this.setBounds(0, 117, 300, 555);
         this.setBorder(redBorder);
         buttons = new ArrayList<>();
+        this.gui = gui;
     }
 
     // MODIFIES: this

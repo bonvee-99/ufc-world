@@ -15,11 +15,8 @@ public class SaveToOptionsPage extends MainMenu {
     UfcButton world4;
     UfcButton world5;
 
-    UfcGUI gui;
-
     public SaveToOptionsPage(UfcGUI gui) {
-        super();
-        this.gui = gui;
+        super(gui);
         initializeButtons();
         this.setLayout(new GridLayout(5, 1, 0, 0));
     }
