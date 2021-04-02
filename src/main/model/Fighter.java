@@ -16,7 +16,7 @@ public class Fighter implements Writable {
     private int wins;
     private int losses;
 
-    // REQUIRES: 21 <= age <= 34, a stance of either southpaw or orthodox
+    // REQUIRES: 21 <= age, a stance of either southpaw or orthodox, fighter is in their weight classes min/max range
     // EFFECTS: creates a fighter with a name a stats and assigns them to a weight class
     public Fighter(String name, String stance, Double weight, int height, int age, int reach) {
         this.name = name;
@@ -41,7 +41,7 @@ public class Fighter implements Writable {
         }
     }
 
-    // REQUIRED: a fighter with 0 or greater losses
+    // REQUIRES: a fighter with 0 or greater losses
     // EFFECTS: returns the win percentage of the fighter
     public int getWinPercentage() {
         if (wins == 0 && losses == 0) {

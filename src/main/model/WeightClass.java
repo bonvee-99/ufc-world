@@ -2,6 +2,9 @@ package model;
 
 
 
+import exceptions.NoFighterFoundException;
+import exceptions.NoOtherFighterException;
+import exceptions.NotInWeightClassException;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import persistence.Writable;
@@ -31,7 +34,7 @@ public class WeightClass implements Writable {
     private List<Fighter> fighters;
     private List<Fight> matchHistory;
 
-    // REQUIRES: that weight class was not already made
+    // REQUIRES: there is no other weight class with that code
     // Effects: creates a weight class with a list of fighters
     public WeightClass(int weightClassCode, int lowerWeightLimit, int upperWeightLimit) {
         this.weightClassCode = weightClassCode;
@@ -97,9 +100,17 @@ public class WeightClass implements Writable {
         return fight;
     }
 
-    // REQUIRES: at least one other fighter in the weight class
-    // EFFECTS: generates the given fighters opponent
-    public Fighter chooseOpponent(Fighter fighter) {
+    // EFFECTS: generates the given fighters opponent, throws NoOtherFighterException
+    // if there is not another fighter in the weight division, throws NotInWeightClassException
+    // if the fighter is not in this weight division, throw NotInWeightClassException if the
+    // fighter is not in this weight division
+    public Fighter chooseOpponent(Fighter fighter) throws NoOtherFighterException, NotInWeightClassException {
+        if (!(fighters.size() >= 2)) {
+            throw new NoOtherFighterException();
+        }
+        if (!(fighters.contains(fighter))) {
+            throw new NotInWeightClassException();
+        }
         Random random = new Random();                  // Found on stackoverflow: just returns a random
         int index = random.nextInt(getFightersSize()); // index based on the size of the list
         Fighter opponent = getFighterOfIndex(index);
@@ -110,11 +121,14 @@ public class WeightClass implements Writable {
         }
     }
 
-    // REQUIRES: there is at least one fighter in the weight class
-    // EFFECTS: returns random fighter in the weight class
-    public Fighter getRandomFighter() {
+    // EFFECTS: returns random fighter in the weight class, throws NoFighterFoundException
+    // if there are 0 fighters in the weight division
+    public Fighter getRandomFighter() throws NoFighterFoundException {
+        if (!(fighters.size() >= 1)) {
+            throw new NoFighterFoundException();
+        }
         Random random = new Random();
-        int index = random.nextInt(getFightersSize());
+        int index = random.nextInt(fighters.size());
         return getFighterOfIndex(index);
     }
 

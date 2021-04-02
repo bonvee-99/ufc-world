@@ -30,7 +30,7 @@ public class UfcGUI extends JFrame {
     String currentText;
 
     // menu panels
-    LoadSavePage loadSavePage;
+    LoadOrCreatePage loadSavePage;
     MainOptionsPage mainOptionsPage;
     LoadFromOptionsPage loadFromOptionsPage;
     SaveToOptionsPage saveToOptionsPage;
@@ -98,7 +98,7 @@ public class UfcGUI extends JFrame {
     // EFFECTS: creates all the MainMenu panels
     private void initializeMainMenuPanels() {
         menuPanels = new ArrayList<>();
-        loadSavePage = new LoadSavePage(this);
+        loadSavePage = new LoadOrCreatePage(this);
         menuPanels.add(loadSavePage);
         mainOptionsPage = new MainOptionsPage(this);
         menuPanels.add(mainOptionsPage);

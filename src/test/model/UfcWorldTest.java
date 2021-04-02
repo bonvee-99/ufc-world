@@ -11,12 +11,13 @@ public class UfcWorldTest {
 
     @BeforeEach
     public void runBefore() {
-        myWorld = new UfcWorld("my world", true);
-        emptyWorld = new UfcWorld("empty world", false);
+        myWorld = new UfcWorld("my world", 2);
+        emptyWorld = new UfcWorld("empty world", 1);
     }
 
     @Test
     public void constructionFillUpTest() {
+        assertEquals(9, emptyWorld.getWeightClassListSize());
         for (int i = 0; i < 9; i++) {
             assertNotNull(myWorld.getWeightClassByCode(i));
             assertNotNull(myWorld.getWeightClassByCode(i).getFighters());
@@ -28,7 +29,7 @@ public class UfcWorldTest {
     @Test
     public void constructionDoNotFillUpTest() {
         assertEquals("empty world", emptyWorld.getName());
-        assertEquals(0, emptyWorld.getWeightClassListSize());
+        assertEquals(9, emptyWorld.getWeightClassListSize());
     }
 
     @Test

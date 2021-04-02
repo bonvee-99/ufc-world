@@ -1,5 +1,8 @@
 package ui.components.panels.mainmenu;
 
+import exceptions.NoFighterFoundException;
+import exceptions.NoOtherFighterException;
+import exceptions.NotInWeightClassException;
 import model.Fighter;
 import model.WeightClass;
 import ui.UfcGUI;
@@ -314,9 +317,19 @@ public class MainOptionsPage extends MainMenu {
     // EFFECTS: handles input for generating a random fight
     private void handleRandomFight() {
         WeightClass wc = gui.getActiveWeightClass();
-        Fighter fighterA = wc.getRandomFighter();
-        Fighter fighterB = wc.chooseOpponent(fighterA);
-        chooseFightName(fighterA, fighterB);
+        try {
+            Fighter fighterA = wc.getRandomFighter();
+            Fighter fighterB = wc.chooseOpponent(fighterA);
+            chooseFightName(fighterA, fighterB);
+        } catch (NoFighterFoundException e) {
+            JOptionPane.showMessageDialog(gui, "There are no fighters in this weight class."
+                    + " Please create some!");
+        } catch (NoOtherFighterException e) {
+            JOptionPane.showMessageDialog(gui, "There is only one fighter in this weight class."
+                    + " To create a fight please create at least one more fighter!");
+        } catch (NotInWeightClassException e) {
+            JOptionPane.showMessageDialog(gui, "There is an internal system error");
+        }
     }
 
     // REQUIRES: neither fighter is null

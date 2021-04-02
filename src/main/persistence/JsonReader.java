@@ -44,7 +44,7 @@ public class JsonReader {
     // EFFECTS: parses workroom from jsonUfcWorld and returns it
     private UfcWorld parseUfcWorld(JSONObject jsonUfcWorld) {
         String name = jsonUfcWorld.getString("name");
-        UfcWorld myWorld = new UfcWorld(name, false);
+        UfcWorld myWorld = new UfcWorld(name, 0);
         addWeightClasses(myWorld, jsonUfcWorld);
         return myWorld;
     }

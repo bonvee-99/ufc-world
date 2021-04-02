@@ -17,7 +17,7 @@ public class JsonWriterTest {
     @Test
     public void writerFileNotFoundTest() {
         try {
-            UfcWorld myWorld = new UfcWorld("ufc world", false);
+            UfcWorld myWorld = new UfcWorld("ufc world", 0);
             JsonWriter writer = new JsonWriter("./data/invalidFileName\0:bad.json");
             writer.open();
             fail("IOException was expected");
@@ -29,7 +29,7 @@ public class JsonWriterTest {
     @Test
     public void writerEmptyUfcWorldTest() {
         try {
-            UfcWorld myWorld = new UfcWorld("my world", false);
+            UfcWorld myWorld = new UfcWorld("my world", 0);
             JsonWriter writer = new JsonWriter("./data/emptyUfCWorldCreatedTest.json");
             writer.open();
             writer.write(myWorld);
@@ -47,7 +47,7 @@ public class JsonWriterTest {
     @Test
     public void ufcWorldWrittenTest() {
         try {
-            UfcWorld myWorld = new UfcWorld("partial ufc world", false);
+            UfcWorld myWorld = new UfcWorld("partial ufc world", 0);
             Fighter fighter1 = new Fighter("Ben Vinnick",
                     "southpaw",
                     145.0, 69, 21, 70);

@@ -1,5 +1,8 @@
 package model;
 
+import exceptions.NoFighterFoundException;
+import exceptions.NoOtherFighterException;
+import exceptions.NotInWeightClassException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -124,34 +127,92 @@ public class WeightClassTest {
     }
 
     @Test
-    public void chooseOpponentTest() {
+    public void chooseOpponentNoExceptionExpectedTest() {
         lightWeight.addFighter(fighter1);
         lightWeight.addFighter(fighter2);
         lightWeight.addFighter(fighter3);
         boolean notSameFighter;
-        Fighter opponent = lightWeight.chooseOpponent(fighter1);
-        if (opponent.getName().equals(fighter1.getName())) {
-            notSameFighter = false;
-        } else {
-            notSameFighter = true;
+        try {
+            Fighter opponent = lightWeight.chooseOpponent(fighter1);
+            notSameFighter = !opponent.getName().equals(fighter1.getName());
+            assertTrue(notSameFighter);
+        } catch (NoOtherFighterException | NotInWeightClassException e) {
+            fail("unexpected exception");
         }
-        assertTrue(notSameFighter);
     }
 
     @Test
-    public void getRandomFighterFromOneTest() {
+    public void chooseOpponentNotInClassExceptionExpectedTest() {
+        lightWeight.addFighter(fighter2);
+        lightWeight.addFighter(fighter3);
+        try {
+            Fighter opponent = lightWeight.chooseOpponent(fighter1);
+            fail("expected exception");
+        } catch (NotInWeightClassException e) {
+            // should reach here
+        } catch (NoOtherFighterException e) {
+           fail("unexpected exception");
+        }
+    }
+
+    @Test
+    public void chooseOpponentNoOtherFighterExceptionExpectedTest() {
+        lightWeight.addFighter(fighter2);
+        try {
+            Fighter opponent = lightWeight.chooseOpponent(fighter2);
+            fail("expected exception");
+        } catch (NotInWeightClassException e) {
+            fail("unexpected exception");
+        } catch (NoOtherFighterException e) {
+            // should reach
+        }
+    }
+
+    @Test
+    public void chooseOpponentBothExceptionsThrownTest() {
+        lightWeight.addFighter(fighter2);
+        try {
+            Fighter opponent = lightWeight.chooseOpponent(fighter1);
+            fail("expected exception");
+        } catch (NotInWeightClassException e) {
+            fail("unexpected exception");
+        } catch (NoOtherFighterException e) {
+            // should reach
+        }
+    }
+
+    @Test
+    public void getRandomFighterFromOneNoExceptionTest() {
         lightWeight.addFighter(fighter1);
-        assertEquals(fighter1, lightWeight.getRandomFighter());
+        try {
+            assertEquals(fighter1, lightWeight.getRandomFighter());
+        } catch (NoFighterFoundException e) {
+            fail("unexpected exception");
+        }
     }
 
     @Test
-    public void getRandomFighterFromMultipleTest() {
+    public void getRandomFighterFromMultipleNoExceptionTest() {
         lightWeight.addFighter(fighter1);
         lightWeight.addFighter(fighter2);
-        Fighter fighter = lightWeight.getRandomFighter();
-        boolean isValid = fighter == fighter1
-                || fighter == fighter2;
-        assertTrue(isValid);
+        try {
+            Fighter fighter = lightWeight.getRandomFighter();
+            boolean isValid = fighter == fighter1
+                    || fighter == fighter2;
+            assertTrue(isValid);
+        } catch (NoFighterFoundException e) {
+            fail("unexpected exception");
+        }
+    }
+
+    @Test
+    public void getRandomFighterExceptionExpectedTest() {
+        try {
+            Fighter fighter = lightWeight.getRandomFighter();
+            fail("expected exception");
+        } catch (NoFighterFoundException e) {
+            // should reach
+        }
     }
 
     @Test
@@ -159,12 +220,16 @@ public class WeightClassTest {
         lightWeight.addFighter(fighter1);
         lightWeight.addFighter(fighter2);
         lightWeight.addFighter(fighter3);
-        Fighter opponent = lightWeight.chooseOpponent(fighter1);
+        try {
+            Fighter opponent = lightWeight.chooseOpponent(fighter1);
 
-        Fight fight = lightWeight.getNextFight(fighter1, opponent, "test fight!");
-        assertEquals(fight, lightWeight.getFightByName("test fight!"));
-        assertEquals(1, fight.getWinner().getWins());
-        assertEquals(0, fight.getLoser().getWins());
+            Fight fight = lightWeight.getNextFight(fighter1, opponent, "test fight!");
+            assertEquals(fight, lightWeight.getFightByName("test fight!"));
+            assertEquals(1, fight.getWinner().getWins());
+            assertEquals(0, fight.getLoser().getWins());
+        } catch (NoOtherFighterException | NotInWeightClassException e) {
+            fail("unexpected exception");
+        }
     }
 
     @Test

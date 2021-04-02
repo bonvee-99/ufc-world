@@ -20,12 +20,14 @@ public class UfcWorld implements Writable {
     // EFFECTS: initializes empty UfcWorld with given name if fillUp is false,
     // if fillUp is true then initializes 9 weight classes and creates fighters and adds them to the 9 weight classes,
     // assigns given name
-    public UfcWorld(String name, Boolean fillUp) {
+    public UfcWorld(String name, int type) { // type: 0 = completely empty, 1 = weight classes but no fighters 3 = all
         this.name = name;
         weightClassList = new ArrayList<>();
-        if (fillUp) {
+        if (type == 2) {
             initializeWeightClasses();
             initializeFighters();
+        } else if (type == 1) {
+            initializeWeightClasses();
         }
     }
 
