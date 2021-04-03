@@ -3,6 +3,8 @@ package model;
 import org.json.JSONObject;
 import persistence.Writable;
 
+import java.util.Objects;
+
 // Represents a fight between two fighters
 public class Fight implements Writable {
     private final String fightName;
@@ -87,5 +89,15 @@ public class Fight implements Writable {
         return this.result;
     }
 
-
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Fight fight = (Fight) o;
+        return Objects.equals(fightName, fight.fightName);
+    }
 }

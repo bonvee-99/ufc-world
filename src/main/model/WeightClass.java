@@ -34,7 +34,6 @@ public class WeightClass implements Writable {
     private List<Fighter> fighters;
     private List<Fight> matchHistory;
 
-    // REQUIRES: there is no other weight class with that code
     // Effects: creates a weight class with a list of fighters
     public WeightClass(int weightClassCode, int lowerWeightLimit, int upperWeightLimit) {
         this.weightClassCode = weightClassCode;
@@ -45,21 +44,29 @@ public class WeightClass implements Writable {
         this.lowerWeightLimit = lowerWeightLimit;
     }
 
-    // REQUIRES: a fighter with the same name is not already in the list,
-    // and the fighter fits the weight class requirements
     // MODIFIES: this
-    // EFFECTS: adds a fighter to the list of fighters in the weight class
-    public void addFighter(Fighter fighter) {
-        this.fighters.add(fighter);
+    // EFFECTS: adds a fighter to the list of fighters in the weight class if there are no other
+    // fighters with the same name, and the fighter fits the weight class requirements
+    public boolean addFighter(Fighter fighter) {
+        if (lowerWeightLimit <= fighter.getWeight() && fighter.getWeight() <= upperWeightLimit
+                && !fighters.contains(fighter)) {
+            fighters.add(fighter);
+            return true;
+        } else {
+            return false;
+        }
     }
 
-    // REQUIRES: a fight with the same name is not already in the list
     // MODIFIES: this
-    // EFFECTS: adds a fight to the matchHistory
-    public void addFight(Fight fight) {
-        matchHistory.add(fight);
+    // EFFECTS: adds a fight to the matchHistory if there are no other fights with the same name
+    public boolean addFight(Fight fight) {
+        if (!(matchHistory.contains(fight))) {
+            matchHistory.add(fight);
+            return true;
+        } else {
+            return false;
+        }
     }
-
 
     // EFFECTS: creates list of fighter names from fighter list
     public String listFighters() {
@@ -88,16 +95,19 @@ public class WeightClass implements Writable {
         return summaries;
     }
 
-    // REQUIRES: the two fighters are in the given weight class and they are unique
     // MODIFIES: this and fighterA and fighterB
     // EFFECTS: generates the fighters next opponent chooses winner based on odds, then adds to list of previous fights.
-    // Also creates a fight with a given winner and loser.
+    // Also creates a fight with a given winner and loser. If the two fighter's are the same returns null.
     public Fight getNextFight(Fighter fighterA, Fighter fighterB, String nameOfFight) {
-        Fight fight = new Fight(fighterA, fighterB, nameOfFight);
-        matchHistory.add(fight);
-        fight.getLoser().addLoss();
-        fight.getWinner().addWin();
-        return fight;
+        if (!(fighterA == fighterB) && fighters.contains(fighterA) && fighters.contains(fighterB)) {
+            Fight fight = new Fight(fighterA, fighterB, nameOfFight);
+            matchHistory.add(fight);
+            fight.getLoser().addLoss();
+            fight.getWinner().addWin();
+            return fight;
+        } else {
+            return null;
+        }
     }
 
     // EFFECTS: generates the given fighters opponent, throws NoOtherFighterException

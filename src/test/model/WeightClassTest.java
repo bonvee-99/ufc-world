@@ -44,22 +44,43 @@ public class WeightClassTest {
     }
 
     @Test
-    public void addFighterTest() {
+    public void addValidFighterTest() {
         lightWeight.addFighter(fighter1);
-        lightWeight.addFighter(fighter2);
-        lightWeight.addFighter(fighter3);
-        assertEquals(3, lightWeight.getFightersSize());
+        assertTrue(lightWeight.addFighter(fighter2));
+        assertEquals(2, lightWeight.getFightersSize());
         assertEquals(fighter1, lightWeight.getFighterByName("Ben Vinnick"));
         assertEquals(fighter2, lightWeight.getFighterByName("John John"));
     }
 
     @Test
-    public void addFightTest() {
+    public void addDuplicateFighterNameTest() {
+        lightWeight.addFighter(fighter1);
+        assertFalse(lightWeight.addFighter(fighter1));
+        assertEquals(1, lightWeight.getFightersSize());
+    }
+
+    @Test
+    public void addIncorrectWeightFighterTest() {
+        assertFalse(lightWeight.addFighter(new Fighter("Dave",
+                "orthodox",
+                170.0, 72, 25, 72)));
+        assertEquals(0, lightWeight.getFightersSize());
+    }
+
+    @Test
+    public void addValidFightTest() {
         lightWeight.addFight(fight1);
-        lightWeight.addFight(fight2);
+        assertTrue(lightWeight.addFight(fight2));
         assertEquals(2, lightWeight.getMatchHistorySize());
         assertEquals(fight1, lightWeight.getFightOfIndex(0));
         assertEquals(fight2, lightWeight.getFightOfIndex(1));
+    }
+
+    @Test
+    public void addDuplicateFightNameTest() {
+        lightWeight.addFight(fight1);
+        assertFalse(lightWeight.addFight(fight1));
+        assertEquals(1, lightWeight.getMatchHistorySize());
     }
 
     @Test
@@ -216,21 +237,29 @@ public class WeightClassTest {
     }
 
     @Test
-    public void getNextFightTest() {
+    public void getNextFightValidTest() {
         lightWeight.addFighter(fighter1);
         lightWeight.addFighter(fighter2);
-        lightWeight.addFighter(fighter3);
-        try {
-            Fighter opponent = lightWeight.chooseOpponent(fighter1);
-
-            Fight fight = lightWeight.getNextFight(fighter1, opponent, "test fight!");
-            assertEquals(fight, lightWeight.getFightByName("test fight!"));
-            assertEquals(1, fight.getWinner().getWins());
-            assertEquals(0, fight.getLoser().getWins());
-        } catch (NoOtherFighterException | NotInWeightClassException e) {
-            fail("unexpected exception");
-        }
+        Fight fight = lightWeight.getNextFight(fighter1, fighter2, "test fight!");
+        assertTrue(!(fight == null));
+        assertEquals(fight, lightWeight.getFightByName("test fight!"));
+        assertEquals(1, fight.getWinner().getWins());
+        assertEquals(0, fight.getLoser().getWins());
     }
+
+    @Test
+    public void getNextFightSameFightersTest() {
+        lightWeight.addFighter(fighter1);
+        assertTrue(lightWeight.getNextFight(fighter1, fighter1, "test") == null);
+    }
+
+    @Test
+    public void getNextFightNotInWeightClassTest() {
+        lightWeight.addFighter(fighter1);
+        assertTrue(lightWeight.getNextFight(fighter1, fighter2, "test") == null);
+    }
+
+
 
     @Test
     public void createFightersOnlyOneTest() {
