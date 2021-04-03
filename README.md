@@ -26,7 +26,8 @@ fights you add, and the corresponding stats the fights change.
 - As a user I want to be able to load a previously saved file and continue from there.
 
 ###Phase 4: Task 2
-I created methods that throw exceptions. These methods are (1) getRandomFighter() and (2) chooseOpponent(Fighter)
+I made the WeightClass class robust. I handled all the requires by changing the implementation of some methods. 
+I also created methods that throw exceptions. These methods are (1) getRandomFighter() and (2) chooseOpponent(Fighter)
 which can be found in the WeightClass class. After these changes I decided to add a new button that allows the user
 to create a world with no fighters but with the 9 weight divisions (or else these changes would have been useless).
 Now, if you create a new world without any fighters, if you try to generate a random fight, getRandomFighter() will
