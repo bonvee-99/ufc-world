@@ -1,4 +1,4 @@
-# UFC Stats and Fights
+# UFC GUI
 
 ---
 
